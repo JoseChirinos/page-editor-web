@@ -3,15 +3,8 @@ import { HeaderWrapper, HeaderImage } from './style'
 import Typist from 'react-typist'
 import { ParallaxBanner } from 'react-scroll-parallax'
 
-const mediaQuery = (event, setSize) =>{
-    if (event.matches) {
-        // mobile screen
-        const sizeHeight = window.screen.height
-        setSize(`${sizeHeight}px`)
-    } else {
-        // hd screen
-        setSize("100vh")
-    }
+const mediaQuery = (setSize) =>{
+    checkSizeHeight(setSize)
 }
 const checkSizeHeight = (setSize) => {
     const sizeHeight = window.screen.height
@@ -24,15 +17,15 @@ const Header = (props) => {
 
     useEffect(()=>{
         checkSizeHeight(setSize)
-        match.addListener((e)=> mediaQuery(e, setSize))
+        match.addListener(()=> mediaQuery(setSize))
     },[match])
 
     return (
         <ParallaxBanner
             layers={[
                 {
-                    image: '/assets/images/bg-header.jpg',
-                    amount: 0.2,
+                    image: '/assets/images/bg-whois.jpg',
+                    amount: 0.3,
                 }
             ]}
             style={{
