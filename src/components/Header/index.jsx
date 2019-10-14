@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import { HeaderWrapper, HeaderImage } from './style'
 import Typist from 'react-typist'
-import { ParallaxBanner } from 'react-scroll-parallax'
+import { Parallax } from 'react-parallax'
 
 const mediaQuery = (setSize) =>{
     checkSizeHeight(setSize)
@@ -11,9 +12,13 @@ const checkSizeHeight = (setSize) => {
     setSize(`${sizeHeight}px`)
 }
 
-const Header = (props) => {
+const Header = ({
+    title,
+    bgUrl,
+    imageUrl
+}) => {
     const  match = window.matchMedia('(max-width: 960px)')
-    const [size, setSize] = useState("1000px")
+    const [size, setSize] = useState("100vh")
 
     useEffect(()=>{
         checkSizeHeight(setSize)
@@ -21,33 +26,36 @@ const Header = (props) => {
     },[match])
 
     return (
-        <ParallaxBanner
-            layers={[
-                {
-                    image: '/assets/images/bg-whois.jpg',
-                    amount: 0.3,
-                }
-            ]}
-            style={{
-                height: size,
-            }}
+        <Parallax
+            bgImage={bgUrl}
+            strength={400}
         >
             <div>
-                <HeaderWrapper>
+                <HeaderWrapper
+                    heightSize = { size }
+                >
                     <span>
                         <Typist
                             cursor={{ show: false }}
                         >
-                            Bienvenido a nuestra Página de Ingenieria Informática
+                            { title }
                         </Typist>
                     </span>
                     <HeaderImage
-                        src="/assets/images/img-header.png"
+                        src={ imageUrl }
                     />
                 </HeaderWrapper>
             </div>
-        </ParallaxBanner>
+        </Parallax>
     )
 }
 
+Header.propTypes = {
+    title: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string,
+    bgUrl: PropTypes.string.isRequired,
+}
+Header.defaultProps = {
+    imageUrl: '',
+}
 export default Header

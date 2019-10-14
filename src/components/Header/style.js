@@ -5,8 +5,7 @@ export const HeaderWrapper = styled.header`
     position: relative;
     font-family: 'Sarala', sans-serif;
     width: 100%;
-    /*height: 450px;*/
-    height: 100vh;
+    height: ${ ({ heightSize }) => heightSize };
     display: flex;
     align-items: center;
     justify-content: center;
