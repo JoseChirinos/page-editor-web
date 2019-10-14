@@ -46,3 +46,9 @@ export const DetailImage = styled.img`
         height: 400px;        
     }
 `
+
+export const DetailAction = styled.div`
+    width: 250px;
+    height: 100px;
+    background: red;
+`

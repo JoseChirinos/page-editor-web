@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { DetailWrapper, DetailImage } from './style'
+import { DetailWrapper, DetailImage, DetailAction } from './style'
 import { ParallaxBanner } from 'react-scroll-parallax'
 
 const mediaQuery = (event, setSize) =>{
@@ -25,48 +25,59 @@ const Detail = ({
     bgUrl,
 }) => {
     const  match = window.matchMedia('(max-width: 960px)')
-    const [size, setSize] = useState(
-        checkSizeHeight()
-    )
+    const [size, setSize] = useState('100vh')
 
     useEffect(()=>{
+        const heightSize = checkSizeHeight();
+        console.log(heightSize)
+        setSize(heightSize)
         match.addListener((e)=> mediaQuery(e, setSize))
     },[match])
 
     return (
-        <ParallaxBanner
-            layers={[
-                {
-                    image: bgUrl,
-                    amount: 0.4,
-                }
-            ]}
-            style={{
-                height: size,
-            }}
-        >
-            <div>
-                <DetailWrapper
-                    imagePosition = { imagePosition }
-                    heightSize = { size }
+        <section>
+            {
+                size === ''?
+                <span>Cargando...</span>
+                :
+                <ParallaxBanner
+                    layers={[
+                        {
+                            image: bgUrl,
+                            amount: 0.4,
+                        }
+                    ]}
+                    style={{
+                        height: size,
+                    }}
                 >
-                    <span>
-                        { title }
-                        <p>
-                            { content }
-                        </p>
-                    </span>
-                    {
-                        imageUrl !== ''?
-                        <DetailImage
-                            src = { imageUrl }
-                        />
-                        :
-                        <span />
-                    }
-                </DetailWrapper>
-            </div>
-        </ParallaxBanner>
+                    <div>
+                        <DetailWrapper
+                            imagePosition = { imagePosition }
+                            heightSize = { size }
+                        >
+                            <span>
+                                { title }
+                                <p>
+                                    { content }
+                                </p>
+                                <DetailAction>
+
+                                </DetailAction>
+                            </span>
+                            {
+                                imageUrl !== ''?
+                                <DetailImage
+                                    src = { imageUrl }
+                                />
+                                :
+                                <span />
+                            }
+                        </DetailWrapper>
+                    </div>
+                </ParallaxBanner>
+            }
+        </section>
     )
 }
 
