@@ -33,7 +33,7 @@ function App() {
       <DetailSimple
         title='Los 4 Pilares fundamentales de la Informática'
         content='A continuación...'
-        bgUrl='https://picjumbo.com/wp-content/uploads/black-on-black-things_free_stock_photos_picjumbo_HNCK3562-2210x1473.jpg'
+        bgUrl='/assets/images/bg-fundamental.jpg'
       />
     </div>
   );
