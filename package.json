@@ -10,6 +10,8 @@
     "react-dnd": "^9.4.0",
     "react-dnd-html5-backend": "^9.4.0",
     "react-dom": "^16.10.2",
+    "react-flickity-component": "^3.3.2",
+    "react-image-lightbox": "^5.1.0",
     "react-parallax": "^2.2.4",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
@@ -17,6 +19,7 @@
     "react-scroll-trigger": "^0.6.0",
     "react-scrollspy": "^3.4.0",
     "react-typist": "^2.0.5",
+    "rmwc": "^5.7.1",
     "styled-components": "^4.4.0",
     "uuid": "^3.3.3"
   },

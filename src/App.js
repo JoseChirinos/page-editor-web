@@ -1,10 +1,12 @@
 import React from 'react'
-import { ParallaxProvider } from 'react-scroll-parallax'
 /* Components Testing */
 import Header from './components/Header'
 import Navigator from './components/Navigator'
 import Detail from './components/Detail'
 import DetailSimple from './components/Detail/Simple'
+import Carousel from './components/Carousel'
+import CarouselImage from './components/Carousel/Image'
+import Post from './components/Post'
 
 function App() {
   return (
@@ -29,12 +31,41 @@ function App() {
         content='La informática se convirtió en una herramienta indispensable para la persona ya que esta se encuentra en todo lo que nos rodea.'
         imagePosition='right'
         bgUrl='/assets/images/macnight.jpg'
+      // bgColor="#000"
       />
       <DetailSimple
         title='Los 4 Pilares fundamentales de la Informática'
         content='A continuación...'
         bgUrl='/assets/images/bg-fundamental.jpg'
       />
+      <Detail
+        title='¿Por qué es tan importante la Informática en la actualidad?'
+        content='La informática se convirtió en una herramienta indispensable para la persona ya que esta se encuentra en todo lo que nos rodea.'
+        imagePosition='right'
+        bgUrl='/assets/images/macnight.jpg'
+      />
+      <Carousel>
+        <DetailSimple
+          title='Los 4 Pilares fundamentales de la Informática'
+          content='A continuación...'
+          bgUrl='/assets/images/bg-fundamental.jpg'
+        />
+        <Detail
+          title='¿Por qué es tan importante la Informática en la actualidad?'
+          content='La informática se convirtió en una herramienta indispensable para la persona ya que esta se encuentra en todo lo que nos rodea.'
+          imagePosition='right'
+          bgUrl='/assets/images/macnight.jpg'
+        />
+      </Carousel>
+      <CarouselImage>
+        <img src='/assets/images/carousel/c1.jpg' />
+        <img src='/assets/images/carousel/c2.jpg' />
+        <img src='/assets/images/carousel/c3.jpg' />
+        <img src='/assets/images/carousel/c4.jpg' />
+        <img src='/assets/images/carousel/c5.jpg' />
+        <img src='/assets/images/carousel/c6.jpg' />
+      </CarouselImage>
+      <Post />
     </div>
   );
 }

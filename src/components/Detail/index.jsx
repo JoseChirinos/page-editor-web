@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { DetailWrapper, DetailImage, DetailAction } from './style'
 import { Parallax } from 'react-parallax'
+import { Button } from '@rmwc/button';
 
 const mediaQuery = (setSize) =>{
     checkSizeHeight(setSize)
@@ -17,24 +18,30 @@ const Detail = ({
     imageUrl,
     imagePosition,
     bgUrl,
+    bgColor,
 }) => {
     const  match = window.matchMedia('(max-width: 960px)')
     const [size, setSize] = useState('100vh')
 
     useEffect(()=>{
         checkSizeHeight(setSize)
-        match.addListener((e)=> mediaQuery(e, setSize))
+        match.addListener((e)=> mediaQuery(setSize))
     },[match])
 
     return (
         <Parallax
             bgImage={bgUrl}
-            strength={400}
+            strength={500}
+            // disabled={ true }
+            style={{
+                width: '100%'
+            }}
         >
             <div>
                 <DetailWrapper
                     imagePosition = { imagePosition }
                     heightSize = { size }
+                    bgColor = { bgColor }
                 >
                     <span>
                         { title }
@@ -42,7 +49,7 @@ const Detail = ({
                             { content }
                         </p>
                         <DetailAction>
-
+                            <Button raised>Accion</Button>
                         </DetailAction>
                     </span>
                     {
@@ -66,9 +73,11 @@ Detail.propTypes = {
     imageUrl: PropTypes.string,
     imagePosition: PropTypes.oneOf(['left','right']),
     bgUrl: PropTypes.string.isRequired,
+    bgColor: PropTypes.string,
 }
 Detail.defaultProps = {
     imagePosition: 'left',
     imageUrl: '',
+    bgColor: 'transparent',
 }
 export default Detail

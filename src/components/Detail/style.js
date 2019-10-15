@@ -5,11 +5,12 @@ export const DetailWrapper = styled.section`
     position: relative;
     font-family: 'Sarala', sans-serif;
     width: 100%;
-    height: ${ ({ heightSize }) => heightSize };
+    height: ${ ({ heightSize }) => heightSize};
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: ${ ({ bgColor }) => bgColor};
     background-size: cover;
     color: ${theme.white};
     > span{
@@ -49,6 +50,8 @@ export const DetailImage = styled.img`
 
 export const DetailAction = styled.div`
     width: 250px;
-    height: 100px;
-    background: red;
+    margin: 0 auto;
+    @media (min-width:960px) {
+        margin: 0;
+    }
 `
