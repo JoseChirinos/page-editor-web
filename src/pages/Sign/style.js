@@ -3,7 +3,9 @@ import styled from 'styled-components/macro'
 export const SignContainer = styled.div`
     width: 100%;
     padding: 20px 0px;
-    background-image: url('https://image.freepik.com/free-vector/city-blur-background_1284-13088.jpg');
+    background-image: url(/assets/images/bg-login-optional.jpg);
+    background-size: cover;
+    background-position: center;
 `
 export const SignWrapper = styled.div`
     display: flex;
