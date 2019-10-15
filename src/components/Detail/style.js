@@ -19,6 +19,7 @@ export const DetailWrapper = styled.section`
         text-align: center;
         line-height: 1.5;
         text-shadow: 0px 1px 2px ${theme.black};
+        padding: 20px 0px;
         > p {
             font-size: 21px;
             font-family: 'Lato', sans-serif;
@@ -35,6 +36,7 @@ export const DetailWrapper = styled.section`
         > span{
             text-align: left;
             font-size: 36px;
+            padding: 0px 30px;
         }
     }
 `

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Flickity from 'react-flickity-component'
+import './styles.css'
 
 const flickityOptions = {
     initialIndex: 0,
