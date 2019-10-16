@@ -6,7 +6,12 @@ import {
     FooterInfo,
 } from './style'
 
-const Footer = (props)=>{
+const Footer = ({
+    address,
+    email,
+    cellphone,
+    website
+})=>{
     return (
         <FooterContainer>
             <FooterWrapper>
@@ -16,18 +21,15 @@ const Footer = (props)=>{
                 <FooterInfo>
                     <h3>Dirección</h3>
                     <p>
-                        Calle Regimiento Caravineros Nro. 202
-                        Calle Regimiento Caravineros Nro. 202
-                        Calle Regimiento Caravineros Nro. 202
-                        Calle Regimiento Caravineros Nro. 202
+                        { address }
                     </p>
                 </FooterInfo>
                 <FooterInfo>
                     <h3>Contactos</h3>
                     <ul>
-                        <li><strong>Email:</strong> josealexcba@gmail.com</li>
-                        <li><strong>Celular:</strong> 79413052</li>
-                        <li><strong>Página Web:</strong> josechirinos.com</li>
+                        <li><strong>Email:</strong> {email} </li>
+                        <li><strong>Celular:</strong> {cellphone} </li>
+                        <li><strong>Página Web:</strong> {website} </li>
                     </ul>
                 </FooterInfo>
             </FooterWrapper>

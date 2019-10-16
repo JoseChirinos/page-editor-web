@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.header`
     position: relative;
     font-family: 'Sarala', sans-serif;
     width: 100%;
-    height: ${ ({ heightSize }) => heightSize };
+    height: ${ ({ heightSize }) => heightSize};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,10 +26,10 @@ export const HeaderWrapper = styled.header`
         }
     }
     @media (min-width:960px) {
-        flex-direction: row;
+        /* flex-direction: row; */
         /*height: 100vh;*/
         > span{
-            text-align: left;
+            /* text-align: left; */
             font-size: 46px;
         }
     }
@@ -39,7 +39,7 @@ export const HeaderImage = styled.img`
     width: 250px;
     height: 250px;
     @media (min-width:960px) {
-        width: 600px;
-        height: 600px;        
+        width: 350px;
+        height: 350px;        
     }
 `

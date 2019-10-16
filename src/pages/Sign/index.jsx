@@ -3,18 +3,26 @@ import {
     SignContainer,
     SignWrapper,
     SignForm,
+    SignTitle,
     SignSeparate,
     SignSend
 } from './style'
 
 import { TextField } from '@rmwc/textfield'
-import { Button } from '@rmwc/button';
+import { Button } from '@rmwc/button'
 
 const SignIn = (props) => {
     return (
         <SignContainer>
             <SignWrapper>
                 <SignForm>
+                    <SignTitle>
+                        <h1>
+                            Login
+                        </h1>
+                    </SignTitle>
+
+                    <SignSeparate />
                     <TextField
                         type='text'
                         outlined

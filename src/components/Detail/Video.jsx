@@ -48,6 +48,7 @@ const DetailVideo = ({
                 <ReactPlayer
                     className="react-player"
                     url = { videoUrl }
+                    controls
                 />
                 :
                 <span />

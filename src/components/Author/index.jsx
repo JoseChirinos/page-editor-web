@@ -3,10 +3,12 @@ import {
     AuthorContainer,
 } from './style'
 
-const Author = (props)=>{
+const Author = ({
+    authorName
+})=>{
     return(
         <AuthorContainer>
-            Copyright ©  { new Date().getFullYear() }, Jose Chirinos
+            Copyright ©  { new Date().getFullYear() }, { authorName }
         </AuthorContainer>
     )
 }

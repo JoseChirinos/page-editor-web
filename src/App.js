@@ -1,11 +1,12 @@
 import React from 'react'
-//import Test from './test'
-import SignIn from './pages/Sign/In'
+
+import Test from './test'
+import SignIn from './pages/Sign'
 
 function App() {
   return (
     <div className="App">
-      <SignIn />
+      <Test />
     </div>
   );
 }

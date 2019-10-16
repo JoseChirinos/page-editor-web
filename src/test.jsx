@@ -37,16 +37,16 @@ function Test() {
         bgUrl='/assets/images/macnight.jpg'
       // bgColor="#000"
       />
-      <DetailSimple
+      {/* <DetailSimple
         title='Los 4 Pilares fundamentales de la Informática'
         content='A continuación...'
         bgUrl='/assets/images/bg-fundamental.jpg'
-      />
+      /> */}
       <DetailVideo
         title='Perfil de un Ingeniero Informático'
         content='Online video and Youtube particularly is now more popular than cable television. Mobirise provides a support for YouTube and Vimeo that allow you to liven up your sites.'
         videoPosition='left'
-        videoUrl='https://www.youtube.com/watch?v=dQiV5VYU_xM'
+        videoUrl='https://www.facebook.com/LosGonzalesLpz/videos/668079913687601/'
       />
       <Carousel>
         <DetailSimple
@@ -54,6 +54,12 @@ function Test() {
           content='A continuación...'
           bgUrl='/assets/images/bg-fundamental.jpg'
         />
+        {/* <DetailVideo
+            title='Perfil de un Ingeniero Informático'
+            content='Online video and Youtube particularly is now more popular than cable television. Mobirise provides a support for YouTube and Vimeo that allow you to liven up your sites.'
+            videoPosition='right'
+            videoUrl='/assets/video/¿Qué hace un Ingeniero Informático.mp4'
+        /> */}
         <Detail
           title='¿Por qué es tan importante la Informática en la actualidad?'
           content='La informática se convirtió en una herramienta indispensable para la persona ya que esta se encuentra en todo lo que nos rodea.'
@@ -71,8 +77,15 @@ function Test() {
       </CarouselImage>
       <Post />
       <Contact />
-      <Footer />
-      <Author />
+      <Footer
+        address="Colegio 3 abril, cerca del centro"
+        email="jaime@gmail.com"
+        cellphone="76895436"
+        website="jaimerojas.com"
+      />
+      <Author
+        authorName='Jaime Rojas'
+      />
     </div>
   );
 }
