@@ -1,0 +1,17 @@
+.table-main{
+  cursor: pointer;
+}
+.table-created{
+  background-color: #f3fff3;
+}
+.table-updated{
+  background-color: #fffcf3;
+}
+.table-disabled{
+  background-color: #fff6f3;
+}
+.table-id{
+  background-color: rgba(153, 153, 153, 0.4117647058823529);
+  color: #253f25!important;
+  font-weight: bold;
+}

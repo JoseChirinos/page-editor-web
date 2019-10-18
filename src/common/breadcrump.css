@@ -1,0 +1,18 @@
+.BreadCrump{
+  width: 100%;
+}
+.BreadCrump a{
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0px 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.BreadCrump a i{
+  vertical-align: bottom;
+  padding-right: 5px;
+}
+.BreadCrump-link-disabled{
+  color: rgba(255, 255, 255, 0.5)!important;
+  pointer-events: none;
+}

@@ -1,0 +1,75 @@
+.Header{
+  background:#34017d;
+}
+.Header-navigation{
+  display: inline-block;
+  padding: 10px 0px;
+}
+.Header-action{
+  width: 100%;
+}
+.Header-action--title{
+  font-family: 'Lato', sans-serif;
+  font-weight: 100;
+  color: #fff;
+  padding: 25px 15px;
+}
+.Header-action--button{
+  padding: 20px 15px;
+  border-bottom: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.10);
+}
+
+/* Header Fixed */
+.HeaderFixed-container{
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  top: 64px;
+  z-index: 2;
+}
+.HeaderFixed-navigation{
+  display: none;
+}
+.HeaderFixed-action--title{
+  display: inline-block;
+  font-family: 'Lato', sans-serif;
+  font-size: 22px;
+  font-weight: 100;
+  padding: 0px 15px;
+  margin: 0px;
+  color: #fff;
+  vertical-align: middle;
+  line-height: 70px;
+  transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.HeaderFixed-action--button{
+  display: inline-block;
+  position: absolute;
+  top: 17px;
+}
+
+/* General Styles */
+.Header-btn{
+  background-color: #eec100!important;
+  color: #000!important;
+  margin-right: 10px;
+}
+.Header-btn-more{
+  background-color: #d6d6d6!important;
+  color: #000!important;
+  margin-right: 10px;
+}
+.Header-link{
+  text-decoration: none!important;
+}
+.Header-back{
+  color: #fff!important;
+  padding: 0px 25px;
+}
+.HeaderFixed-back{
+  color: #fff!important;
+  padding: 0px 25px;
+  vertical-align: sub;
+}

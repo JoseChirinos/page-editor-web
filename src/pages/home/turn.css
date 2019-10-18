@@ -1,0 +1,24 @@
+.turn-container{
+  padding: 80px 30px;
+}
+.turn-btn{
+  position: absolute;
+  background-color: #212529!important;
+  margin-top: -55px;
+  right: 30px;
+  z-index: 1;;
+}
+.turn-card{
+  display: inline-block;
+  width: 250px;
+  margin: 25px;
+}
+.turn-bed{
+  font-size: 36px;
+  font-weight: bolder;
+  font-family: 'Open Sans';
+  text-align: center;
+  background: #c61643;
+  padding: 50px 0px;
+  color: #fff;
+}

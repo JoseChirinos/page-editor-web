@@ -1,0 +1,37 @@
+.alert-container{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 60px;
+  padding-left: 220px;
+  z-index: 2;
+}
+.alert-form{
+  position: relative;
+  padding: 20px;
+  border-radius: 5px;
+  width: 350px;
+  margin: 0 auto;
+}
+/* position */
+.alert-max{
+  padding-left: 0px;
+}
+/* themes */
+.alert-default{
+  background: #2d2d2d;
+  color: #fff;
+}
+.alert-error{
+  background: #F44336;
+  color: #fff;
+}
+.alert-success{
+  background: #4CAF50;
+  color: #fff;
+}
+.alert-close{
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}

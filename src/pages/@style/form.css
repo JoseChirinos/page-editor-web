@@ -1,0 +1,62 @@
+.graduate-form{
+  font-family: 'Lato', sans-serif;
+  padding: 50px 70px 80px 70px;
+}
+.graduate-separate{
+  display: block;
+}
+.graduate-form--helper{
+  font-weight: 100;
+}
+.graduate-form--fieldset{
+  border-bottom: 1px solid #e9eaeb;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.graduate-form--fieldset legend{
+  color: #2b2b2b;
+}
+.graduate-form--control{
+  display: inline-block;
+  padding: 5px 10px;
+}
+.graduate-form--label{
+  display: block;
+  font-weight: 500;
+}
+.graduate-form--input{
+  width: 350px;
+}
+.graduate-form--switch label{
+  margin: 24px 12px;
+}
+
+/* action form */
+.graduate-form--action{
+  position: fixed;
+  bottom: 0px;
+  background: #e9eaeb;
+  width: 100%;
+  height: 50px;
+  box-shadow: -2px 2px 5px #2d2d2d;
+  padding: 6px 50px 6px 300px;
+  text-align: right;
+  left: 0;
+  z-index: 0;
+}
+.graduate-form--action button{
+  margin-right: 25px;
+}
+.graduate-label--load{
+  color: #059706
+}
+
+/* BTN FORMS */
+.graduate-btn--read{
+  background-color: #242f24!important;
+  margin-top: 15px!important;
+}
+.graduate-btn--cancel{
+  background-color: #dc3545!important;
+  margin-top: 15px!important;
+}

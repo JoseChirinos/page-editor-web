@@ -1,0 +1,33 @@
+.SearchPerson-container{
+  font-family: 'Open Sans';
+  padding: 50px 100px; 
+}
+.SearchPerson-search{
+  text-align: center;
+}
+.SearchPerson-form--control{
+  display: inline-block;
+  padding: 5px 10px;
+}
+.SearchPerson-list{
+  display: block;
+  width: 450px;
+  margin: 0 auto;
+  padding: 10px 35px;
+  text-align: center;
+  height: 110px;
+  overflow: auto;
+  background: whitesmoke;
+  border-radius: 8px;
+}
+.SearchPerson-list--item{
+  padding: 8px;
+  border-bottom: 1px solid #d9d9d9;
+  cursor: pointer;
+}
+.SearchPerson-list--item small{
+  display: block;
+  font-size: 12px;
+  line-height: 30px;
+  color: #a4a3a3;
+}
