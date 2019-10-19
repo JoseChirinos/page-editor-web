@@ -14,26 +14,28 @@ const Action = (props) => {
   let urlCompleted = urls[urls.length - 2]
 
   return (
-    <div className="graduate-form--action">
-      <NavLink to={urlCompleted.path}>
+    <div className="graduate-container">
+      <div className="graduate-form--action">
         <Button
-          type="button"
+          type='submit'
+          raised
           style={{
-            color: '#000'
+            backgroundColor: '#059805'
           }}
         >
-          Cancelar
+          Guardar
         </Button>
-      </NavLink>
-      <Button
-        type='submit'
-        raised
-        style={{
-          backgroundColor: '#059805'
-        }}
-      >
-        Guardar
-      </Button>
+        <NavLink to={urlCompleted.path}>
+          <Button
+            type="button"
+            style={{
+              color: '#000'
+            }}
+          >
+            Cancelar
+          </Button>
+        </NavLink>
+      </div>
     </div>
   )
 }

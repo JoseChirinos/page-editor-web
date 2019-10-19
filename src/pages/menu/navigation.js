@@ -15,9 +15,14 @@ const Navigation = (props) => {
     <div className="Nav-container">
       <ul className="Nav-menu-list">
         <li>
+          <NavLink to="/usuarios" exact={true} activeClassName="active-menu" onClick={MenuEvent}>
+            Usuarios
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/" exact={true} activeClassName="active-menu" onClick={MenuEvent}>
             Emergencias
-            </NavLink>
+          </NavLink>
         </li>
         <li>
           <NavLink to="/enfermeras" activeClassName="active-menu" onClick={MenuEvent}>
