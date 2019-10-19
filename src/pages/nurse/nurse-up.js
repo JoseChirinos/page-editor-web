@@ -177,14 +177,14 @@ class PersonDetail extends Component {
         {
           !this.state.load ?
             <form onSubmit={this.handleSend}>
-              <div className="graduate-container">
-                <div className="graduate-form">
+              <div className="app-container">
+                <div className="app-form">
 
-                  <fieldset className="graduate-form--fieldset">
+                  <fieldset className="app-form--fieldset">
                     <legend>
                       Cuenta de:
                   </legend>
-                    <aside className="graduate-form--control">
+                    <aside className="app-form--control">
                       <Subtitle1
                         style={{
                           color: '#888787'

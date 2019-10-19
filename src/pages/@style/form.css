@@ -1,53 +1,61 @@
-.graduate-form{
+.app-form-container{
+  padding: 10px 0px 150px 0px;
+}
+.app-form-wrapper{
   font-family: 'Lato', sans-serif;
   padding: 50px 70px 80px 70px;
 }
-.graduate-separate{
-  display: block;
+.app-form-recovery{
+  font-family: 'Lato', sans-serif;
+  padding: 10px 70px 10px 70px;
 }
-.graduate-form--helper{
+.app-separate{
+  display: block;
+  padding: 10px 0px;
+}
+.app-form--helper{
   font-weight: 100;
 }
-.graduate-form--fieldset{
+.app-form--fieldset{
   border-bottom: 1px solid #e9eaeb;
   padding: 10px;
   margin-bottom: 20px;
 }
-.graduate-form--fieldset legend{
+.app-form--fieldset legend{
   color: #2b2b2b;
 }
-.graduate-form--control{
+.app-form--control{
   display: inline-block;
   padding: 5px 10px;
 }
-.graduate-form--label{
+.app-form--label{
   display: block;
   font-weight: 500;
 }
-.graduate-form--input{
+.app-form--input{
   width: 350px;
 }
-.graduate-form--switch label{
+.app-form--switch label{
   margin: 24px 12px;
 }
 
 /* action form */
-.graduate-form--action{
+.app-form--action{
   padding: 0px 0px 0px 70px;
 }
-.graduate-form--action button{
+.app-form--action button{
   margin-right: 25px;
 }
-.graduate-label--load{
+.app-label--load{
   color: #059706
 }
 
 /* BTN FORMS */
-.graduate-btn--read{
+.app-btn--read{
   background-color: #242f24!important;
   margin-top: 15px!important;
 }
-.graduate-btn--cancel{
+.app-btn--cancel{
   background-color: #dc3545!important;
   margin-top: 15px!important;
 }

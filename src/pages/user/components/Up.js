@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
-import '../@style/container.css';
-import '../@style/form.css';
+/* Styles */
+import '../../@style/container.css';
+import '../../@style/form.css';
 /* Components */
 import { Redirect } from 'react-router-dom';
 import Header from '../../../common/header';
 import Loading from '../../../common/loading';
 import Action from '../../../common/action';
-import NurseRead from './nurse-read';
 import {
-  Subtitle1
-} from '@material/react-typography';
+  Typography
+} from '@rmwc/typography';
 
 /* Interface */
-import { NurseSchema } from '../user-schema';
+import { UserSchema } from '../user-schema';
 
 /* Data */
-import NurseHttp from '../../@data/nurse-http';
-import ReadHttp from '../../@data/read-http';
+import UserHttp from '../../@data/user-http';
 import { getUrl } from '../../@data/get-url';
 
-class PersonDetail extends Component {
+class UserUp extends Component {
   constructor(props) {
     super();
     this.state = {
-      data: Object.assign({}, NurseSchema),
+      data: Object.assign({}, UserSchema),
       changePass: false,
       load: true,
       loadText: 'Cargando Información',
@@ -39,11 +38,11 @@ class PersonDetail extends Component {
     }
   }
   componentDidMount() {
-    const id = this.props.match.params.id;
+    const idUser = this.props.match.params.id;
     let url = getUrl.back(this.props.history.location.pathname);
     let self = this;
-    NurseHttp.getId(
-      id,
+    UserHttp.getId(
+      idUser,
       (data) => {
         self.setState({
           urlCompleted: url.path,
@@ -58,15 +57,13 @@ class PersonDetail extends Component {
       }
     );
   }
-  componentWillUnmount() {
-    this.cancelRead();
-  }
+
   handleSend = (e) => {
     e.preventDefault();
     let self = this;
-    let id = this.state.data.id_nurse;
+    let id = this.state.data.idUser;
     let rfid = this.state.data.rfid;
-    NurseHttp.enabled(id, rfid,
+    UserHttp.enabled(id, rfid,
       (data) => {
         self.completeSend(data);
       },
@@ -96,79 +93,14 @@ class PersonDetail extends Component {
     })
   }
 
-  startRead = () => {
-    let self = this;
-    this.startCount();
-    this.interval = setInterval(() => this.startCount(), 1000);
-    ReadHttp.activeRead();
-    ReadHttp.readCode(0, (data) => {
-      self.cancelCount();
-      if (data.status) {
-        let dataNew = self.state.data;
-        let readInfo = self.state.readInfo;
-        readInfo.load = false;
-        if (data.result.enabled) {
-          // disponible
-          dataNew.rfid = data.result.rfid;
-          self.setState({
-            data: dataNew,
-            readInfo
-          });
-        } else {
-          // ya en uso
-          console.log(this.props.history);
-          readInfo.message = `El RFID ya esta en USO por: ${data.result.user.first_name} ${data.result.user.last_name}`;
-          readInfo.linkRef = `../${data.result.user.id_nurse}`
-          self.setState({
-            data: dataNew,
-            readInfo
-          });
-        }
-      }
-    }, (error) => {
-      self.completeError(error.result);
-    })
-  }
-  cancelRead = () => {
-    this.cancelCount();
-    ReadHttp.cancelRead();
-  }
-  startCount = () => {
-    if (this.state.readInfo.seconds === 0) {
-      this.cancelCount();
-    } else {
-      let readInfo = this.state.readInfo;
-      if (this.state.readInfo.seconds === 10) {
-        readInfo.load = true;
-      }
-      readInfo.seconds = readInfo.seconds - 1;
-      this.setState({
-        readInfo
-      }, () => {
-        console.log(this.state.readInfo.seconds)
-      });
-    }
-  }
-  cancelCount = () => {
-    clearInterval(this.interval);
-    let readInfo = this.state.readInfo;
-    readInfo.seconds = 10;
-    readInfo.enabled = false;
-    readInfo.load = false;
-    readInfo.message = '';
-    readInfo.linkRef = '';
-    this.setState({
-      readInfo
-    });
-  }
   render() {
     return (
       <div>
         <Header
-          title="Habilitar Enfermera"
+          title="Habilitar Usuario"
           match={this.props.match}
           theme={{
-            background: "#008000",
+            background: "#610dd8",
             color: "#fff"
 
           }}
@@ -176,37 +108,30 @@ class PersonDetail extends Component {
 
         {
           !this.state.load ?
-            <form onSubmit={this.handleSend}>
-              <div className="graduate-container">
-                <div className="graduate-form">
+            <form onSubmit={this.handleSend} className="app-form-container">
+              <div className="app-container">
+                <div className="app-form">
 
-                  <fieldset className="graduate-form--fieldset">
+                  <fieldset className="app-form--fieldset">
                     <legend>
                       Cuenta de:
                   </legend>
-                    <aside className="graduate-form--control">
-                      <Subtitle1
+                    <aside className="app-form--control">
+                      <Typography
                         style={{
                           color: '#888787'
                         }}
                       >
-                        {this.state.data.first_name} {this.state.data.last_name} - {this.state.data.cellphone}
-                      </Subtitle1>
+                        {this.state.data.first_name} {this.state.data.last_name} - {this.state.data.email}
+                      </Typography>
                     </aside>
                   </fieldset>
-
-                  <NurseRead
-                    {...this.state.data}
-                    {...this.state.readInfo}
-                    changeState={this.changeState}
-                    startRead={this.startRead}
-                    cancelRead={this.cancelRead}
-                  />
                 </div>
               </div>
 
               <Action
                 match={this.props.match}
+                confirmLabel="Habilitar"
               />
             </form>
             :
@@ -224,4 +149,4 @@ class PersonDetail extends Component {
   }
 }
 
-export default PersonDetail;
+export default UserUp;

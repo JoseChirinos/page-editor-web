@@ -10,20 +10,20 @@ import NurseRead from './nurse-read';
 
 const NurseForm = (props)=>{
   return (
-    <div className="graduate-container">
-      <div className="graduate-form">
-        <fieldset className="graduate-form--fieldset">
+    <div className="app-container">
+      <div className="app-form">
+        <fieldset className="app-form--fieldset">
           <legend>
             Datos Básicos
           </legend>
 
-          <aside className="graduate-form--control">
+          <aside className="app-form--control">
             <TextField
               label='Nombre'
               helperText={<HelperText>Help Me!</HelperText>}
               onTrailingIconSelect={ () => props.changeState({first_name: ''})}
               trailingIcon={<MaterialIcon role="button" icon="close"/>}
-              className='graduate-form--input'
+              className='app-form--input'
             ><Input
               required
               id="first_name"
@@ -32,13 +32,13 @@ const NurseForm = (props)=>{
             </TextField>
           </aside>
 
-          <aside className="graduate-form--control">  
+          <aside className="app-form--control">  
             <TextField
               label='Apellido'
               helperText={<HelperText>Help Me!</HelperText>}
               onTrailingIconSelect={() => props.changeState({last_name: ''})}
               trailingIcon={<MaterialIcon role="button" icon="close "/>}
-              className='graduate-form--input'
+              className='app-form--input'
             ><Input
               required
               id="last_name"
@@ -47,15 +47,15 @@ const NurseForm = (props)=>{
             </TextField>
           </aside>
 
-          <div className="graduate-separate"/>
+          <div className="app-separate"/>
 
-          <aside className="graduate-form--control">
+          <aside className="app-form--control">
             <TextField
               label='Carnet de Identidad'
               helperText={<HelperText>Help Me!</HelperText>}
               onTrailingIconSelect={() => props.changeState({ci: ''})}
               trailingIcon={<MaterialIcon role="button" icon="close "/>}
-              className='graduate-form--input'
+              className='app-form--input'
             ><Input
               required
               id="ci"
@@ -66,18 +66,18 @@ const NurseForm = (props)=>{
           </aside>
         </fieldset>
 
-        <fieldset className="graduate-form--fieldset">
+        <fieldset className="app-form--fieldset">
           <legend>
             Contactos
           </legend>
 
-          <aside className="graduate-form--control">  
+          <aside className="app-form--control">  
             <TextField
               label='Número de Celular'
               helperText={<HelperText>Help Me!</HelperText>}
               onTrailingIconSelect={() => props.changeState({cellphone: ''})}
               trailingIcon={<MaterialIcon role="button" icon="close "/>}
-              className='graduate-form--input'
+              className='app-form--input'
             ><Input
               required
               id="cellphone"

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import '../pages/@style/form.css'
 import {
   NavLink
@@ -9,13 +10,16 @@ import { Button } from '@rmwc/button';
 /* Data */
 import { getUrl } from '../pages/@data/get-url'
 
-const Action = (props) => {
-  let urls = getUrl.parts(props.match.url)
+const Action = ({
+  match,
+  confirmLabel
+}) => {
+  let urls = getUrl.parts(match.url)
   let urlCompleted = urls[urls.length - 2]
 
   return (
-    <div className="graduate-container">
-      <div className="graduate-form--action">
+    <div className="app-container">
+      <div className="app-form--action">
         <Button
           type='submit'
           raised
@@ -23,7 +27,7 @@ const Action = (props) => {
             backgroundColor: '#059805'
           }}
         >
-          Guardar
+          {confirmLabel}
         </Button>
         <NavLink to={urlCompleted.path}>
           <Button
@@ -40,5 +44,12 @@ const Action = (props) => {
   )
 }
 
+Action.propTypes = {
+  match: PropTypes.shape({}).isRequired,
+  confirmLabel: PropTypes.string
+}
+Action.defaultProps = {
+  confirmLabel: 'Guardar'
+}
 
 export default Action

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+/* Styles */
+import '../../@style/form.css'
 /* Components */
 import { Redirect } from 'react-router-dom'
 import Header from '../../../common/header'
@@ -9,7 +10,6 @@ import Loading from '../../../common/loading'
 import Alert from '../../../common/alert'
 /* Interface */
 import { UserSchema } from '../user-schema'
-
 /* Data */
 import UserHttp from '../../@data/user-http'
 import { getUrl } from '../../@data/get-url'
@@ -102,7 +102,7 @@ class UserNew extends Component {
           this.state.load ?
             <Loading title="Guardando Datos..." />
             :
-            <form onSubmit={this.handleSend}>
+            <form onSubmit={this.handleSend} className="app-form-container">
               <UserForm
                 changeState={this.changeState}
                 data={this.state.data}

@@ -106,7 +106,7 @@ class SearchPerson extends Component {
                     helperText={<HelperText>Help Me!</HelperText>}
                     onTrailingIconSelect={() => this.handleChange({ query: '' })}
                     trailingIcon={<MaterialIcon role="button" icon="close " />}
-                    className='graduate-form--input'
+                    className='app-form--input'
                   ><Input
                       required
                       id="query"

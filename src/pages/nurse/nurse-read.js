@@ -11,12 +11,12 @@ import Button from '@material/react-button';
 
 const NurseRead = (props)=>{
   return(
-    <fieldset className="graduate-form--fieldset">
+    <fieldset className="app-form--fieldset">
       <legend>
         Tarjeta RFID
       </legend>
 
-      <aside className="graduate-form--control">
+      <aside className="app-form--control">
       <span
           style={{
             fontSize: 12,
@@ -44,7 +44,7 @@ const NurseRead = (props)=>{
           helperText={
             <HelperText 
               persistent={true}
-              className={`${props.load? 'graduate-label--load':''}`}
+              className={`${props.load? 'app-label--load':''}`}
               >
                 {
                   props.load ?
@@ -56,7 +56,7 @@ const NurseRead = (props)=>{
           }
           onTrailingIconSelect={() => props.changeState({rfid: ''})}
           trailingIcon={<MaterialIcon role="button" icon="close "/>}
-          className='graduate-form--input'
+          className='app-form--input'
         ><Input
           required
           id="rfid"
@@ -69,7 +69,7 @@ const NurseRead = (props)=>{
           onClick = { props.load? props.cancelRead:props.startRead }
           type="button"
           icon={<MaterialIcon icon="credit_card"></MaterialIcon>}
-          className={ `graduate-form--input ${props.load ? 'graduate-btn--cancel':'graduate-btn--read'}` }
+          className={ `app-form--input ${props.load ? 'app-btn--cancel':'app-btn--read'}` }
         >
           {
             props.load?

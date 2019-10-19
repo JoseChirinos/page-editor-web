@@ -64,7 +64,25 @@ const UserHttp = {
             .catch(function (e) {
                 error(e);
             })
-    }
+    },
+    changePassword: (data, response, error) => {
+        axios.post(BASE + 'user/change/password', data)
+            .then(function (r) {
+                response(r.data);
+            })
+            .catch(function (e) {
+                error(e);
+            })
+    },
+    recovery: (data, response, error) => {
+        axios.post(BASE + 'user/check/force', data)
+            .then(function (r) {
+                response(r.data);
+            })
+            .catch(function (e) {
+                error(e);
+            })
+    },
 };
 
 export default UserHttp;

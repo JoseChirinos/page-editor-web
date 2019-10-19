@@ -5,6 +5,7 @@ import Header from '../../../common/header'
 /* Data */
 import UserHttp from '../../@data/user-http'
 import PASS from '../../@data/@pass'
+
 /* React Table Component */
 import ReactTable from "react-table"
 import "react-table/react-table.css"
@@ -20,8 +21,9 @@ class UserList extends Component {
 
   showDetail = (e, handleOriginal, rowInfo) => {
     if (typeof (rowInfo) !== "undefined") {
-      if (rowInfo.original.id_nurse !== null) {
-        this.props.history.push('' + this.props.match.url + '/' + rowInfo.original.idUser)
+      if (rowInfo.original.idUser !== null) {
+        const url = String(this.props.match.url).replace(/[/]/g, '')
+        this.props.history.push(`/${url}/${rowInfo.original.idUser}`)
       } else {
         console.error('Existe un error en ShowDetail el objeto no existe')
       }

@@ -6,6 +6,11 @@ export const UserSchema = {
   password: '',
   type_user: '',
 }
+export const UserRecoverySchema = {
+  name: '',
+  email: '',
+  password: ''
+}
 export const UserUpSchema = {
   idUser: null,
 }

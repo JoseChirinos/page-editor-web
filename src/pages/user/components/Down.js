@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 /* Components */
-import Header from '../../../common/header';
+import Header from '../../../common/header'
 /* Data */
-import NurseHttp from '../../@data/nurse-http';
+import UserHttp from '../../@data/user-http'
+import PASS from '../../@data/@pass'
+
 /* React Table Component */
-import ReactTable from "react-table";
-import "react-table/react-table.css";
+import ReactTable from "react-table"
+import "react-table/react-table.css"
 
 class NurseDown extends Component {
   constructor(props) {
-    super();
+    super()
     this.state = {
       data: [],
       redirect: ''
@@ -19,34 +21,34 @@ class NurseDown extends Component {
   showDetail = (e, handleOriginal, rowInfo) => {
     if (typeof (rowInfo) !== "undefined") {
       if (rowInfo.original.id_nurse !== null) {
-        this.props.history.push('' + this.props.match.url + '/' + rowInfo.original.id_nurse);
+        this.props.history.push('' + this.props.match.url + '/' + rowInfo.original.idUser)
       } else {
-        console.error('Existe un error en ShowDetail el objeto no existe');
+        console.error('Existe un error en ShowDetail el objeto no existe')
       }
     }
   }
   addFilterPlaceholder = () => {
-    const filters = document.querySelectorAll("div.rt-th > input");
+    const filters = document.querySelectorAll("div.rt-th > input")
     for (let filter of filters) {
-      filter.placeholder = "Buscar..";
+      filter.placeholder = "Buscar.."
     }
   }
   componentDidMount() {
-    this.addFilterPlaceholder();
-    let self = this;
-    NurseHttp.getAllDisabled(
+    this.addFilterPlaceholder()
+    let self = this
+    UserHttp.getAllDisabled(
       (data) => {
         self.setState({
           data: data.result
-        });
+        })
       },
       (error) => {
-        console.log(error);
+        console.log(error)
       }
-    );
+    )
   }
   render() {
-    const { data } = this.state;
+    const { data } = this.state
     return (
       <section>
         <Header
@@ -54,7 +56,7 @@ class NurseDown extends Component {
           match={this.props.match}
           history={this.props.history}
           theme={{
-            background: "#008000",
+            background: "#610dd8",
             color: "#fff"
           }}
         />
@@ -62,7 +64,7 @@ class NurseDown extends Component {
           data={data}
           filterable
           defaultFilterMethod={(filter, row) => {
-            return String(row[filter.id]).toLowerCase().indexOf(String(filter.value).toLowerCase()) !== -1;
+            return String(row[filter.id]).toLowerCase().indexOf(String(filter.value).toLowerCase()) !== -1
           }}
           previousText='Anterior'
           nextText='Siguiente'
@@ -73,12 +75,12 @@ class NurseDown extends Component {
           rowsText='filas'
 
           getTdProps={(state, rowInfo, column, instance) => {
-            let self = this;
+            let self = this
             return {
               onClick: (e, handleOriginal) => {
-                self.showDetail(e, handleOriginal, rowInfo);
+                self.showDetail(e, handleOriginal, rowInfo)
               }
-            };
+            }
           }}
           columns={[
             {
@@ -93,12 +95,15 @@ class NurseDown extends Component {
                   accessor: "last_name"
                 },
                 {
-                  Header: "Carnet de Identidad",
-                  accessor: "ci"
+                  Header: "Correo Electronico",
+                  accessor: "email"
                 },
                 {
-                  Header: "Número de Celular",
-                  accessor: "cellphone"
+                  Header: "Nivel de Usuario",
+                  id: "type_user",
+                  accessor: (d) => {
+                    return PASS[d.type_user].label
+                  }
                 }
               ]
             },
@@ -107,13 +112,13 @@ class NurseDown extends Component {
               columns: [
                 {
                   Header: "Registrado",
-                  accessor: "created",
+                  accessor: "data_start",
                   className: "table-created"
                 },
                 {
-                  Header: "Deshabilitado",
-                  accessor: "updated",
-                  className: "table-disabled"
+                  Header: "Modificado",
+                  accessor: "data_updated",
+                  className: "table-updated"
                 }
               ]
             }
@@ -126,4 +131,4 @@ class NurseDown extends Component {
   }
 }
 
-export default NurseDown;
+export default NurseDown

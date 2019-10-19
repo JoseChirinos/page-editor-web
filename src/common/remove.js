@@ -8,11 +8,11 @@ import { Button } from '@rmwc/button'
 
 const Remove = (props) => (
   <div className="Remove-container">
-    <fieldset className="graduate-form--fieldset">
+    <fieldset className="app-form--fieldset">
       <legend>
         Zona de Peligro
-          </legend>
-      <h6 className="graduate-form--helper">{props.text}</h6>
+      </legend>
+      <h6 className="app-form--helper">{props.text}</h6>
       <br />
       <Button type="button" onClick={props.handleEvent}>
         {props.label}

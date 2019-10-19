@@ -1,24 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+/* Styles */
+import '../../@style/form.css'
 /* Components */
-import { Redirect } from 'react-router-dom';
-import Header from '../../../common/header';
-import Loading from '../../../common/loading';
-import NurseForm from './Form';
-import Action from '../../../common/action';
-import Alert from '../../../common/alert';
+import { Redirect } from 'react-router-dom'
+import Header from '../../../common/header'
+import Loading from '../../../common/loading'
+import UserForm from './Form'
+import Action from '../../../common/action'
+import Alert from '../../../common/alert'
 
 /* Interface */
-import { NurseSchema } from '../user-schema';
+import { UserSchema, UserRecoverySchema } from '../user-schema'
 
 /* Data */
-import NurseHttp from '../../@data/nurse-http';
-import { getUrl } from '../../@data/get-url';
+import UserHttp from '../../@data/user-http'
+import { getUrl } from '../../@data/get-url'
 
-class PersonDetail extends Component {
-  constructor(props){
-    super();
+class UserDetail extends Component {
+  constructor(props) {
+    super()
     this.state = {
-      data: Object.assign({},NurseSchema),
+      data: Object.assign({}, UserSchema),
+      dataRecovery: Object.assign({}, UserRecoverySchema),
       changePass: false,
       load: true,
       loadText: 'Cargando Información',
@@ -31,91 +34,110 @@ class PersonDetail extends Component {
       }
     }
   }
-  componentDidMount(){
-    const id = this.props.match.params.id;
-    let url = getUrl.back(this.props.history.location.pathname);
-    let self = this;
-    NurseHttp.getId(
-      id,
-      (data)=>{
+  componentDidMount() {
+    const idUser = this.props.match.params.id
+    let url = getUrl.back(this.props.history.location.pathname)
+    let self = this
+    UserHttp.getId(
+      idUser,
+      (data) => {
         self.setState({
           urlCompleted: url.path,
           load: false,
           data: {
-            passNow:'',
+            passNow: '',
             passNew: '',
             ...data.result
           }
-        });
+        })
       },
-      (error)=>{
-        console.log(error);
+      (error) => {
+        console.log(error)
       }
-    );
+    )
   }
-  handleSend = (e)=>{
-    e.preventDefault();
-    let data = this.state.data;
+  handleSend = (e) => {
+    e.preventDefault()
+    let data = this.state.data
     this.setState({
       load: true,
       loadText: 'Guardando'
-    });
-    this.sendUpdate(data);
+    })
+    this.sendUpdate(data)
   }
-  sendUpdate = (data)=>{
-    let self = this;
-    NurseHttp.update(data,
-      (data)=>{
-        if(data.status){
-          self.completeSend(data);
-        }else{
-          self.completeError(data.message);
+  sendUpdate = (data) => {
+    let self = this
+    UserHttp.update(data,
+      (data) => {
+        if (data.status) {
+          self.completeSend(data)
+        } else {
+          self.completeError(data.message)
         }
       },
-      (error)=>{
-        self.completeError(error);
+      (error) => {
+        self.completeError(error)
       })
   }
 
-  disabledAccount = ()=>{
-    let id = this.props.match.params.id;
-    let self = this;
-    if(window.confirm("Esta seguro que quiere deshabilitar esta cuenta?")){
-      NurseHttp.disabled(id,
-        (data)=>{
-          if(data.status){
-            self.completeSend(data);
-          }else{
-            self.completeError(data.message);
+  disabledAccount = () => {
+    let idUser = this.props.match.params.id
+    let self = this
+    if (window.confirm("Esta seguro que quiere deshabilitar esta cuenta?")) {
+      UserHttp.disabled(idUser,
+        (data) => {
+          if (data.status) {
+            self.completeSend(data)
+          } else {
+            self.completeError(data.message)
           }
         },
-        (error)=>{
-          self.completeError(error);
-        });
+        (error) => {
+          self.completeError(error)
+        })
     }
   }
 
-  completeSend = ()=>{
+  hiddenRecovery = () => {
+    this.setState({ ...this.state, dataRecovery: Object.assign({}, UserRecoverySchema) })
+  }
+  recoveryCount = () => {
+    let idUser = this.props.match.params.id
+    let self = this
+    UserHttp.recovery({ idUser },
+      (data) => {
+        if (data.status) {
+          self.setState({ ...self.state, dataRecovery: data.result })
+        } else {
+          self.completeError(data.message)
+        }
+      },
+      (error) => {
+        self.completeError(error)
+      })
+  }
+
+  completeSend = () => {
     this.setState({
       completed: true
-    });
+    })
   }
-  completeError = (message)=>{
+  completeError = (message) => {
     this.setState({
       load: false
-    });
-    this.showAlert(message,'error');
+    })
+    this.showAlert(message, 'error')
   }
-  showAlert = (message, theme)=>{
+  showAlert = (message, theme) => {
     this.setState({
-      alert:{
+      alert: {
         visible: true,
         message,
         theme
       }
-    });
+    })
   }
-  hideAlert = ()=>{
+  hideAlert = () => {
     this.setState({
       alert: false,
       message: '',
@@ -123,24 +145,21 @@ class PersonDetail extends Component {
     })
   }
 
-  changeState = (keyObject)=>{
-    let name = Object.keys(keyObject)[0];
-    let data = this.state.data;
-    data[name] = keyObject[name]; 
+  changeState = (newData) => {
     this.setState({
-      data: data
+      data: newData
     })
   }
-  showAlert = (message, theme)=>{
+  showAlert = (message, theme) => {
     this.setState({
-      alert:{
+      alert: {
         visible: true,
         message,
         theme
       }
-    });
+    })
   }
-  hideAlert = ()=>{
+  hideAlert = () => {
     this.setState({
       alert: false,
       message: '',
@@ -151,52 +170,55 @@ class PersonDetail extends Component {
     return (
       <div>
         <Header
-          title = "Detalle Enfermera"
-          match = { this.props.match }
-          theme = {{
-            background: "#008000",
-            color:"#fff"
+          title="Detalle Usuario"
+          match={this.props.match}
+          theme={{
+            background: "#610dd8",
+            color: "#fff"
 
           }}
         />
 
         {
           !this.state.load ?
-          <form onSubmit={ this.handleSend }>
-            <NurseForm
-              editForm
-              changeState = { this.changeState }
-              disabledAccount = { this.disabledAccount }
-              { ...this.state.data }
-            />
-            <Action
-              match = { this.props.match }
-            />
-          </form>
-          :
-          <Loading title={ this.state.loadText }/>
-        }
-        
-        {
-          this.state.alert.visible ?
-          <Alert
-            message={ this.state.alert.message }
-            theme={ this.state.alert.theme }
-            hideAlert = { this.hideAlert }
-          />
-          :
-          <span/>
+            <form onSubmit={this.handleSend} className="app-form-container">
+              <UserForm
+                editForm
+                changeState={this.changeState}
+                disabledAccount={this.disabledAccount}
+                recoveryCount={this.recoveryCount}
+                hiddenRecovery={this.hiddenRecovery}
+                data={this.state.data}
+                dataRecovery={this.state.dataRecovery}
+              />
+              <Action
+                match={this.props.match}
+              />
+            </form>
+            :
+            <Loading title={this.state.loadText} />
         }
 
         {
-          this.state.completed?
-          <Redirect to={ this.state.urlCompleted } />
-          :
-          <span/>
+          this.state.alert.visible ?
+            <Alert
+              message={this.state.alert.message}
+              theme={this.state.alert.theme}
+              hideAlert={this.hideAlert}
+            />
+            :
+            <span />
+        }
+
+        {
+          this.state.completed ?
+            <Redirect to={this.state.urlCompleted} />
+            :
+            <span />
         }
       </div>
     )
   }
 }
 
-export default PersonDetail;
+export default UserDetail

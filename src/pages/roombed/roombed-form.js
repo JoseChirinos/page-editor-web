@@ -10,13 +10,13 @@ import SearchPerson from '../../common/search-person';
 
 const PositionForm = (props)=>{
   return (
-    <div className="graduate-container">
-      <div className="graduate-form">
+    <div className="app-container">
+      <div className="app-form">
         {
           props.editForm ?
           <span/>
           :
-          <fieldset className="graduate-form--fieldset">
+          <fieldset className="app-form--fieldset">
             <legend>
               Designar Persona
             </legend>
@@ -26,18 +26,18 @@ const PositionForm = (props)=>{
           </fieldset>
         }
 
-        <fieldset className="graduate-form--fieldset">
+        <fieldset className="app-form--fieldset">
           <legend>
             Sobre la Persona
           </legend>
 
-          <aside className="graduate-form--control">
+          <aside className="app-form--control">
             <TextField
               label='Profesión'
               helperText={<HelperText>Help Me!</HelperText>}
               onTrailingIconSelect={ () => props.changeState({profession: ''})}
               trailingIcon={<MaterialIcon role="button" icon="close "/>}
-              className='graduate-form--input'
+              className='app-form--input'
             ><Input
               required
               id="profession"
@@ -46,13 +46,13 @@ const PositionForm = (props)=>{
             </TextField>
           </aside>
 
-          <aside className="graduate-form--control">  
+          <aside className="app-form--control">  
             <TextField
               label='Especialidad'
               helperText={<HelperText>Help Me!</HelperText>}
               onTrailingIconSelect={() => props.changeState({specialty: ''})}
               trailingIcon={<MaterialIcon role="button" icon="close "/>}
-              className='graduate-form--input'
+              className='app-form--input'
             ><Input
               required
               id="specialty"
@@ -63,18 +63,18 @@ const PositionForm = (props)=>{
 
         </fieldset>
 
-        <fieldset className="graduate-form--fieldset">
+        <fieldset className="app-form--fieldset">
           <legend>
             Asignación del Rol
           </legend>
 
-          <aside className="graduate-form--control">  
+          <aside className="app-form--control">  
             <TextField
               label='Cargo'
               helperText={<HelperText>Help Me!</HelperText>}
               onTrailingIconSelect={() => props.changeState({appointment: ''})}
               trailingIcon={<MaterialIcon role="button" icon="close "/>}
-              className='graduate-form--input'
+              className='app-form--input'
             ><Input
               required
               id="appointment"
@@ -83,13 +83,13 @@ const PositionForm = (props)=>{
             </TextField>
           </aside>
 
-          <aside className="graduate-form--control">
+          <aside className="app-form--control">
             <TextField
               label='Dirección de Carrera'
               helperText={<HelperText>Help Me!</HelperText>}
               onTrailingIconSelect={() => props.changeState({career_direction: ''})}
               trailingIcon={<MaterialIcon role="button" icon="close "/>}
-              className='graduate-form--input'
+              className='app-form--input'
             ><Input
               required
               id="career_direction"
