@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'material-components-web/dist/material-components-web.min.css'
 import './styles/flickity.css'
+import './styles/croppie.css'
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -14,18 +14,13 @@ const Home = Loadable({
   loading: Loading
 });
 
-const Nurse = Loadable({
-  loader: () => import('../pages/nurse'),
-  loading: Loading
-});
-
 const User = Loadable({
   loader: () => import('../pages/user'),
   loading: Loading
 });
 
-const Demand = Loadable({
-  loader: () => import('../pages/demand'),
+const Crop = Loadable({
+  loader: () => import('../pages/crop'),
   loading: Loading
 });
 
@@ -34,8 +29,7 @@ const RouterList = (props) => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/usuarios" component={User} />
-      <Route path="/enfermeras" component={Nurse} />
-      <Route path="/historial" component={Demand} />
+      <Route path="/crop" component={Crop} />
       <Route component={NoMatch} />
     </Switch>
   )
