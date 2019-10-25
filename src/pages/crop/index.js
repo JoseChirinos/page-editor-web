@@ -5,6 +5,12 @@ const TestImage = (props) => {
     const cropRef = React.createRef()
     const [srcImage, setSrcImage] = useState('')
 
+    const getImage = () => {
+        cropRef.current.getResult((data64) => {
+            setSrcImage(data64)
+        })
+    }
+
     return (
         <div>
             Solo prueba de uso
@@ -15,7 +21,13 @@ const TestImage = (props) => {
                     :
                     null
             }
-            <button onClick={() => console.log(cropRef.current.getResult())}>
+            {
+                srcImage !== '' ?
+                    <textarea defaultValue={srcImage}></textarea>
+                    :
+                    null
+            }
+            <button onClick={getImage}>
                 getImage
             </button>
         </div>

@@ -20,8 +20,8 @@ const Login = (props) => {
       <form className="login-form" onSubmit={signIn}>
         <div className="login-form-title">
           <h3>
-            Sistema de Emergencias
-              <small>Caja Nacional de Salud</small>
+            Admin
+              <small>Acceso Principal</small>
           </h3>
         </div>
         <div className="login-form-logo">

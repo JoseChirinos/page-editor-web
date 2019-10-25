@@ -15,6 +15,7 @@ import UserChangePassword from './components/ChangePassword'
 class User extends Component {
   render() {
     const { match } = this.props;
+    // console.log(match.url)
     return (
       <div>
         <ScrollTop>

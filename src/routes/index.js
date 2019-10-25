@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import RouterList from './router-list';
+import React, { Component } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 /* components */
-import Main from '../pages/main';
-import Login from '../pages/login';
+import Site from '../entries/Site'
+import Admin from '../entries/Admin'
 
 /* Data */
-import { USER, PASS } from '../pages/@data/@server';
+import { EMAIL, PASS } from '../pages/@data/@server'
 
 class RouterApp extends Component {
 
   constructor(props) {
-    super();
+    super()
     this.state = {
-      auth: false,
-      user: '',
+      auth: true,
+      email: '',
       password: '',
       alert: {
         visible: false,
@@ -38,7 +37,7 @@ class RouterApp extends Component {
         message,
         theme
       }
-    });
+    })
   }
   hideAlert = () => {
     this.setState({
@@ -49,41 +48,41 @@ class RouterApp extends Component {
   }
 
   changeState = (data) => {
-    this.setState(data);
+    this.setState(data)
   }
 
   signIn = (e) => {
-    e.preventDefault();
-    this.hideAlert();
-    if (this.state.user === USER) {
+    e.preventDefault()
+    this.hideAlert()
+    if (this.state.email === EMAIL) {
       if (this.state.password === PASS) {
         this.setState({
           auth: true
-        });
-        this.saveSession();
+        })
+        this.saveSession()
       } else {
         this.showAlert("Contraseña Incorrecta", "error")
       }
     } else {
-      this.showAlert("Usuario no registrado", "error");
+      this.showAlert("Usuario no registrado", "error")
     }
   }
   signOut = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     this.setState({
       auth: false
-    });
-    this.destroySession();
+    })
+    this.destroySession()
   }
 
   saveSession = () => {
-    localStorage.setItem("session", JSON.stringify({ session: true }));
+    localStorage.setItem("session", JSON.stringify({ session: true }))
   }
   getSession = () => {
-    return JSON.parse(localStorage.getItem("session")) || false;
+    return JSON.parse(localStorage.getItem("session")) || false
   }
   destroySession = () => {
-    localStorage.removeItem("session");
+    localStorage.removeItem("session")
   }
 
   render() {
@@ -91,20 +90,11 @@ class RouterApp extends Component {
       <Router>
         {
           this.state.auth ?
-            <Main
-              signOut={this.signOut}
-            >
-              <RouterList user={this.state.user} />
-            </Main>
-            : <Login
-              signIn={this.signIn}
-              hideAlert={this.hideAlert}
-              changeState={this.changeState}
-              data={this.state}
-            />
+            < Admin />
+            : <Site />
         }
       </Router>
     )
   }
 }
-export default RouterApp;
+export default RouterApp

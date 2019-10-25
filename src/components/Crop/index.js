@@ -40,11 +40,11 @@ const Crop = forwardRef(({
     const [showPreview, setShowPreview] = useState(false)
 
 
-    const getResult = () => {
+    const getResult = (fn) => {
         const crp = croppie.get()
-        crp.result({ type: 'base64', format: 'jpg', size: 'original' })
+        crp.result({ type: 'base64', format: 'jpeg', size: { width: 900, height: 450 } })
             .then((base64) => {
-                setSrcImage(base64)
+                fn(base64)
             });
     }
     const handleChange = (e) => {

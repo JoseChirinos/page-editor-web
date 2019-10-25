@@ -3,12 +3,12 @@ import styled from 'styled-components/macro'
 export const SignContainer = styled.div`
     width: 100%;
     padding: 20px 0px;
-    background-image: url(/assets/images/bg-login-optional.jpg);
+    background-image: url(/assets/images/bg-login.jpg);
     background-size: cover;
     background-position: center;
     ::after{
         content: '';
-        background-image: url(/assets/images/bg-login-optional.jpg);
+        background-image: url(/assets/images/bg-login.jpg);
         background-size: cover;
         background-position: center;
         opacity: 0.9;
@@ -32,21 +32,28 @@ export const SignWrapper = styled.div`
 `
 export const SignForm = styled.form`
     margin: 0 auto;
-    background-color: #fff;
     width: 80%;
-    padding: 30px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
     @media (min-width:760px) {
         width: 300px;
+        padding: 30px 40px;
     }
 `
 export const SignTitle = styled.div`
     font-family: 'Sarala', sans-serif;
     text-align: center;
+    color: #fff;
 `
 export const SignSeparate = styled.div`
     height: 20px;
 `
 export const SignSend = styled.div`
     text-align: center;
+    padding: 15px 0px;
+    > span{
+        color: #fff;
+        text-shadow: 1px 1px 1px #000;
+    }
 `
