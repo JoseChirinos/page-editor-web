@@ -7,6 +7,7 @@ import {
 /* Components */
 import BreadCrump from './breadcrump'
 import { Button } from '@rmwc/button'
+import { IconButton } from '@rmwc/icon-button'
 import { Icon } from '@rmwc/icon'
 
 /* Data */
@@ -115,12 +116,15 @@ class Header extends Component {
                         to={action.on}
                         key={`ab${index}`}
                         className="Header-link">
-                        <Button
-                          raised
-                          className={action.theme}
-                        >
-                          {action.title}
-                        </Button>
+                        {this.state.scroller ?
+                          <Button
+                            raised
+                            className={action.theme}
+                            label={action.title}
+                          />
+                          :
+                          <IconButton icon={action.icon} className={action.theme} />
+                        }
                       </NavLink>
                     ))
                   }

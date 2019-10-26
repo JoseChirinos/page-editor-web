@@ -24,6 +24,10 @@ const User = Loadable({
   loader: () => import('../../pages/User'),
   loading: Loading
 });
+const Posts = Loadable({
+  loader: () => import('../../pages/Post'),
+  loading: Loading
+});
 const Crop = Loadable({
   loader: () => import('../../pages/crop'),
   loading: Loading
@@ -34,6 +38,7 @@ const Panel = ({match})=>(
       <Switch>
         <Route exact path={`${match.url}`} component={Home}/>
         <Route path={`${match.url}/usuarios`} component={User}/>
+        <Route path={`${match.url}/posts`} component={Posts}/>
         <Route path={`${match.url}/crop`} component={Crop} />
       </Switch>
     </Main>

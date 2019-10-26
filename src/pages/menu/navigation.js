@@ -12,32 +12,31 @@ const Navigation = ({
   handleToggle,
   match,
 }) => {
-  let MenuEvent = () => {
-    return true
-  }
-  if (movil) {
-    MenuEvent = handleToggle
-  }
   return (
     <div className="Nav-container">
       <ul className="Nav-menu-list">
         <li>
-          <NavLink to='/' exact={true} activeClassName="active-menu" onClick={MenuEvent}>
+          <NavLink to='/' exact={true} activeClassName="active-menu" onClick={() => movil ? handleToggle():true}>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to={match.url} exact={true} activeClassName="active-menu" onClick={MenuEvent}>
-            Home
+          <NavLink to={match.url} exact={true} activeClassName="active-menu" onClick={() => movil ? handleToggle():true}>
+            Panel
           </NavLink>
         </li>
         <li>
-          <NavLink to={`${match.url}/usuarios`} exact={true} activeClassName="active-menu" onClick={MenuEvent}>
+          <NavLink to={`${match.url}/usuarios`} exact={true} activeClassName="active-menu" onClick={() => movil ? handleToggle():true}>
             Usuarios
           </NavLink>
         </li>
         <li>
-          <NavLink to={`${match.url}/crop`} activeClassName="active-menu" onClick={MenuEvent}>
+          <NavLink to={`${match.url}/posts`} exact={true} activeClassName="active-menu" onClick={() => movil ? handleToggle():true}>
+            Posts
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={`${match.url}/crop`} activeClassName="active-menu" onClick={() => movil ? handleToggle():true}>
             Crop Test
           </NavLink>
         </li>

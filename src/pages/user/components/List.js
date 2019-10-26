@@ -16,7 +16,6 @@ class UserList extends Component {
     super()
     this.state = {
       data: [],
-      redirect: ''
     }
     this.urlPath = String(props.match.url).replace(/[/]$/g, '')
   }
@@ -66,11 +65,13 @@ class UserList extends Component {
             {
               on: `${this.urlPath}/nuevo`,
               title: 'Agregar',
+              icon: 'person_add',
               theme: 'Header-btn'
             },
             {
               on: `${this.urlPath}/bajas`,
               title: 'Ver Bajas',
+              icon: 'swap_vert',
               theme: 'Header-btn-more'
 
             },

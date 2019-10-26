@@ -1,3 +1,10 @@
+.TopNav{
+  position: relative;
+  z-index: 7;
+}
+.TopNav button{
+  outline: none!important;
+}
 .TopNav-user{
   display: inline-block;
   font-size: 16px;
@@ -7,22 +14,6 @@
 .TopNav-user small{
   display: block;
   font-size: 12px;
-}
-.TopNav-modal{
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.18);
-  z-index: 4;
-}
-.TopNav-modal ul{
-  position: absolute;
-  top: 20px;
-  right: 60px;
-  background: #ffffff;
-}
-.TopNav-modal li{
-  padding: 0px;
 }
 .TopNav-link{
   cursor: pointer;

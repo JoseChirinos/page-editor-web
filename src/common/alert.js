@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './alert.css'
 /* Components */
-import MaterialIcon from '@material/react-material-icon'
+import { Icon } from '@rmwc/icon'
 
 const Alert = (props) => {
   return (
@@ -10,7 +10,7 @@ const Alert = (props) => {
       <div className={`alert-form alert-${props.theme} animated pulse`}>
         {props.message}
         <span className="alert-close" onClick={props.hideAlert}>
-          <MaterialIcon icon="close" />
+          <Icon icon="close" />
         </span>
       </div>
     </div>
