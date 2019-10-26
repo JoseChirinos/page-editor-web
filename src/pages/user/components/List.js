@@ -11,19 +11,24 @@ import ReactTable from "react-table"
 import "react-table/react-table.css"
 
 class UserList extends Component {
+
   constructor(props) {
     super()
     this.state = {
       data: [],
       redirect: ''
     }
+    this.urlPath = String(props.match.url).replace(/[/]$/g, '')
+  }
+
+  getPath = () => {
+    return String(this.props.match.url).replace(/[/]$/g, '')
   }
 
   showDetail = (e, handleOriginal, rowInfo) => {
     if (typeof (rowInfo) !== "undefined") {
       if (rowInfo.original.idUser !== null) {
-        const url = String(this.props.match.url).replace(/[/]/g, '')
-        this.props.history.push(`/${url}/${rowInfo.original.idUser}`)
+        this.props.history.push(`${this.urlPath}/${rowInfo.original.idUser}`)
       } else {
         console.error('Existe un error en ShowDetail el objeto no existe')
       }
@@ -59,12 +64,12 @@ class UserList extends Component {
           history={this.props.history}
           actions={[
             {
-              on: `${this.props.match.path}/nuevo`,
+              on: `${this.urlPath}/nuevo`,
               title: 'Agregar',
               theme: 'Header-btn'
             },
             {
-              on: `${this.props.match.path}/bajas`,
+              on: `${this.urlPath}/bajas`,
               title: 'Ver Bajas',
               theme: 'Header-btn-more'
 

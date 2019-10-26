@@ -3,18 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material/react-button": "^0.11.0",
-    "@material/react-card": "^0.14.1",
-    "@material/react-list": "^0.11.0",
-    "@material/react-material-icon": "^0.11.0",
-    "@material/react-switch": "^0.12.0",
-    "@material/react-text-field": "^0.11.0",
-    "@material/react-top-app-bar": "^0.11.0",
-    "@material/react-typography": "^0.11.0",
-    "@types/classnames": "^2.2.7",
-    "@types/node": "^11.13.0",
-    "@types/react": "^16.8.10",
-    "@types/react-dom": "^16.8.3",
     "axios": "^0.19.0",
     "croppie": "^2.6.4",
     "lodash": "^4.17.15",
@@ -40,7 +28,6 @@
     "react-typist": "^2.0.5",
     "rmwc": "^5.7.1",
     "styled-components": "^4.4.0",
-    "typescript": "^3.4.1",
     "uuid": "^3.3.3"
   },
   "scripts": {

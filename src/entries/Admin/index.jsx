@@ -29,23 +29,23 @@ const Crop = Loadable({
   loading: Loading
 });
 
-const Panel = ({match})=> <div>
+const Panel = ({match})=>(
     <Main signOut={ (e)=>console.log('salir') }>
-        <Switch>
-            <Route exact path={`${match.url}`} component={Home}/>
-            <Route exact path={`${match.url}/usuarios`} component={User}/>
-            <Route exact path={`${match.url}/crop`} component={Crop} />
-        </Switch>
+      <Switch>
+        <Route exact path={`${match.url}`} component={Home}/>
+        <Route path={`${match.url}/usuarios`} component={User}/>
+        <Route path={`${match.url}/crop`} component={Crop} />
+      </Switch>
     </Main>
-</div>
+)
 
 const Admin = (props) => {
   return (
       <div>
         <Switch>
-            <Route exact path="/" component={Site} />
-            <Route path="/admin" component={Panel}/>
-            <Route component={NoMatch} />
+          <Route exact path="/" component={Site} />
+          <Route path="/admin" component={Panel}/>
+          <Route component={NoMatch} />
         </Switch>
       </div>
   )
