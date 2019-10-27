@@ -15,19 +15,18 @@ import {
 
 const mediaQuery = {
   match: null,
-  init: (fn)=>{
-    if(!mediaQuery.match){
-      console.log('iniciamos')
+  init: (fn) => {
+    if (!mediaQuery.match) {
       mediaQuery.match = window.matchMedia('(max-width: 968px)')
-      mediaQuery.match.addListener((e)=>{
+      mediaQuery.match.addListener((e) => {
         fn(e.currentTarget.matches)
       })
     }
   },
-  destroy:()=>{
+  destroy: () => {
     mediaQuery.match = null
   },
-  check: ()=>{
+  check: () => {
     return window.matchMedia('(max-width: 968px)').matches
   }
 }
@@ -42,15 +41,15 @@ const Main = ({
     setToggle(!toggle)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     mediaQuery.init(setMovil)
-  },[setMovil])
+  }, [setMovil])
 
-  useEffect(()=>{
+  useEffect(() => {
     return () => {
       mediaQuery.destroy()
     }
-  },[])
+  }, [])
 
   return (
     <div>
@@ -62,11 +61,11 @@ const Main = ({
       </nav>
       <div className="main-panel">
         <div style={{ overflow: 'hidden', position: 'relative' }}>
-          <Drawer 
-            modal={movil} 
-            dismissible={!movil} 
-            open={toggle} 
-            onClose={ ()=> setToggle(false) }
+          <Drawer
+            modal={movil}
+            dismissible={!movil}
+            open={toggle}
+            onClose={() => setToggle(false)}
             style={{ position: 'fixed' }}
           >
             <DrawerHeader>

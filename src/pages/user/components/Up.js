@@ -62,8 +62,7 @@ class UserUp extends Component {
     e.preventDefault();
     let self = this;
     let id = this.state.data.idUser;
-    let rfid = this.state.data.rfid;
-    UserHttp.enabled(id, rfid,
+    UserHttp.enabled(id,
       (data) => {
         self.completeSend(data);
       },

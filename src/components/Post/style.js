@@ -35,10 +35,10 @@ export const CardItem = styled(Card)`
     width: 80%;
     @media (min-width:960px) {
         width: 300px;
-        margin: 20px;
+        margin: 20px auto;
     }
     @media (min-width:760px) {
         width: 280px;
-        margin: 5px;
+        margin: 5px auto;
     }
 `

@@ -38,8 +38,8 @@ const TopNav = ({
             />
             <TopAppBarTitle>
               <aside className="TopNav-user">
-                Pagina de Informatica
-                <small>Administrador</small>
+                Informatica
+                <small>Panel</small>
               </aside>
             </TopAppBarTitle>
           </TopAppBarSection>

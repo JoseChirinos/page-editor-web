@@ -1,34 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-    Switch,
-    Route
+  Switch,
+  Route
 } from 'react-router-dom'
 /* components */
 import ScrollTop from '../../common/scrolltop'
 import PostList from './components/List'
-// import UserNew from './components/New'
+import PostNew from './components/New'
 // import UserDetail from './components/Detail'
 // import UserDown from './components/Down'
 // import UserUp from './components/Up'
 // import UserChangePassword from './components/ChangePassword'
 
 const Post = ({
-    match
+  match
 }) => {
-    return (
-        <ScrollTop>
-            <Switch>
-                <Route
-                    exact
-                    path={match.url}
-                    component={PostList}
-                />
-                {/* <Route
-              exact
-              path={`${match.url}/nuevo`}
-              component={UserNew}
-            />
+  return (
+    <ScrollTop>
+      <Switch>
+        <Route
+          exact
+          path={match.url}
+          component={PostList}
+        />
+        <Route
+          exact
+          path={`${match.url}/nuevo`}
+          component={PostNew}
+        />
+        {/*
             <Route
               exact
               path={`${match.url}/bajas`}
@@ -49,13 +50,13 @@ const Post = ({
               path={`${match.url}/:id/password`}
               component={UserChangePassword}
             /> */}
-            </Switch>
-        </ScrollTop>
-    )
+      </Switch>
+    </ScrollTop>
+  )
 }
 
 Post.propTypes = {
-    match: PropTypes.shape({}).isRequired
+  match: PropTypes.shape({}).isRequired
 }
 
 export default Post;

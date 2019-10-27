@@ -1,5 +1,4 @@
 import React, { forwardRef, useEffect, useState, useRef, useImperativeHandle } from 'react'
-import PropTypes from 'prop-types'
 import './styles.css';
 /* Components */
 import Croppie from 'croppie'
@@ -33,9 +32,7 @@ const croppie = {
     }
 }
 
-const Crop = forwardRef(({
-    setSrcImage
-}, ref) => {
+const Crop = forwardRef((props, ref) => {
     const domRef = useRef(null);
     const [showPreview, setShowPreview] = useState(false)
 
@@ -87,9 +84,5 @@ const Crop = forwardRef(({
         </div>
     )
 })
-
-Crop.propTypes = {
-    setSrcImage: PropTypes.func.isRequired,
-}
 
 export default Crop

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../../@style/tables.css'
 /* Components */
 import Header from '../../../common/header'
+import PostCard from '../../../components/Post/PostCard'
 import {
     Grid,
     GridCell
@@ -9,9 +10,12 @@ import {
 /* Data */
 import PostHttp from '../../@data/post-http'
 
-const PostList = (props) => {
+const PostList = ({
+    match,
+    history
+}) => {
     const [data, setData] = useState([])
-    const urlPath = String(props.match.url).replace(/[/]$/g, '')
+    const urlPath = String(match.url).replace(/[/]$/g, '')
 
     // showDetail = (e, handleOriginal, rowInfo) => {
     //     if (typeof (rowInfo) !== "undefined") {
@@ -34,16 +38,18 @@ const PostList = (props) => {
     }, [setData])
 
     console.log(data)
+
     return (
         <section>
             <Header
                 title="Posts"
-                match={props.match}
-                history={props.history}
+                match={match}
+                history={history}
                 actions={[
                     {
                         on: `${urlPath}/nuevo`,
-                        title: 'Agregar',
+                        title: 'Publicar',
+                        icon: 'post_add',
                         theme: 'Header-btn'
                     }
                 ]}
@@ -54,8 +60,17 @@ const PostList = (props) => {
             />
             <Grid>
                 {
-                    [1, 2, 3, 4, 5, 7, 8, 9, 4, 5, 6, 2].map((i, index) => (
-                        <GridCell desktop={4} tablet={4} phone={12} key={index}>{i}</GridCell>
+                    data.map((p, index) => (
+                        <GridCell align='middle' desktop={4} tablet={4} phone={12} key={index}>
+                            <PostCard
+                                idPost={p.idPost}
+                                title={p.title}
+                                author={p.first_name}
+                                contentMin={p.summary}
+                                imageUrl={p.urlImage}
+                                urlPath={urlPath}
+                            />
+                        </GridCell>
                     ))
                 }
             </Grid>

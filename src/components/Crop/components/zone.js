@@ -27,6 +27,7 @@ const Zone = ({
                 </div>
                 <Button
                     outlined
+                    type='button'
                 >
                     <label htmlFor="getImage" style={{ margin: 0 }}>
                         Cambiar Imagen

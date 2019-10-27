@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+/*Components*/
 import { 
     CardPrimaryAction,
     CardMedia,
@@ -9,22 +10,28 @@ import {
 } from '@rmwc/card'
 import { CardItem } from './style'
 import { Typography } from '@rmwc/typography'
+import {
+    NavLink
+} from 'react-router-dom'
+/*Data*/
+import { BASE_IMAGE } from '../../pages/@data/@server'
 
 const PostCard = ({
     idPost,
     title,
     author,
     contentMin,
-    imageUrl
+    imageUrl,
+    urlPath
 })=>{
     return(
         <CardItem>
             <CardPrimaryAction>
                 <CardMedia
-                sixteenByNine
-                style={{
-                    backgroundImage: `url(${imageUrl})`
-                }}
+                    sixteenByNine
+                    style={{
+                        backgroundImage: `url(${BASE_IMAGE}/thumb_${imageUrl})`
+                    }}
                 />
                 <div style={{ padding: '0 1rem 1rem 1rem' }}>
                 <Typography use="headline6" tag="h2">
@@ -36,7 +43,7 @@ const PostCard = ({
                     theme="textSecondaryOnBackground"
                     style={{ marginTop: '-1rem' }}
                 >
-                    { author }
+                    <strong>Autor: </strong>{ author }
                 </Typography>
                 <Typography
                     use="body1"
@@ -49,10 +56,10 @@ const PostCard = ({
             </CardPrimaryAction>
             <CardActions>
                 <CardActionButtons>
-                    {/* <NavLink to={`/post/${idPost}`}>
-                        <CardActionButton>Ver todo</CardActionButton>
-                    </NavLink>  */}
-                    <CardActionButton>Ver todo</CardActionButton>
+                    <NavLink to={`${urlPath}/${idPost}`}>
+                        <CardActionButton>Ver</CardActionButton>
+                    </NavLink> 
+                    {/* <CardActionButton>Ver todo</CardActionButton> */}
                 </CardActionButtons>
             </CardActions>
         </CardItem>
@@ -65,5 +72,6 @@ PostCard.propTypes = {
     author: PropTypes.string.isRequired,
     contentMin: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
+    urlPath: PropTypes.string.isRequired,
 }
 export default PostCard

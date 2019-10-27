@@ -39,6 +39,12 @@
   margin: 24px 12px;
 }
 
+/* post */
+.app-post--control{
+  display: inline-block;
+  width: 100%;
+  padding: 5px 10px;
+}
 /* action form */
 .app-form--action{
   padding: 0px 0px 0px 70px;

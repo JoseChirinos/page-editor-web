@@ -7,6 +7,9 @@ import 'material-components-web/dist/material-components-web.min.css'
 import './styles/flickity.css'
 import './styles/croppie.css'
 
+import "draft-js/dist/Draft.css"
+import "draftail/dist/draftail.css"
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
