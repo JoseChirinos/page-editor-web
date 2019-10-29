@@ -8,6 +8,9 @@ import Admin from '../entries/Admin'
 /* Data */
 import { EMAIL, PASS } from '../pages/@data/@server'
 
+/* Context */
+import { UserContext } from '../context/user-context'
+
 class RouterApp extends Component {
 
   constructor(props) {
@@ -16,6 +19,7 @@ class RouterApp extends Component {
       auth: true,
       email: '',
       password: '',
+      idUser: 'Opnel5aKBz',
       alert: {
         visible: false,
         message: 'default',
@@ -88,11 +92,13 @@ class RouterApp extends Component {
   render() {
     return (
       <Router>
-        {
-          this.state.auth ?
-            < Admin />
-            : <Site />
-        }
+        <UserContext.Provider value={this.state.idUser} >
+          {
+            this.state.auth ?
+              < Admin />
+              : <Site />
+          }
+        </UserContext.Provider>
       </Router>
     )
   }

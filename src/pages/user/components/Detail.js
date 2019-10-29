@@ -171,7 +171,6 @@ class UserDetail extends Component {
       <div>
         <Header
           title="Detalle Usuario"
-          match={this.props.match}
           theme={{
             background: "#610dd8",
             color: "#fff"

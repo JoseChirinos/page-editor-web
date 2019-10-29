@@ -97,7 +97,6 @@ class UserUp extends Component {
       <div>
         <Header
           title="Habilitar Usuario"
-          match={this.props.match}
           theme={{
             background: "#610dd8",
             color: "#fff"

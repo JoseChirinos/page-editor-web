@@ -53,8 +53,6 @@ class NurseDown extends Component {
       <section>
         <Header
           title="Bajas"
-          match={this.props.match}
-          history={this.props.history}
           theme={{
             background: "#610dd8",
             color: "#fff"

@@ -5,3 +5,14 @@ export const PostSchema = {
     summary: '',
     cover_image: '',
 }
+
+export const PostSchemaDetail = {
+    idUser: null,
+    idPost: null,
+    title: '',
+    content: '',
+    summary: '',
+    urlImage: '',
+    data_start: '',
+    data_updated: '',
+}

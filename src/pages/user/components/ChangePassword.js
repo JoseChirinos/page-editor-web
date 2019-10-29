@@ -61,8 +61,6 @@ const UserChangePassword = ({
         <div>
             <Header
                 title="Cambiar Contraseña"
-                match={match}
-                history={history}
                 theme={{
                     background: "#610dd8",
                     color: "#fff"

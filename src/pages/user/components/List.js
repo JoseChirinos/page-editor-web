@@ -59,8 +59,6 @@ class UserList extends Component {
       <section>
         <Header
           title="Usuarios"
-          match={this.props.match}
-          history={this.props.history}
           actions={[
             {
               on: `${this.urlPath}/nuevo`,

@@ -90,8 +90,6 @@ class UserNew extends Component {
       <div>
         <Header
           title="Agregar Usuario"
-          match={this.props.match}
-          history={this.props.history}
           theme={{
             background: "#610dd8",
             color: "#fff"

@@ -42,3 +42,41 @@ export const CardItem = styled(Card)`
         margin: 5px auto;
     }
 `
+
+
+/* Preview Post */
+
+export const PreviewContainer = styled.div`
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+`
+export const PreviewWrapper = styled.div`
+    width: 100%;
+    margin: 30px auto;
+    @media (min-width:960px) {
+        width: 960px;
+        margin: 50px auto;
+    }
+    @media (min-width:760px) {
+        width: 760px;
+        margin: 40px auto;
+    }
+`
+export const PreviewTitle = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 300px;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,0) 62%, rgba(0,0,0,0.39539565826330536) 82%, rgba(0,0,0,1) 100%);
+    > aside {
+        padding: 20px 0px;
+        width: 100%;
+        @media (min-width:960px) {
+            width: 960px;
+        }
+        @media (min-width:760px) {
+            width: 760px;
+        }
+    }
+`

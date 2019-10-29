@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import './header.css'
 import PropTypes from 'prop-types'
 import {
+  withRouter
+} from 'react-router'
+import {
   NavLink
 } from 'react-router-dom'
 /* Components */
@@ -74,7 +77,7 @@ class Header extends Component {
   }
 
   render() {
-    const { match, actions, title, theme } = this.props
+    const { match, history, title, actions, theme, back } = this.props
     return (
       <div
         ref={this.header}
@@ -97,12 +100,25 @@ class Header extends Component {
           </aside>
           <aside className={`${this.state.scroller ? 'Header-action' : 'HeaderFixed-action'}`}>
             <h1 className={`${this.state.scroller ? 'Header-action--title' : 'HeaderFixed-action--title'}`}>
-              <NavLink
-                to={this.state.urlBack}
-                className={`${this.state.scroller ? 'Header-back' : 'HeaderFixed-back'}`}
-              >
-                <Icon icon="keyboard_backspace" />
-              </NavLink>
+              {
+                back ?
+                  <span className={`${this.state.scroller ? 'Header-back' : 'HeaderFixed-back'}`}>
+                    <IconButton
+                      icon="keyboard_backspace"
+                      style={{
+                        outline: 'none'
+                      }}
+                      onClick={() => { history.goBack() }}
+                    />
+                  </span>
+                  :
+                  <NavLink
+                    to={this.state.urlBack}
+                    className={`${this.state.scroller ? 'Header-back' : 'HeaderFixed-back'}`}
+                  >
+                    <Icon icon="keyboard_backspace" />
+                  </NavLink>
+              }
               {title}
             </h1>
             {
@@ -140,18 +156,20 @@ class Header extends Component {
 
 Header.propTypes = {
   title: PropTypes.string,
-  match: PropTypes.object,
   actions: PropTypes.array,
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  back: PropTypes.bool,
+  match: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape({}).isRequired,
 }
 Header.defaultProps = {
   title: "Titulo",
-  match: {},
   actions: [],
   theme: {
     background: '#34017d',
     color: '#ffffff'
-  }
+  },
+  back: false
 }
 
-export default Header
+export default withRouter(Header)

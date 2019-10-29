@@ -25,70 +25,43 @@ const UserHttp = {
     //             error(e)
     //         })
     // },
-    // getId: (idUser, response, error) => {
-    //     axios.get(BASE + 'user/' + idUser,
-    //         { cancelToken: source.token }
-    //     ).then(function (r) {
-    //         response(r.data)
-    //     })
-    //         .catch(function (e) {
-    //             error(e)
-    //         })
-    // },
-    // add: (data, response, error) => {
-    //     axios.post(BASE + 'user/add', data,
-    //         { cancelToken: source.token }
-    //     ).then(function (r) {
-    //         response(r.data)
-    //     }).catch(function (e) {
-    //         error(e)
-    //     })
-    // },
-    // update: (data, response, error) => {
-    //     axios.post(BASE + 'user/update', data,
-    //         { cancelToken: source.token }
-    //     ).then(function (r) {
-    //         response(r.data)
-    //     }).catch(function (e) {
-    //         error(e)
-    //     })
-    // },
-    // disabled: (idUser, response, error) => {
-    //     axios.post(BASE + 'user/disabled', { idUser },
-    //         { cancelToken: source.token }
-    //     ).then(function (r) {
-    //         response(r.data)
-    //     }).catch(function (e) {
-    //         error(e)
-    //     })
-    // },
-    // enabled: (idUser, response, error) => {
-    //     axios.post(BASE + 'user/enabled', { idUser },
-    //         { cancelToken: source.token }
-    //     ).then(function (r) {
-    //         response(r.data)
-    //     }).catch(function (e) {
-    //         error(e)
-    //     })
-    // },
-    // changePassword: (data, response, error) => {
-    //     axios.post(BASE + 'user/change/password', data,
-    //         { cancelToken: source.token }
-    //     ).then(function (r) {
-    //         response(r.data)
-    //     }).catch(function (e) {
-    //         error(e)
-    //     })
-    // },
-    // recovery: (data, response, error) => {
-    //     axios.post(BASE + 'user/check/force', data,
-    //         { cancelToken: source.token }
-    //     ).then(function (r) {
-    //         response(r.data)
-    //     }).catch(function (e) {
-    //         error(e)
-    //     })
-    // },
+    getId: (idPost, response, error) => {
+        axios.get(BASE + 'post/' + idPost,
+            { cancelToken: source.token }
+        ).then(function (r) {
+            response(r.data)
+        })
+            .catch(function (e) {
+                error(e)
+            })
+    },
+    add: (data, response, error) => {
+        axios.post(BASE + 'post/add', data,
+            { cancelToken: source.token }
+        ).then(function (r) {
+            response(r.data)
+        }).catch(function (e) {
+            error(e)
+        })
+    },
+    update: (data, response, error) => {
+        axios.post(BASE + 'post/update', data,
+            { cancelToken: source.token }
+        ).then(function (r) {
+            response(r.data)
+        }).catch(function (e) {
+            error(e)
+        })
+    },
+    delete: (data, response, error) => {
+        axios.post(BASE + 'post/delete', data,
+            { cancelToken: source.token }
+        ).then(function (r) {
+            response(r.data)
+        }).catch(function (e) {
+            error(e)
+        })
+    },
     cancel: () => {
         source.cancel('se cancelo el request')
     }

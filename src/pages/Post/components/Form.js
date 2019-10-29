@@ -1,27 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import '../../@style/container.css'
 import '../../@style/form.css'
 /* Components */
+import { Parallax } from 'react-parallax'
 import { TextField } from '@rmwc/textfield'
 import Crop from '../../../components/Crop'
-import {
-    DraftailEditor,
-    INLINE_STYLE,
-    BLOCK_TYPE,
-    ENTITY_TYPE,
-    BR_ICON,
-    UNDO_ICON,
-    REDO_ICON,
-    TINY_TEXT_BLOCK,
-    REDACTED_STYLE,
-} from "draftail"
 import Remove from '../../../common/remove'
-import {
-    NavLink
-} from 'react-router-dom'
+import MdEditor from 'react-markdown-editor-lite'
+import MarkdownIt from 'markdown-it'
+
 /* Data */
-import PASS from '../../@data/@pass'
+import { BASE_IMAGE } from '../../@data/@server'
+
+const mdParser = new MarkdownIt()
 
 const PostForm = ({
     data,
@@ -31,26 +23,35 @@ const PostForm = ({
     cropRef
 }) => {
 
-    const initial = JSON.parse(sessionStorage.getItem("draftail:content"))
-    const onSave = (content) => {
-        console.log("saving", content)
-        sessionStorage.setItem("draftail:content", JSON.stringify(content))
-    }
     return (
         <div className="app-container">
+            {
+                editForm &&
+                <Parallax
+                    bgImage={`${BASE_IMAGE}/${data.urlImage}`}
+                    strength={700}
+                    style={{
+                        width: '100%',
+                        height: 300
+                    }}
+                />
+            }
             <div className="app-form-wrapper">
-                <fieldset className="app-form--fieldset">
-                    <legend>
-                        Portada
-                    </legend>
+                {
+                    !editForm &&
+                    <fieldset className="app-form--fieldset">
+                        <legend>
+                            Portada
+                        </legend>
 
-                    <aside className="app-post--control">
-                        <Crop
-                            ref={cropRef}
-                        />
-                    </aside>
+                        <aside className="app-post--control">
+                            <Crop
+                                ref={cropRef}
+                            />
+                        </aside>
 
-                </fieldset>
+                    </fieldset>
+                }
 
                 <fieldset className="app-form--fieldset">
                     <legend>
@@ -66,7 +67,6 @@ const PostForm = ({
                             helpText="Escriba un Titulo"
                             value={data.title}
                             onChange={(e) => changeState({ ...data, title: e.currentTarget.value })}
-                            pattern="^[a-zA-Zñüáéíóú ]{1,100}$"
                             characterCount
                             maxLength={100}
                             style={{ width: '100%' }}
@@ -85,7 +85,6 @@ const PostForm = ({
                             helpText="Escriba un resumen"
                             value={data.summary}
                             onChange={(e) => changeState({ ...data, summary: e.currentTarget.value })}
-                            pattern="^[a-zA-Zñüáéíóú ]{1,100}$"
                             characterCount
                             maxLength={150}
                             style={{ width: '100%' }}
@@ -100,19 +99,11 @@ const PostForm = ({
                     </legend>
 
                     <aside className="app-app--control">
-                        <DraftailEditor
-                            rawContentState={initial || null}
-                            onSave={onSave}
-                            blockTypes={[
-                                { type: BLOCK_TYPE.HEADER_ONE },
-                                { type: BLOCK_TYPE.HEADER_THREE },
-                                { type: BLOCK_TYPE.UNORDERED_LIST_ITEM },
-                            ]}
-                            inlineStyles={[
-                                { type: INLINE_STYLE.BOLD },
-                                { type: INLINE_STYLE.ITALIC },
-                                { type: INLINE_STYLE.UNDERLINE }
-                            ]}
+                        <MdEditor
+                            value={data.content}
+                            renderHTML={(text) => mdParser.render(text)}
+                            onChange={({ text }) => { changeState({ ...data, content: text }) }}
+                            required
                         />
                     </aside>
 
@@ -121,8 +112,8 @@ const PostForm = ({
                 {
                     editForm &&
                     <Remove
-                        text="(*) Si usted esta seguro que quiere deshabilitar al usuario, es bajo su responsabilidad."
-                        label="DESHABILITAR"
+                        text="(*) Si usted esta seguro que quiere eliminar este post, es bajo su responsabilidad."
+                        label="Eliminar"
                         handleEvent={removePost}
                     />
                 }

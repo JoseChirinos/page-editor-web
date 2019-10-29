@@ -8,7 +8,7 @@
 }
 .alert-form{
   position: relative;
-  padding: 20px;
+  padding: 20px 50px 20px 20px;
   border-radius: 5px;
   width: 350px;
   margin: 0 auto;
@@ -33,5 +33,6 @@
 .alert-close{
   position: absolute;
   right: 20px;
+  top: 20px;
   cursor: pointer;
 }

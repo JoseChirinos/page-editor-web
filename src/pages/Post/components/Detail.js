@@ -4,24 +4,25 @@ import '../../@style/form.css'
 /* Components */
 import { Redirect } from 'react-router-dom'
 import Header from '../../../common/header'
+import Loading from '../../../common/loading'
 import PostForm from './Form'
 import Action from '../../../common/action'
-import Loading from '../../../common/loading'
 import Alert from '../../../common/alert'
+
 /* Interface */
-import { PostSchema } from '../post-schema'
+import { PostSchemaDetail } from '../post-schema'
+
 /* Data */
 import PostHttp from '../../@data/post-http'
 import { getUrl } from '../../@data/get-url'
-/* Context */
-import { UserContext } from '../../../context/user-context'
 
-class UserNew extends Component {
+class PostDetail extends Component {
     constructor(props) {
         super()
         this.state = {
-            data: Object.assign({}, PostSchema),
-            load: false,
+            data: Object.assign({}, PostSchemaDetail),
+            load: true,
+            loadText: 'Cargando Información',
             completed: false,
             urlCompleted: '/',
             alert: {
@@ -32,23 +33,41 @@ class UserNew extends Component {
         }
         this.cropRef = React.createRef()
     }
+    componentDidMount() {
+        const idPost = this.props.match.params.id
+        const url = getUrl.back(this.props.history.location.pathname)
+        const self = this
+        PostHttp.getId(
+            idPost,
+            (data) => {
+                self.setState({
+                    urlCompleted: url.path,
+                    load: false,
+                    data: {
+                        ...data.result
+                    }
+                })
+            },
+            (error) => {
+                console.log(error)
+            }
+        )
+    }
     handleSend = (e) => {
         e.preventDefault()
+        let data = this.state.data
         this.setState({
-            load: true
+            load: true,
+            loadText: 'Guardando'
         })
-        const sendData = this.state.data
-        this.cropRef.current.getResult((data64) => {
-            sendData.cover_image = data64
-            this.serverConexion(sendData)
-        })
+        this.sendUpdate(data)
     }
-    serverConexion = (dataSend) => {
+    sendUpdate = (data) => {
         let self = this
-        PostHttp.add(dataSend,
+        PostHttp.update(data,
             (data) => {
                 if (data.status) {
-                    self.completeSend(data.result)
+                    self.completeSend(data)
                 } else {
                     self.completeError(data.message)
                 }
@@ -57,6 +76,28 @@ class UserNew extends Component {
                 self.completeError(error)
             })
     }
+
+    removePost = () => {
+        const idPost = this.props.match.params.id
+        const idUser = this.state.data.idUser
+        const self = this
+        if (window.confirm("Esta seguro que quiere eliminar este post?")) {
+            PostHttp.delete({
+                idPost, idUser
+            },
+                (data) => {
+                    if (data.status) {
+                        self.completeSend(data)
+                    } else {
+                        self.completeError(data.message)
+                    }
+                },
+                (error) => {
+                    self.completeError(error)
+                })
+        }
+    }
+
     completeSend = () => {
         this.setState({
             completed: true
@@ -84,48 +125,57 @@ class UserNew extends Component {
             theme: 'default'
         })
     }
+
     changeState = (newData) => {
         this.setState({
             data: newData
         })
     }
-    componentDidMount() {
-        const url = getUrl.back(this.props.history.location.pathname)
-        const idUser = this.context
+    showAlert = (message, theme) => {
         this.setState({
-            urlCompleted: url.path,
-            data: {
-                ...this.state.data,
-                idUser,
+            alert: {
+                visible: true,
+                message,
+                theme
             }
+        })
+    }
+    hideAlert = () => {
+        this.setState({
+            alert: false,
+            message: '',
+            theme: 'default'
         })
     }
     render() {
         return (
             <div>
                 <Header
-                    title="Publicar Post"
-                    history={this.props.history}
+                    title="Editar Post"
                     theme={{
                         background: "#610dd8",
                         color: "#fff"
 
                     }}
                 />
+
                 {
-                    this.state.load ?
-                        <Loading title="Guardando Datos..." />
-                        :
+                    !this.state.load ?
                         <form onSubmit={this.handleSend} className="app-form-container">
                             <PostForm
+                                editForm
                                 data={this.state.data}
                                 changeState={this.changeState}
                                 cropRef={this.cropRef}
+                                disabledAccount={this.disabledAccount}
+                                removePost={this.removePost}
                             />
                             <Action
                                 match={this.props.match}
                             />
                         </form>
+                        :
+                        <Loading title={this.state.loadText} />
                 }
 
                 {
@@ -150,6 +200,4 @@ class UserNew extends Component {
     }
 }
 
-UserNew.contextType = UserContext
-
-export default UserNew
+export default PostDetail
