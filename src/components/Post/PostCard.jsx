@@ -31,7 +31,9 @@ const PostCard = ({
     imageUrl,
     urlPath
 })=>{
-    const day = moment(posted, "YYYYMMDD").fromNow()
+    const formated = moment(posted,'YYYY/MM/DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
+    const day = moment(formated).fromNow()
+    
     return(
         <CardItem>
             <CardPrimaryAction>

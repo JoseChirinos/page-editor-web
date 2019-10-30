@@ -3,12 +3,12 @@ import styled from 'styled-components/macro'
 export const SignContainer = styled.div`
     width: 100%;
     padding: 20px 0px;
-    background-image: url(/assets/images/bg-login.jpg);
+    background-image: url(/assets/images/bg-login-oficial.jpg);
     background-size: cover;
     background-position: center;
     ::after{
         content: '';
-        background-image: url(/assets/images/bg-login.jpg);
+        background-image: url(/assets/images/bg-login-oficial.jpg);
         background-size: cover;
         background-position: center;
         opacity: 0.9;

@@ -10,7 +10,8 @@ import {
 } from '@rmwc/top-app-bar'
 
 import {
-  NavLink
+  NavLink,
+  withRouter,
 } from 'react-router-dom'
 
 import {
@@ -21,6 +22,7 @@ import {
 import { IconButton } from '@rmwc/icon-button'
 
 const TopNav = ({
+  match,
   signOut,
   handleToggle
 }) => {
@@ -47,15 +49,13 @@ const TopNav = ({
             <SimpleMenu handle={<IconButton icon="person_pin" />}
               anchorCorner='topStart'
             >
-              <MenuItem>
-                <NavLink to="/" className="TopNav-link" onClick={signOut}>
+              <MenuItem onClick={signOut}>
+                <NavLink exact={true} to={`${match.url}/perfil`} className="TopNav-link" onClick={signOut}>
                   Perfil
                 </NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink to="/" className="TopNav-link" onClick={signOut}>
-                  Salir
-                </NavLink>
+                <div className="TopNav-link" onClick={signOut}>Salir</div>
               </MenuItem>
             </SimpleMenu>
           </TopAppBarSection>
@@ -65,4 +65,4 @@ const TopNav = ({
     </div>
   )
 }
-export default TopNav;
+export default withRouter(TopNav)

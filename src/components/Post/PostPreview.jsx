@@ -52,7 +52,8 @@ const PostPreview = ({
         // setMdSource()
     },[match, setMdSource, setData, history])
 
-    const day = moment(data.data_start, "YYYYMMDD").fromNow()
+    const formated = moment(data.data_start,'YYYY/MM/DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
+    const day = moment(formated).fromNow()
 
     return (
         <PreviewContainer>

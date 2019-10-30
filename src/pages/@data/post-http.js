@@ -15,16 +15,15 @@ const UserHttp = {
             error(e)
         })
     },
-    // getAllDisabled: (response, error) => {
-    //     axios.get(BASE + 'user/all/disabled',
-    //         { cancelToken: source.token }
-    //     ).then(function (r) {
-    //         response(r.data)
-    //     })
-    //         .catch(function (e) {
-    //             error(e)
-    //         })
-    // },
+    getAllUser: (idUser, response, error) => {
+        axios.get(BASE + 'post/all/' + idUser,
+            { cancelToken: source.token }
+        ).then(function (r) {
+            response(r.data)
+        }).catch(function (e) {
+            error(e)
+        })
+    },
     getId: (idPost, response, error) => {
         axios.get(BASE + 'post/' + idPost,
             { cancelToken: source.token }

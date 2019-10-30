@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     SignContainer,
     SignWrapper,
@@ -12,17 +12,42 @@ import { TextField } from '@rmwc/textfield'
 import { Button } from '@rmwc/button'
 import { Typography } from '@rmwc/typography'
 import Alert from '../../common/alert'
-
-const SignIn = ({
+/*
+{
+    data,
     signIn,
     changeState,
     hideAlert,
-    data
-}) => {
+}
+*/
+const SignIn = (props) => {
+    const [data, setData] = useState({
+        email:'',
+        password:''
+    })
+    const [alert, setAlert] = useState({
+        visible: false,
+        message: '',
+        theme: 'default'
+    })
+
+    const signInNow = (e)=>{
+        e.preventDefault()
+        props.signIn(data.email, data.password, (result)=>{
+            setAlert({
+                visible: true,
+                message: result.message,
+                theme: `${result.error? 'error':'success'}`
+            })
+        })
+    }
+    const hideAlert = ()=>{
+        setAlert({...alert, visible: false})
+    }
     return (
         <SignContainer>
             <SignWrapper>
-                <SignForm onSubmit={signIn}>
+                <SignForm onSubmit={signInNow}>
                     <SignTitle>
                         <h1>
                             Login
@@ -35,12 +60,12 @@ const SignIn = ({
                         type="email"
                         label="Correo Electronico"
                         value={data.email}
-                        onChange={(e) => changeState({ ...data, email: e.currentTarget.value })}
+                        onChange={(e) => setData({ ...data, email: e.currentTarget.value })}
                         maxLength={150}
                         trailingIcon={{
                           icon: 'close',
                           tabIndex: 1,
-                          onClick: () => changeState({ ...data, email: '' })
+                          onClick: () => setData({ ...data, email: '' })
                         }}
                     />
                     <SignSeparate />
@@ -49,12 +74,12 @@ const SignIn = ({
                         type="password"
                         label="Contraseña"
                         value={data.password}
-                        onChange={(e) => changeState({ ...data, password: e.currentTarget.value })}
+                        onChange={(e) => setData({ ...data, password: e.currentTarget.value })}
                         maxLength={50}
                         trailingIcon={{
                           icon: 'close',
                           tabIndex: 1,
-                          onClick: () => changeState({ ...data, password: '' })
+                          onClick: () => setData({ ...data, password: '' })
                         }}
                     />
                     <SignSeparate />
@@ -70,11 +95,11 @@ const SignIn = ({
                 </SignForm>
             </SignWrapper>
             {
-                data.alert.visible ?
+                alert.visible ?
                 <Alert
                     max
-                    message={data.alert.message}
-                    theme={data.alert.theme}
+                    message={alert.message}
+                    theme={alert.theme}
                     hideAlert={hideAlert}
                 />
                 :

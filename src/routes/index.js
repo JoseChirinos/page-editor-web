@@ -6,69 +6,67 @@ import Site from '../entries/Site'
 import Admin from '../entries/Admin'
 
 /* Data */
-import { EMAIL, PASS } from '../pages/@data/@server'
+import UserHttp from '../pages/@data/user-http'
 
 /* Context */
 import { UserContext } from '../context/user-context'
+import Loading from '../common/loading'
 
 class RouterApp extends Component {
 
   constructor(props) {
     super()
     this.state = {
-      auth: true,
-      email: '',
-      password: '',
-      idUser: 'Opnel5aKBz',
-      alert: {
-        visible: false,
-        message: 'default',
-        theme: 'default'
-      }
+      auth: false,
+      userInfo: {},
+      load: true
     }
   }
   componentDidMount() {
-    if (this.getSession()) {
+    const offline = UserHttp.checkSessionOff()
+    if (offline) {
       this.setState({
-        auth: true
+        userInfo: offline,
+        auth: true,
+        load: false
+      })
+    } else {
+      this.setState({
+        load: false
       })
     }
   }
-  showAlert = (message, theme) => {
-    this.setState({
-      alert: {
-        visible: true,
-        message,
-        theme
-      }
-    })
-  }
-  hideAlert = () => {
-    this.setState({
-      alert: false,
-      message: '',
-      theme: 'default'
-    })
-  }
 
-  changeState = (data) => {
-    this.setState(data)
-  }
-
-  signIn = (e) => {
-    e.preventDefault()
-    this.hideAlert()
-    if (this.state.email === EMAIL) {
-      if (this.state.password === PASS) {
-        this.setState({
-          auth: true
-        })
-        this.saveSession()
-      } else {
-        this.showAlert("Contraseña Incorrecta", "error")
-      }
+  signIn = (email, password, response) => {
+    const offline = UserHttp.checkSessionOff()
+    if (offline) {
+      this.setState({
+        userInfo: offline
+      })
     } else {
-      this.showAlert("Usuario no registrado", "error")
+      UserHttp.signIn({ email, password },
+        (data) => {
+          if (data.status) {
+            const userInfo = data.result
+            UserHttp.createSession(userInfo)
+            this.setState({
+              userInfo,
+              auth: true
+            })
+          } else {
+            response({
+              message: data.message,
+              error: true,
+            })
+          }
+        },
+        (error) => {
+          response({
+            message: error.message,
+            error: true,
+          })
+        }
+      )
     }
   }
   signOut = (e) => {
@@ -76,30 +74,28 @@ class RouterApp extends Component {
     this.setState({
       auth: false
     })
-    this.destroySession()
-  }
-
-  saveSession = () => {
-    localStorage.setItem("session", JSON.stringify({ session: true }))
-  }
-  getSession = () => {
-    return JSON.parse(localStorage.getItem("session")) || false
-  }
-  destroySession = () => {
-    localStorage.removeItem("session")
+    UserHttp.destroySession()
   }
 
   render() {
     return (
-      <Router>
-        <UserContext.Provider value={this.state.idUser} >
-          {
-            this.state.auth ?
-              < Admin />
-              : <Site />
-          }
-        </UserContext.Provider>
-      </Router>
+      <main>
+        {this.state.load ?
+          <Loading />
+          :
+          <Router>
+            <UserContext.Provider value={this.state.userInfo} >
+              {
+                this.state.auth ?
+                  <Admin signOut={this.signOut} />
+                  : <Site
+                    signIn={this.signIn}
+                  />
+              }
+            </UserContext.Provider>
+          </Router>
+        }
+      </main>
     )
   }
 }

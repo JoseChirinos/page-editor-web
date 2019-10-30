@@ -89,6 +89,32 @@ const UserHttp = {
             error(e)
         })
     },
+    signIn: (data, response, error) => {
+        axios.post(BASE + 'user/signin', data,
+            { cancelToken: source.token }
+        ).then(function (r) {
+            response(r.data)
+        }).catch(function (e) {
+            error(e)
+        })
+    },
+    createSession: (data) => {
+        let dataString = JSON.stringify(data);
+        let dataNew = btoa(dataString);
+        localStorage.setItem('session', dataNew);
+    },
+    checkSessionOff: () => {
+        if (localStorage.getItem('session')) {
+            let dataString = localStorage.getItem('session');
+            let data = JSON.parse(atob(dataString));
+            return data;
+        } else {
+            return false;
+        }
+    },
+    destroySession: () => {
+        localStorage.removeItem('session');
+    },
     cancel: () => {
         source.cancel('se cancelo el request')
     }

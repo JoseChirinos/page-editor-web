@@ -1,13 +1,14 @@
 import React from 'react';
 import {
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 /*loading*/
 import Loading from '../../common/loading';
-import NoMatch from '../../common/notmatch';
+// import NoMatch from '../../common/notmatch';
 import Main from '../../pages/Main'
 
 // const Home = Loadable({
@@ -33,8 +34,11 @@ const Crop = Loadable({
   loading: Loading
 });
 
-const Panel = ({match})=>(
-    <Main signOut={ (e)=>console.log('salir') }>
+const Panel = ({
+  match,
+  signOut
+})=>(
+    <Main signOut={ signOut }>
       <Switch>
         <Route exact path={`${match.url}`} component={Home}/>
         <Route path={`${match.url}/usuarios`} component={User}/>
@@ -44,13 +48,15 @@ const Panel = ({match})=>(
     </Main>
 )
 
-const Admin = (props) => {
+const Admin = ({
+  signOut
+}) => {
   return (
       <div>
         <Switch>
-          <Route exact path="/" component={Site} />
-          <Route path="/admin" component={Panel}/>
-          <Route component={NoMatch} />
+          <Route exact path="/" component={(props)=> <Site {...props} signOut={signOut}/>} />
+          <Route path="/admin" component={(props)=> <Panel {...props} signOut={signOut} />}/>
+          <Route component={()=><Redirect to='/admin'/>} />
         </Switch>
       </div>
   )

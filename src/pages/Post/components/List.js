@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 /* Components */
 import Header from '../../../common/header'
 import PostCard from '../../../components/Post/PostCard'
 import { GridList } from './atoms/GridList'
 /* Data */
 import PostHttp from '../../@data/post-http'
+/* Context */
+import { UserContext } from '../../../context/user-context'
 
 const PostList = ({
     match,
-    history
+    history,
+    context
 }) => {
+    const user = useContext(UserContext)
     const [data, setData] = useState([])
     const urlPath = String(match.url).replace(/[/]$/g, '')
 
     useEffect(() => {
-        PostHttp.getAll(
+        const idUser = user.idUser
+        PostHttp.getAllUser(idUser,
             (data) => {
                 setData(data.result)
             },
@@ -22,7 +27,15 @@ const PostList = ({
                 console.log(error)
             }
         )
-    }, [setData])
+        // PostHttp.getAll(
+        //     (data) => {
+        //         setData(data.result)
+        //     },
+        //     (error) => {
+        //         console.log(error)
+        //     }
+        // )
+    }, [context, setData, user])
 
     console.log(data)
 

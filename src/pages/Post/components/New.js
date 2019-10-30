@@ -16,7 +16,7 @@ import { getUrl } from '../../@data/get-url'
 /* Context */
 import { UserContext } from '../../../context/user-context'
 
-class UserNew extends Component {
+class PostNew extends Component {
     constructor(props) {
         super()
         this.state = {
@@ -91,7 +91,8 @@ class UserNew extends Component {
     }
     componentDidMount() {
         const url = getUrl.back(this.props.history.location.pathname)
-        const idUser = this.context
+        const idUser = this.context.idUser
+        console.log(idUser)
         this.setState({
             urlCompleted: url.path,
             data: {
@@ -150,6 +151,6 @@ class UserNew extends Component {
     }
 }
 
-UserNew.contextType = UserContext
+PostNew.contextType = UserContext
 
-export default UserNew
+export default PostNew
