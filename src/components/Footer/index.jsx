@@ -16,7 +16,7 @@ const Footer = ({
         <FooterContainer>
             <FooterWrapper>
                 <FooterLogo>
-                    <img src='/assets/images/escudo_informatica.jpg'/>
+                    <img src='/assets/images/escudo_informatica.jpg'alt=''/>
                 </FooterLogo>
                 <FooterInfo>
                     <h3>Dirección</h3>

@@ -20,6 +20,7 @@ import {
 } from '@rmwc/menu'
 
 import { IconButton } from '@rmwc/icon-button'
+import { Fab } from '@rmwc/fab'
 
 const TopNav = ({
   match,
@@ -46,6 +47,9 @@ const TopNav = ({
             </TopAppBarTitle>
           </TopAppBarSection>
           <TopAppBarSection alignEnd>
+            <NavLink exact={true} to='/' className="TopNav-link" onClick={signOut}>
+              <Fab icon="screen_share" label="Ver" />
+            </NavLink>
             <SimpleMenu handle={<IconButton icon="person_pin" />}
               anchorCorner='topStart'
             >

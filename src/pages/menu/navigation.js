@@ -16,13 +16,6 @@ const Navigation = ({
     <div className="Nav-container">
       <ul className="Nav-menu-list">
         <li>
-          <NavLink to='/' exact={true} activeClassName="active-menu" onClick={() => movil ? handleToggle() : true}>
-            <span>
-              Ver la Página
-            </span>
-          </NavLink>
-        </li>
-        <li>
           <NavLink to={match.url} exact={true} activeClassName="active-menu" onClick={() => movil ? handleToggle() : true}>
             Panel
           </NavLink>
@@ -30,6 +23,11 @@ const Navigation = ({
         <li>
           <NavLink to={`${match.url}/usuarios`} exact={true} activeClassName="active-menu" onClick={() => movil ? handleToggle() : true}>
             Usuarios
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={`${match.url}/editor`} exact={true} activeClassName="active-menu" onClick={() => movil ? handleToggle() : true}>
+            Editor
           </NavLink>
         </li>
         <li>

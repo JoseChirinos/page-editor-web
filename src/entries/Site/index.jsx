@@ -14,7 +14,11 @@ const SignIn = Loadable({
   loading: Loading
 });
 
-const Home = () => <div>Site</div>
+const Website = Loadable({
+  loader: () => import('../../pages/Website'),
+  loading: Loading
+});
+
 const SignUp = () => <div>SignUp</div>
 
 const Site = ({
@@ -22,7 +26,7 @@ const Site = ({
 }) => {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={Website} />
       <Route path="/login" component={(props)=> <SignIn {...props} signIn={ signIn } />} />
       <Route path="/registrar" component={SignUp} />
       <Route component={()=><Redirect to='/' />} />

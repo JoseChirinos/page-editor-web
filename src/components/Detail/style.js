@@ -15,13 +15,14 @@ export const DetailWrapper = styled.section`
     color: ${theme.white};
     > span{
         width: 100%;
-        font-size: 30px;
+        font-size: 20px;
         text-align: center;
         line-height: 1.5;
         text-shadow: 0px 1px 2px ${theme.black};
-        padding: 20px 0px;
+        padding: 20px;
         > p {
-            font-size: 21px;
+            padding: 20px 0px;
+            font-size: 16px;
             font-family: 'Lato', sans-serif;
             text-shadow: 0px 0px 2px #2d2d2d;
         }
@@ -29,6 +30,12 @@ export const DetailWrapper = styled.section`
     @media (min-width:760px) {
         > span{
             width: 500px;
+            font-size: 30px;
+            padding: 20px 0px;
+            > p{
+                padding: 0px;
+                font-size: 21px;
+            }
         }
     }
     @media (min-width:960px) {
@@ -42,8 +49,8 @@ export const DetailWrapper = styled.section`
 `
 
 export const DetailImage = styled.img`
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     @media (min-width:960px) {
         width: 400px;
         height: 400px;        

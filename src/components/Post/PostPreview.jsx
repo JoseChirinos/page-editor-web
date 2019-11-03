@@ -18,7 +18,6 @@ import { PostSchemaDetail } from '../../pages/Post/post-schema'
 /* Data */
 import PostHttp from '../../pages/@data/post-http'
 import { BASE_IMAGE } from '../../pages/@data/@server'
-import { getUrl } from '../../pages/@data/get-url'
 import moment from 'moment';
 import 'moment/locale/es';
 
@@ -30,27 +29,23 @@ moment.locale('es');
 
 const PostPreview = ({
     match,
-    history,
     edit
 }) => {
     const [mdSource, setMdSource] = useState('')
-    const [url, setUrl] = useState('/')
     const [data, setData] = useState(Object.assign({}, PostSchemaDetail))
 
     useEffect( ()=>{
         const idPost = match.params.id
-        const url = getUrl.back(history.location.pathname)
         PostHttp.getId(idPost,
         (data) => {
             setMdSource(data.result.content)
             setData(data.result)
-            setUrl(url)
         },
         (error) => {
             console.log(error)
         })
         // setMdSource()
-    },[match, setMdSource, setData, history])
+    },[match, setMdSource, setData])
 
     const formated = moment(data.data_start,'YYYY/MM/DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
     const day = moment(formated).fromNow()

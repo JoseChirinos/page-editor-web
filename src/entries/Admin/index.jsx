@@ -11,28 +11,27 @@ import Loading from '../../common/loading';
 // import NoMatch from '../../common/notmatch';
 import Main from '../../pages/Main'
 
-// const Home = Loadable({
-//   loader: () => import('../pages/home'),
-//   loading: Loading
-// });
-const Site = ()=><div>Site</div>
+const Website = Loadable({
+  loader: () => import('../../pages/Website'),
+  loading: Loading
+})
 
 const Home = Loadable({
   loader: () => import('../../pages/home'),
   loading: Loading
-});
+})
 const User = Loadable({
   loader: () => import('../../pages/User'),
   loading: Loading
-});
+})
+const Editor = Loadable({
+  loader: () => import('../../pages/Editor/index'),
+  loading: Loading
+})
 const Posts = Loadable({
   loader: () => import('../../pages/Post'),
   loading: Loading
-});
-const Crop = Loadable({
-  loader: () => import('../../pages/crop'),
-  loading: Loading
-});
+})
 
 const Panel = ({
   match,
@@ -41,9 +40,9 @@ const Panel = ({
     <Main signOut={ signOut }>
       <Switch>
         <Route exact path={`${match.url}`} component={Home}/>
+        <Route path={`${match.url}/editor`} component={Editor}/>
         <Route path={`${match.url}/usuarios`} component={User}/>
         <Route path={`${match.url}/posts`} component={Posts}/>
-        <Route path={`${match.url}/crop`} component={Crop} />
       </Switch>
     </Main>
 )
@@ -54,7 +53,7 @@ const Admin = ({
   return (
       <div>
         <Switch>
-          <Route exact path="/" component={(props)=> <Site {...props} signOut={signOut}/>} />
+          <Route exact path="/" component={(props)=> <Website {...props} signOut={signOut}/>} />
           <Route path="/admin" component={(props)=> <Panel {...props} signOut={signOut} />}/>
           <Route component={()=><Redirect to='/admin'/>} />
         </Switch>
@@ -63,4 +62,4 @@ const Admin = ({
 }
 
 
-export default Admin;
+export default Admin
