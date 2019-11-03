@@ -20,8 +20,6 @@ const RenderOptions = ({
                         metaIcon="chevron_right"
                     />
                 }
-                onOpen={() => console.log('open')}
-                onClose={() => console.log('close')}
             >
                 <Sortable
                     listOptions={options}

@@ -1,0 +1,16 @@
+.react-player{
+    width: 100%!important;
+    height: 200px!important;
+}
+@media (min-width: 500px){
+    .react-player{
+        width: 100%!important;
+        height: 300px!important;
+    }
+}
+@media (min-width: 760px){
+    .react-player{
+        width: 640px!important;
+        height: 360px!important;
+    }
+}

@@ -7,13 +7,22 @@ import {
     PlatformTools
 } from './style'
 import RenderOptions from './RenderOptions'
+import { OptionsRender } from '../../templates/Options'
+
 const Platform = ({
     items,
+    change,
+    itemsOrder,
+    changeOrder,
     options,
-    change
 }) => {
     const optionsFormatted = Object.entries(options)
-    const listItems = items.map((item) => (<li key={uniqueId()} data-id={`${item[0]}-build`}>{item[1].PreviewComponent}</li>));
+
+    const listItems = itemsOrder.map((i) => (
+        <li key={uniqueId()} data-id={i}>
+            {OptionsRender[items[i].component](items[i].props)}
+        </li>
+    ))
     return (
         <PlatformContainer>
             <PlatformPreview>
@@ -28,10 +37,33 @@ const Platform = ({
                     }}
                     tag="ul"
                     onChange={(order, sortable, evt) => {
-                        console.log(options)
-                        console.log('product', options[order[0]])
-                        // change([...items, order])
+                        let nameNew = ''
+                        const newOrder = []
+                        const idElement = uniqueId()
+                        order.map(o => {
+                            if (items[o]) {
+                                newOrder.push(o)
+                            } else {
+                                nameNew = o
+                                newOrder.push(idElement)
+                            }
+                            return 0
+                        })
+
+                        console.log(newOrder)
+
+                        if (nameNew !== '') {
+                            const newElement = {}
+                            newElement[idElement] = options[nameNew].initialConfig
+                            newElement[idElement]['id'] = idElement
+                            change({ ...items, ...newElement })
+                            changeOrder(newOrder)
+                        } else {
+                            changeOrder(newOrder)
+                        }
+
                     }}
+                    style={{ height: 650, listStyle: 'none', padding: 0, margin: 0, overflow: 'auto' }}
                 >
                     {listItems}
                 </Sortable>
@@ -41,7 +73,7 @@ const Platform = ({
                 <RenderOptions options={optionsFormatted} />
             </PlatformTools>
 
-        </PlatformContainer>
+        </PlatformContainer >
     )
 }
 

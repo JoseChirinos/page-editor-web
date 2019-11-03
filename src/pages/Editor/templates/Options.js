@@ -12,6 +12,9 @@ import {
     AuthorPreview,
 } from '../components/Preview'
 
+import Header from '../components/Preview/components/Header'
+import DetailSimple from '../components/Preview/components/Detail/Simple'
+
 
 // import Header from '../../../components/Header'
 // import DetailSimple from '../../../components/Detail/Simple'
@@ -29,10 +32,27 @@ export const Options = {
     Header: {
         group: 'Header',
         PreviewComponent: <HeaderPreview />,
+        initialConfig: {
+            component: 'Header',
+            props: {
+                title: 'Hello Header',
+                imageUrl: '',
+                bgUrl: ''
+            }
+        }
     },
     DetailSimple: {
         group: 'Detail',
         PreviewComponent: <DetailSimplePreview />,
+        initialConfig: {
+            component: 'DetailSimple',
+            props: {
+                title: 'Titulo',
+                content: 'Tu contenido',
+                bgUrl: '',
+                bgColor: '#000',
+            }
+        }
     },
     Detail: {
         group: 'Detail',
@@ -66,4 +86,46 @@ export const Options = {
         group: 'Other',
         PreviewComponent: <AuthorPreview />,
     }
+}
+
+
+export const OptionsRender = {
+    Header: (props) => <Header {...props} />,
+    DetailSimple: (props) => <DetailSimple {...props} />,
+    // DetailSimple: {
+    //     group: 'Detail',
+    //     PreviewComponent: <DetailSimplePreview />,
+    // },
+    // Detail: {
+    //     group: 'Detail',
+    //     PreviewComponent: <DetailDefaultPreview />,
+    // },
+    // DetailVideo: {
+    //     group: 'Detail',
+    //     PreviewComponent: <DetailVideoPreview />,
+    // },
+    // Post: {
+    //     group: 'Post',
+    //     PreviewComponent: <PostListPreview />,
+    // },
+    // Carrousel: {
+    //     group: 'Carrousel',
+    //     PreviewComponent: <CarrouselDefaultPreview />,
+    // },
+    // CarrouselImage: {
+    //     group: 'Carrousel',
+    //     PreviewComponent: <CarrouselImagePreview />,
+    // },
+    // Contact: {
+    //     group: 'Other',
+    //     PreviewComponent: <ContactPreview />,
+    // },
+    // Footer: {
+    //     group: 'Other',
+    //     PreviewComponent: <FooterPreview />,
+    // },
+    // Author: {
+    //     group: 'Other',
+    //     PreviewComponent: <AuthorPreview />,
+    // }
 }

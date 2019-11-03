@@ -13,6 +13,7 @@ export const PlatformContainer = styled.div`
 `
 export const PlatformPreview = styled.div`
     width: 700px;
+    height: 650px;
     margin: 0;
     border: 1px solid green;
 `
