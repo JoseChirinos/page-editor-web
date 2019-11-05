@@ -3,42 +3,24 @@ import PostCard from './PostCard'
 import { PostContainer, PostWrapper, PostTitle, PostMore } from './style'
 import { Button } from '@rmwc/button';
 
-const Post = (props)=>{
+const Post = ({
+    title,
+    subtitle
+})=>{
     return (
         <PostContainer>
             <PostTitle>
                 <h1>
-                    Areas Dónde se destaca la informática
+                    { title }
                     <small>
-                        Ultimos Post publicados
+                        { subtitle }
                     </small>
                 </h1>
             </PostTitle>
             <PostWrapper>
-                <PostCard
-                    idPost='1'
-                    title='Capo Jose'
-                    author='jose chirinos'
-                    contentMin='Visit ten places on our planet that are undergoing the biggest
-                    changes today.'
-                    imageUrl='/assets/images/carousel/c1.jpg'
-                />
-                <PostCard
-                    idPost='2'
-                    title='Capo Jose'
-                    author='jose chirinos'
-                    contentMin='Visit ten places on our planet that are undergoing the biggest
-                    changes today.'
-                    imageUrl='/assets/images/carousel/c1.jpg'
-                />
-                <PostCard
-                    idPost='3'
-                    title='Capo Jose'
-                    author='jose chirinos'
-                    contentMin='Visit ten places on our planet that are undergoing the biggest
-                    changes today.'
-                    imageUrl='/assets/images/carousel/c1.jpg'
-                />
+                <PostCard />
+                <PostCard />
+                <PostCard />
             </PostWrapper>
             <PostMore>
                 <Button raised>Ver más post</Button>

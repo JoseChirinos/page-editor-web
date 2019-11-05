@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro'
 import theme from '../../../../../../theme'
+import { Icon } from '@rmwc/icon'
 
 export const DetailWrapper = styled.section`
     position: relative;
@@ -8,16 +9,22 @@ export const DetailWrapper = styled.section`
     height: ${ ({ heightSize }) => heightSize};
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-evenly;
+    flex-direction: ${ ({ imagePosition }) => (imagePosition === 'left' ? 'row-reverse' : 'row')};
     background-color: ${ ({ bgColor }) => bgColor};
     background-image: ${ ({ background }) => `url(${background})`};
     background-size: cover;
     color: ${theme.white};
+    border: 2px dashed #f2d31b;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: grab;
+    :active{
+        cursor: grabbing;
+    }
     > span{
-        width: 100%;
         font-size: 25px;
-        text-align: center;
+        text-align: left;
         line-height: 1.5;
         text-shadow: 0px 1px 2px ${theme.black};
         padding: 20px;
@@ -29,13 +36,16 @@ export const DetailWrapper = styled.section`
         }
     }
 `
-
 export const DetailImage = styled.img`
     width: 75px;
     height: 75px;
 `
-
 export const DetailAction = styled.div`
     width: 250px;
-    margin: 0 auto;
+`
+export const IconPreview = styled(Icon)`
+    font-size: 50px;
+    padding: 15px;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000;
 `

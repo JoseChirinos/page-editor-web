@@ -23,6 +23,7 @@ const Contact = (props) => {
             </ContactTitle>
             <ContactForm onSubmit={ e=> e.preventDefault() }>
                 <TextField
+                    disabled
                     type='text'
                     outlined
                     label="Nombre"
@@ -30,6 +31,7 @@ const Contact = (props) => {
                 />
                 <ContactSeparate />
                 <TextField
+                    disabled
                     type='email'
                     outlined
                     label="Correo Electronico"
@@ -37,6 +39,7 @@ const Contact = (props) => {
                 />
                 <ContactSeparate />
                 <TextField
+                    disabled
                     type='tel'
                     outlined
                     label="Celular"
@@ -44,6 +47,7 @@ const Contact = (props) => {
                 />
                 <ContactSeparate />
                 <TextField
+                    disabled
                     textarea
                     outlined
                     fullwidth
@@ -58,7 +62,7 @@ const Contact = (props) => {
                     }}
                 />
                 <ContactSend>
-                    <Button raised>Enviar</Button>
+                    <Button disabled raised>Enviar</Button>
                 </ContactSend>
             </ContactForm>
         </ContactContainer>

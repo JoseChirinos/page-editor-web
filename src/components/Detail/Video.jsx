@@ -65,7 +65,7 @@ DetailVideo.propTypes = {
     bgColor: PropTypes.string,
 }
 DetailVideo.defaultProps = {
-    imagePosition: 'left',
+    videoPosition: 'left',
     videoUrl: '',
     bgColor: '#000',
 }

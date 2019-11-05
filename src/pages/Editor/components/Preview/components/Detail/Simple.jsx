@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { DetailWrapper, DetailAction } from './style'
-import { Parallax } from 'react-parallax'
 import { Button } from '@rmwc/button';
 
 
@@ -13,40 +12,30 @@ const Simple = ({
 }) => {
 
     return (
-        <Parallax
-            bgImage={bgUrl}
-            strength={500}
-            style={{
-                width: '100%'
-            }}
+        <DetailWrapper
+            heightSize = '350px'
+            imagePosition = 'right'
+            background = { bgUrl }
+            bgColor = { bgColor }
         >
-            <div>
-                <DetailWrapper
-                    heightSize = '350px'
-                    imagePosition = 'right'
-                    background = { bgUrl }
-                    bgColor = { bgColor }
-                >
-                    <span
-                        style={{
-                            textAlign: 'center'
-                        }}
-                    >
-                        { title }
-                        <p>
-                            { content }
-                        </p>
-                        <DetailAction
-                            style={{
-                                margin: '0 auto'
-                            }}
-                        >   
-                            <Button raised>Accion</Button>
-                        </DetailAction>
-                    </span>
-                </DetailWrapper>
-            </div>
-        </Parallax>
+            <span
+                style={{
+                    textAlign: 'center'
+                }}
+            >
+                { title }
+                <p>
+                    { content }
+                </p>
+                <DetailAction
+                    style={{
+                        margin: '0 auto'
+                    }}
+                >   
+                    <Button raised>Accion</Button>
+                </DetailAction>
+            </span>
+        </DetailWrapper>
 
     )
 }

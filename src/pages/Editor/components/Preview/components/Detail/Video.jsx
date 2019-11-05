@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
 import PropTypes from 'prop-types'
-import { DetailWrapper, DetailAction } from './style'
+import { DetailWrapper, DetailAction, IconPreview } from './style'
 import ReactPlayer from 'react-player'
 import { Button } from '@rmwc/button';
-
-const mediaQuery = (setSize) =>{
-    checkSizeHeight(setSize)
-}
-const checkSizeHeight = (setSize) => {
-    const sizeHeight = window.screen.height
-    setSize(`${sizeHeight}px`)
-}
 
 const DetailVideo = ({
     title,
@@ -20,18 +12,11 @@ const DetailVideo = ({
     videoPosition,
     bgColor,
 }) => {
-    const  match = window.matchMedia('(max-width: 960px)')
-    const [size, setSize] = useState('100vh')
-
-    useEffect(()=>{
-        checkSizeHeight(setSize)
-        match.addListener((e)=> mediaQuery(setSize))
-    },[match])
 
     return (
         <DetailWrapper
             imagePosition = { videoPosition }
-            heightSize = { size }
+            heightSize = '350px'
             bgColor = { bgColor }
         >
             <span>
@@ -51,7 +36,7 @@ const DetailVideo = ({
                     controls
                 />
                 :
-                <span />
+                <IconPreview icon="video_library" />
             }
         </DetailWrapper>
     )
@@ -65,7 +50,7 @@ DetailVideo.propTypes = {
     bgColor: PropTypes.string,
 }
 DetailVideo.defaultProps = {
-    imagePosition: 'left',
+    videoPosition: 'left',
     videoUrl: '',
     bgColor: '#000',
 }

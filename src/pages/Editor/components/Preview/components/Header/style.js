@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import theme from '../../../../../../theme'
+import { Icon } from '@rmwc/icon'
 
 export const HeaderWrapper = styled.header`
     position: relative;
@@ -14,6 +15,13 @@ export const HeaderWrapper = styled.header`
     background-color: ${theme.black};
     background-size: cover;
     color: ${theme.white};
+    border: 2px dashed #f2d31b;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: grab;
+    :active{
+        cursor: grabbing;
+    }
     > span{
         width: 100%;
         font-size: 25px;
@@ -22,9 +30,14 @@ export const HeaderWrapper = styled.header`
         text-shadow: 0px 1px 2px ${theme.black};
     }
 `
-
 export const HeaderImage = styled.img`
     width: 75px;
     height: 75px;
 
+`
+export const IconPreview = styled(Icon)`
+    font-size: 50px;
+    padding: 15px;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000;
 `

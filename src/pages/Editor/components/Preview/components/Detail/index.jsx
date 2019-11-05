@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { DetailWrapper, DetailImage, DetailAction } from './style'
-import { Parallax } from 'react-parallax'
+import { DetailWrapper, DetailImage, DetailAction, IconPreview } from './style'
 import { Button } from '@rmwc/button';
 
 const Detail = ({
@@ -34,7 +33,7 @@ const Detail = ({
                     src = { imageUrl }
                 />
                 :
-                <span />
+                <IconPreview icon="image" />
             }
         </DetailWrapper>
     )

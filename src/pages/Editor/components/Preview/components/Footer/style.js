@@ -2,33 +2,40 @@ import styled from 'styled-components/macro'
 
 export const FooterContainer = styled.footer`
     width: 100%;
-    padding: 50px 0px;
+    padding: 30px 0px;
     background-color: #000;
     color: #fff;
+    border: 2px dashed #f2d31b;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: grab;
+    :active{
+        cursor: grabbing;
+    }
 `
 export const FooterWrapper = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    @media (min-width:760px) {
-        flex-direction: row;
-        align-items: flex-start;
-    }
 `
 export const FooterLogo = styled.div`
     > img {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
     }
 `
 
 export const FooterInfo = styled.div`
-    text-align: center;
+    text-align: left;
+    align-self: flex-start;
+    > h3{
+        font-size: 25px;
+    }
     > p {
         color: #afb0b1;
-        width: 100%;
+        width: 150px;
     }
     > ul{
         color: #afb0b1;
@@ -36,12 +43,6 @@ export const FooterInfo = styled.div`
         >li{
             padding-bottom: 5px;
             list-style: none;
-        }
-    }
-    @media (min-width:760px) {
-        text-align: left;
-        p{
-            width: 400px;
         }
     }
 `

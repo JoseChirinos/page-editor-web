@@ -17,10 +17,23 @@ const Platform = ({
     options,
 }) => {
     const optionsFormatted = Object.entries(options)
+    console.log(items)
 
+    const changeSelf = (idElement, itemsElement, orderElement) => {
+        const newElement = {}
+        newElement[idElement] = items[idElement]
+        newElement[idElement]['props']['items'] = itemsElement
+        newElement[idElement]['props']['orderItems'] = orderElement
+        change({ ...items, ...newElement })
+    }
     const listItems = itemsOrder.map((i) => (
         <li key={uniqueId()} data-id={i}>
-            {OptionsRender[items[i].component](items[i].props)}
+            {
+                items[i].component === 'CarrouselDefault' ?
+                    OptionsRender[items[i].component](items[i].props, changeSelf, i)
+                    :
+                    OptionsRender[items[i].component](items[i].props)
+            }
         </li>
     ))
     return (
@@ -63,7 +76,7 @@ const Platform = ({
                         }
 
                     }}
-                    style={{ height: 650, listStyle: 'none', padding: 0, margin: 0, overflow: 'auto' }}
+                    style={{ height: 650, listStyle: 'none', padding: 0, margin: 0 }}
                 >
                     {listItems}
                 </Sortable>

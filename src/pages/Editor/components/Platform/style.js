@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 
 export const PlatformContainer = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-direction: 'row';
     width: 100%;
@@ -13,9 +13,10 @@ export const PlatformContainer = styled.div`
 `
 export const PlatformPreview = styled.div`
     width: 700px;
-    height: 650px;
+    height: calc(100vh - 70px);
     margin: 0;
-    border: 1px solid green;
+    border: 0.5px solid #a8a9ab;
+    overflow: auto;
 `
 export const PlatformTools = styled.div`
     width: 200px;
@@ -25,7 +26,7 @@ export const PlatformTools = styled.div`
     border: 1px solid #cdcdcd;
     border-radius: 3px;
     overflow: auto;
-    height: 650px;
+    height: calc(100vh - 70px);
     > ul {
         padding: 0px;
         list-style: none;

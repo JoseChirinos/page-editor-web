@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { HeaderWrapper, HeaderImage } from './style'
+import { HeaderWrapper, HeaderImage, IconPreview } from './style'
 import Typist from 'react-typist'
 
 const Header = ({
@@ -21,9 +21,14 @@ const Header = ({
                         { title }
                     </Typist>
                 </span>
-                <HeaderImage
-                    src={ imageUrl }
-                />
+                {
+                    imageUrl !== ''?
+                    <HeaderImage
+                        src={ imageUrl }
+                    />
+                    :
+                    <IconPreview icon="image" />
+                }
             </HeaderWrapper>
         </div>
     )

@@ -1,30 +1,73 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import Flickity from 'react-flickity-component'
-import './styles.css'
+import uniqueId from 'lodash/uniqueId'
+import SortableJS from 'react-sortablejs'
 
-const flickityOptions = {
-    initialIndex: 0,
-    cellAlign: 'left',
-}
+import { CarrouselContainer } from './style'
+import { Options } from '../../../../templates/Options'
+import { OptionsRender } from '../../../../templates/Options'
 
 const Carousel = ({
-    children
-}) => {
+    items,
+    orderItems,
+    change,
+    id
+})=>{
+    console.log(items,orderItems, change, id)
+    const listSupported = ['DetailSimple', 'DetailDefault', 'DetailVideo']
+    const listItems = orderItems.map((i) => (
+        <li key={uniqueId()} data-id={i} style={{display:'inline-block',width: 700}}>
+            {
+                OptionsRender[items[i].component](items[i].props)
+            }
+        </li>
+    ))
     return (
-        <Flickity
-            elementType={'div'} // default 'div'
-            options={flickityOptions} // takes flickity options {}
-            disableImagesLoaded={false} // default false
-            reloadOnUpdate // default false
-            static // default false
-        >
-            {children}
-        </Flickity>
+        <CarrouselContainer>
+            <SortableJS
+                options={{
+                    animation: 150,
+                    group: {
+                        name: 'clone1',
+                        pull: false,
+                        put: true
+                    }
+                }}
+                tag="ul"
+                direction="horizontal"
+                style={{ height: 345, listStyle: 'none', padding: 0, margin: 0 }}
+                onChange={(order, sortable, evt) => {
+                    let nameNew = ''
+                    const newOrder = []
+                    const idElement = uniqueId()
+                    order.map(o => {
+                        if (items[o]) {
+                            newOrder.push(o)
+                        } else {
+                            nameNew = o
+                            newOrder.push(idElement)
+                        }
+                        return 0
+                    })
+
+                    if (nameNew !== '') {
+                        if(listSupported.filter(i=> nameNew === i)){
+                            console.log('soportado')
+                            const newElement = {}
+                            newElement[idElement] = Options[nameNew].initialConfig
+                            newElement[idElement]['id'] = idElement
+                            change(id, { ...items, ...newElement }, newOrder)
+                        }else{
+                            console.log('no soportado')
+                        }
+                    } else {
+                        change(id, {...items}, newOrder)
+                    }
+                }}
+            >
+                { listItems }
+            </SortableJS>
+        </CarrouselContainer>
     )
-}
-Carousel.propsTypes = {
-    children: PropTypes.array
 }
 
 export default Carousel

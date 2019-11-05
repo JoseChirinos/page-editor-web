@@ -6,4 +6,11 @@ export const AuthorContainer = styled.div`
     text-align: center;
     background-color: #0e0e0e;
     color: #fdfdfd;
+    border: 2px dashed #f2d31b;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: grab;
+    :active{
+        cursor: grabbing;
+    }
 `
