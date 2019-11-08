@@ -23,7 +23,7 @@ export const HeaderWrapper = styled.header`
         cursor: grabbing;
     }
     > span{
-        width: 100%;
+        width: 300px;
         font-size: 25px;
         text-align: center;
         line-height: 1.5;

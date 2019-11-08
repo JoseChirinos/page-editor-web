@@ -23,6 +23,7 @@ export const DetailWrapper = styled.section`
         cursor: grabbing;
     }
     > span{
+        width: 300px;
         font-size: 25px;
         text-align: left;
         line-height: 1.5;

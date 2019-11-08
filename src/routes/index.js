@@ -85,13 +85,14 @@ class RouterApp extends Component {
           :
           <Router>
             <UserContext.Provider value={this.state.userInfo} >
-              {
+              {/* {
                 this.state.auth ?
                   <Admin signOut={this.signOut} />
                   : <Site
                     signIn={this.signIn}
                   />
-              }
+              } */}
+              <Admin signOut={this.signOut} />
             </UserContext.Provider>
           </Router>
         }

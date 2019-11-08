@@ -1,4 +1,6 @@
 import React from 'react'
+
+/* Thumb Preview Components */
 import {
     HeaderPreview,
     DetailSimplePreview,
@@ -12,6 +14,7 @@ import {
     AuthorPreview,
 } from '../components/Preview'
 
+/* Preview omponents */
 import Header from '../components/Preview/components/Header'
 import DetailSimple from '../components/Preview/components/Detail/Simple'
 import DetailDefault from '../components/Preview/components/Detail'
@@ -21,12 +24,12 @@ import Contact from '../components/Preview/components/Contact'
 import Footer from '../components/Preview/components/Footer'
 import Author from '../components/Preview/components/Author'
 import CarrouselDefault from '../components/Preview/components/Carousel'
-// import PostList from '../../../components/Post'
-// import CarrouselDefault from '../../../components/Carousel'
-// import CarrouselImage from '../../../components/Carousel/Image'
-// import Contact from '../../../components/Contact'
-// import Footer from '../../../components/Footer'
-// import Author from '../../../components/Author'
+
+/* Info Edit Components */
+import HeaderEdit from '../components/Edit/HeaderEdit'
+import DetailSimpleEdit from '../components/Edit/DetailSimpleEdit'
+import DetailDefaultEdit from '../components/Edit/DetailDefaultEdit'
+
 
 
 export const Options = {
@@ -35,6 +38,7 @@ export const Options = {
         PreviewComponent: <HeaderPreview />,
         initialConfig: {
             component: 'Header',
+            editInfo: 'HeaderEdit',
             props: {
                 title: 'Hello Header',
                 imageUrl: '',
@@ -47,6 +51,7 @@ export const Options = {
         PreviewComponent: <DetailSimplePreview />,
         initialConfig: {
             component: 'DetailSimple',
+            editInfo: 'DetailSimpleEdit',
             props: {
                 title: 'Detalle Simple Titulo',
                 content: 'Contenido',
@@ -55,11 +60,12 @@ export const Options = {
             }
         }
     },
-    Detail: {
+    DetailDefault: {
         group: 'Detail',
         PreviewComponent: <DetailDefaultPreview />,
         initialConfig: {
             component: 'DetailDefault',
+            editInfo: 'DetailDefaultEdit',
             props: {
                 title: 'Detalle Titulo',
                 content: 'Tu contenido',
@@ -95,7 +101,7 @@ export const Options = {
             }
         }
     },
-    Carrousel: {
+    CarrouselDefault: {
         group: 'Carrousel',
         PreviewComponent: <CarrouselDefaultPreview />,
         initialConfig: {
@@ -153,5 +159,11 @@ export const OptionsRender = {
     Contact: (props) => <Contact {...props} />,
     Footer: (props) => <Footer {...props} />,
     Author: (props) => <Author {...props} />,
-    CarrouselDefault: (props, change, id) => <CarrouselDefault {...props} change={change} id={id} />,
+    CarrouselDefault: (props, change, id, handleInfoEdit) => <CarrouselDefault {...props} change={change} id={id} handleInfoEdit={handleInfoEdit} />,
+}
+
+export const OptionsEdit = {
+    HeaderEdit: (props, change) => <HeaderEdit {...props} change={change} />,
+    DetailSimpleEdit: (props, change) => <DetailSimpleEdit {...props} change={change} />,
+    DetailDefaultEdit: (props, change) => <DetailDefaultEdit {...props} change={change} />
 }

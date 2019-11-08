@@ -10,7 +10,7 @@ const Simple = ({
     bgUrl,
     bgColor,
 }) => {
-
+    console.log(title, content, bgUrl, bgColor)
     return (
         <DetailWrapper
             heightSize = '350px'

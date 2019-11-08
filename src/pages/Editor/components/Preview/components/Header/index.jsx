@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { HeaderWrapper, HeaderImage, IconPreview } from './style'
-import Typist from 'react-typist'
 
 const Header = ({
     title,
@@ -9,28 +8,22 @@ const Header = ({
     imageUrl
 }) => {
     return (
-        <div>
-            <HeaderWrapper
-                heightSize = '350px'
-                background = { bgUrl }
-            >
-                <span>
-                    <Typist
-                        cursor={{ show: false }}
-                    >
-                        { title }
-                    </Typist>
-                </span>
-                {
-                    imageUrl !== ''?
-                    <HeaderImage
-                        src={ imageUrl }
-                    />
-                    :
-                    <IconPreview icon="image" />
-                }
-            </HeaderWrapper>
-        </div>
+        <HeaderWrapper
+            heightSize = '350px'
+            background = { bgUrl }
+        >
+            <span>
+                { title }
+            </span>
+            {
+                imageUrl !== ''?
+                <HeaderImage
+                    src={ imageUrl }
+                />
+                :
+                <IconPreview icon="image" />
+            }
+        </HeaderWrapper>
     )
 }
 

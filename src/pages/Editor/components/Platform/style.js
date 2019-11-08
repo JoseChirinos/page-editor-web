@@ -22,7 +22,6 @@ export const PlatformTools = styled.div`
     width: 200px;
     margin: 0;
     background-color: #d7d7d7;
-    padding: 15px 0px;
     border: 1px solid #cdcdcd;
     border-radius: 3px;
     overflow: auto;

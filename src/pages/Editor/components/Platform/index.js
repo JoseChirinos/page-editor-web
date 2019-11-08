@@ -1,5 +1,5 @@
-import React from 'react'
-import uniqueId from 'lodash/uniqueId'
+import React, { useState } from 'react'
+import uuidv1 from 'uuid/v1'
 import Sortable from 'react-sortablejs'
 import {
     PlatformContainer,
@@ -8,6 +8,7 @@ import {
 } from './style'
 import RenderOptions from './RenderOptions'
 import { OptionsRender } from '../../templates/Options'
+import { OptionsEdit } from '../../templates/Options'
 
 const Platform = ({
     items,
@@ -16,8 +17,9 @@ const Platform = ({
     changeOrder,
     options,
 }) => {
+    const [editComponent, setEditComponent] = useState(null)
+    const [index, setIndex] = useState([])
     const optionsFormatted = Object.entries(options)
-    console.log(items)
 
     const changeSelf = (idElement, itemsElement, orderElement) => {
         const newElement = {}
@@ -26,11 +28,44 @@ const Platform = ({
         newElement[idElement]['props']['orderItems'] = orderElement
         change({ ...items, ...newElement })
     }
+
+    const handleInfoEdit = (idElement, idParent) => {
+        console.log(idElement, idParent)
+        if (idParent) {
+            const component = items[idParent].props.items[idElement]
+            setEditComponent(component)
+            setIndex([idElement, idParent])
+        } else {
+            console.log(idElement, items)
+            const component = items[idElement]
+            console.log(component)
+            setEditComponent(component)
+            setIndex([idElement])
+        }
+    }
+
+    const changeInfo = (newInfo) => {
+        const len = index.length
+        console.log(index, len)
+        const element = {}
+        if (len > 1) {
+            const itemEntry = JSON.stringify(items)
+            element[index[1]] = items[index[1]]
+            element[index[1]]['props']['items'][index[0]]['props'] = newInfo
+            const newItems = { ...JSON.parse(itemEntry), ...element }
+            change({ ...newItems })
+        } else {
+            element[index[0]] = items[index[0]]
+            element[index[0]]['props'] = newInfo
+            console.log({ ...items, ...element })
+            change({ ...items, ...element })
+        }
+    }
     const listItems = itemsOrder.map((i) => (
-        <li key={uniqueId()} data-id={i}>
+        <li key={i} data-id={i} onClick={(e) => { e.stopPropagation(); handleInfoEdit(i) }}>
             {
                 items[i].component === 'CarrouselDefault' ?
-                    OptionsRender[items[i].component](items[i].props, changeSelf, i)
+                    OptionsRender[items[i].component](items[i].props, changeSelf, i, handleInfoEdit)
                     :
                     OptionsRender[items[i].component](items[i].props)
             }
@@ -38,6 +73,13 @@ const Platform = ({
     ))
     return (
         <PlatformContainer>
+            <PlatformTools>
+                {
+                    editComponent ?
+                        OptionsEdit[editComponent.editInfo](editComponent.props, changeInfo)
+                        : null
+                }
+            </PlatformTools>
             <PlatformPreview>
                 <Sortable
                     options={{
@@ -52,7 +94,7 @@ const Platform = ({
                     onChange={(order, sortable, evt) => {
                         let nameNew = ''
                         const newOrder = []
-                        const idElement = uniqueId()
+                        const idElement = uuidv1()
                         order.map(o => {
                             if (items[o]) {
                                 newOrder.push(o)
@@ -63,13 +105,13 @@ const Platform = ({
                             return 0
                         })
 
-                        console.log(newOrder)
-
                         if (nameNew !== '') {
+                            const itemEntry = JSON.stringify(items)
                             const newElement = {}
-                            newElement[idElement] = options[nameNew].initialConfig
+                            newElement[idElement] = Object.assign({}, options[nameNew].initialConfig)
                             newElement[idElement]['id'] = idElement
-                            change({ ...items, ...newElement })
+                            const newItems = { ...JSON.parse(itemEntry), ...newElement }
+                            change({ ...newItems })
                             changeOrder(newOrder)
                         } else {
                             changeOrder(newOrder)
@@ -81,7 +123,6 @@ const Platform = ({
                     {listItems}
                 </Sortable>
             </PlatformPreview>
-
             <PlatformTools>
                 <RenderOptions options={optionsFormatted} />
             </PlatformTools>

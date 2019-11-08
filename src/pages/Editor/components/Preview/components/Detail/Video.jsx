@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './styles.css'
 import PropTypes from 'prop-types'
 import { DetailWrapper, DetailAction, IconPreview } from './style'

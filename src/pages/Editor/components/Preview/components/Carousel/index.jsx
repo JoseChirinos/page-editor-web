@@ -1,21 +1,29 @@
 import React from 'react'
 import uniqueId from 'lodash/uniqueId'
+import uuidv1 from 'uuid/v1'
 import SortableJS from 'react-sortablejs'
 
 import { CarrouselContainer } from './style'
 import { Options } from '../../../../templates/Options'
 import { OptionsRender } from '../../../../templates/Options'
+import { useAlert } from 'react-alert'
 
 const Carousel = ({
     items,
     orderItems,
     change,
-    id
+    id,
+    handleInfoEdit
 })=>{
-    console.log(items,orderItems, change, id)
-    const listSupported = ['DetailSimple', 'DetailDefault', 'DetailVideo']
+    const alert = useAlert()
+    const listUnSupported = ['CarrouselDefault', 'CarrouselImage']
     const listItems = orderItems.map((i) => (
-        <li key={uniqueId()} data-id={i} style={{display:'inline-block',width: 700}}>
+        <li
+            key={uniqueId()}
+            data-id={i} 
+            style={{display:'inline-block',verticalAlign:'top',width: 700}}
+            onClick={(e)=>{e.stopPropagation();handleInfoEdit(i, id)}}
+        >
             {
                 OptionsRender[items[i].component](items[i].props)
             }
@@ -38,7 +46,7 @@ const Carousel = ({
                 onChange={(order, sortable, evt) => {
                     let nameNew = ''
                     const newOrder = []
-                    const idElement = uniqueId()
+                    const idElement = uuidv1()
                     order.map(o => {
                         if (items[o]) {
                             newOrder.push(o)
@@ -50,14 +58,15 @@ const Carousel = ({
                     })
 
                     if (nameNew !== '') {
-                        if(listSupported.filter(i=> nameNew === i)){
-                            console.log('soportado')
+                        if(!listUnSupported.includes(nameNew)){
+                            const itemEntry = JSON.stringify(items)
                             const newElement = {}
-                            newElement[idElement] = Options[nameNew].initialConfig
+                            newElement[idElement] = Object.assign({}, Options[nameNew].initialConfig)
                             newElement[idElement]['id'] = idElement
-                            change(id, { ...items, ...newElement }, newOrder)
+                            const newItems = { ...JSON.parse(itemEntry), ...newElement }
+                            change(id, { ...newItems }, newOrder)
                         }else{
-                            console.log('no soportado')
+                            alert.error('No es posible hacer eso...')
                         }
                     } else {
                         change(id, {...items}, newOrder)
