@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 
-export const AuthorContainer = styled.div`
+export const AuthorContainer = styled.section`
     width: 100%;
     padding: 20px 0px;
     text-align: center;

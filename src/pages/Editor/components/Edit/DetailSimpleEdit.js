@@ -6,19 +6,31 @@ import { ChromePicker } from 'react-color'
 /* Components */
 import { EditContainer, EditWrapper, EditLabel, EditColor } from './style'
 
-const HeaderEdit = ({
+const DetailSimpleEdit = ({
+    id,
     title,
     content,
     bgUrl,
     bgColor,
     change
 }) => {
-    const data = { title, content, bgUrl, bgColor }
+    const data = { id, title, content, bgUrl, bgColor }
     return (
         <EditContainer>
             <Typography use="overline" tag="h6">
                 Detalle Simple
             </Typography>
+            <EditLabel label="ID" />
+            <EditWrapper>
+                <TextField
+                    disabled
+                    outlined
+                    type="text"
+                    label="Component ID"
+                    onChange={() => { }}
+                    value={id}
+                />
+            </EditWrapper>
 
             <EditLabel label="Redacción" />
             <EditWrapper>
@@ -40,7 +52,7 @@ const HeaderEdit = ({
                     value={content}
                     onChange={(e) => change({ ...data, content: e.currentTarget.value })}
                     characterCount
-                    maxLength={200}
+                    maxLength={150}
                 />
             </EditWrapper>
 
@@ -58,4 +70,4 @@ const HeaderEdit = ({
     )
 }
 
-export default HeaderEdit
+export default DetailSimpleEdit

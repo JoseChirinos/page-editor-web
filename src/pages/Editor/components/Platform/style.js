@@ -34,3 +34,8 @@ export const PlatformTools = styled.div`
         }
     }
 `
+export const PlatformActive = styled.div`
+    header, section, footer {
+        border: ${ ({ active }) => { return active && '5px solid #fce308!important' }};
+    }
+`

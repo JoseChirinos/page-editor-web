@@ -18,6 +18,7 @@ export const DetailWrapper = styled.section`
     border: 2px dashed #f2d31b;
     box-sizing: border-box;
     user-select: none;
+    white-space: initial;
     cursor: grab;
     :active{
         cursor: grabbing;

@@ -7,21 +7,20 @@ import { ChromePicker } from 'react-color'
 /* Components */
 import { EditContainer, EditWrapper, EditLabel, EditColor } from './style'
 
-const DetailDefaultEdit = ({
+const DetailVideoEdit = ({
     id,
     title,
     content,
-    imageUrl,
-    imagePosition,
-    bgUrl,
+    videoUrl,
+    videoPosition,
     bgColor,
     change
 }) => {
-    const data = { id, title, content, imageUrl, imagePosition, bgUrl, bgColor }
+    const data = { id, title, content, videoUrl, videoPosition, bgColor }
     return (
         <EditContainer>
             <Typography use="overline" tag="h6">
-                Detalle Default
+                Detalle Video
             </Typography>
             <EditLabel label="ID" />
             <EditWrapper>
@@ -59,20 +58,27 @@ const DetailDefaultEdit = ({
                 />
             </EditWrapper>
 
-            <EditLabel label="Posición Imagen" />
+            <EditLabel label="Video" />
             <EditWrapper>
+                <TextField
+                    outlined
+                    type="text"
+                    label="Url del Video"
+                    value={videoUrl}
+                    onChange={(e) => change({ ...data, videoUrl: e.currentTarget.value })}
+                />
                 <Radio
                     value="left"
-                    checked={imagePosition === 'left'}
-                    onChange={evt => change({ ...data, imagePosition: evt.currentTarget.value })}
+                    checked={videoPosition === 'left'}
+                    onChange={evt => change({ ...data, videoPosition: evt.currentTarget.value })}
                 >
                     Izquierda
                 </Radio>
 
                 <Radio
                     value="right"
-                    checked={imagePosition === 'right'}
-                    onChange={evt => change({ ...data, imagePosition: evt.currentTarget.value })}
+                    checked={videoPosition === 'right'}
+                    onChange={evt => change({ ...data, videoPosition: evt.currentTarget.value })}
                 >
                     Derecha
                 </Radio>
@@ -92,4 +98,4 @@ const DetailDefaultEdit = ({
     )
 }
 
-export default DetailDefaultEdit
+export default DetailVideoEdit

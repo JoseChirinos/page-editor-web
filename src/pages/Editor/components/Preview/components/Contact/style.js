@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 
-export const ContactContainer = styled.div`
+export const ContactContainer = styled.section`
     width: 100%;
     padding: 30px 0px;
     border: 2px dashed #f2d31b;

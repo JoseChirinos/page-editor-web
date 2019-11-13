@@ -5,18 +5,17 @@ import { TextField } from '@rmwc/textfield'
 /* Components */
 import { EditContainer, EditWrapper, EditLabel } from './style'
 
-const HeaderEdit = ({
+const PostListEdit = ({
     id,
     title,
-    bgUrl,
-    imageUrl,
-    change
+    subtitle,
+    change,
 }) => {
-    const data = { id, title, bgUrl, imageUrl }
+    const data = { id, title, subtitle }
     return (
         <EditContainer>
             <Typography use="overline" tag="h6">
-                Cabecera
+                Post Lista
             </Typography>
             <EditLabel label="ID" />
             <EditWrapper>
@@ -40,9 +39,18 @@ const HeaderEdit = ({
                     characterCount
                     maxLength={50}
                 />
+                <TextField
+                    outlined
+                    type="text"
+                    label="Sub Titulo"
+                    value={subtitle}
+                    onChange={(e) => change({ ...data, subtitle: e.currentTarget.value })}
+                    characterCount
+                    maxLength={50}
+                />
             </EditWrapper>
         </EditContainer>
     )
 }
 
-export default HeaderEdit
+export default PostListEdit

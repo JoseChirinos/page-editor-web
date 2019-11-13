@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Card } from '@rmwc/card'
 
-export const PostContainer = styled.div`
+export const PostContainer = styled.section`
     padding: 30px 0px;
     background: #f6f6f6;
     border: 2px dashed #f2d31b;
@@ -12,7 +12,7 @@ export const PostContainer = styled.div`
         cursor: grabbing;
     }
 `
-export const PostWrapper = styled.section`
+export const PostWrapper = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;

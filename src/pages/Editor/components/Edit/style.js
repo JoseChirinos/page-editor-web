@@ -14,6 +14,8 @@ export const EditWrapper = styled.div`
 export const EditLabel = styled(Chip)`
     outline: none!important;
     margin: 9px 0px;
+    background: #2196F3;
+    color: #fff;
 `
 export const EditColor = styled.div`
     > div{

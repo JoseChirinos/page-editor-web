@@ -5,18 +5,16 @@ import { TextField } from '@rmwc/textfield'
 /* Components */
 import { EditContainer, EditWrapper, EditLabel } from './style'
 
-const HeaderEdit = ({
+const AuthorEdit = ({
     id,
-    title,
-    bgUrl,
-    imageUrl,
+    authorName,
     change
 }) => {
-    const data = { id, title, bgUrl, imageUrl }
+    const data = { id, authorName }
     return (
         <EditContainer>
             <Typography use="overline" tag="h6">
-                Cabecera
+                Author
             </Typography>
             <EditLabel label="ID" />
             <EditWrapper>
@@ -34,9 +32,9 @@ const HeaderEdit = ({
                 <TextField
                     outlined
                     type="text"
-                    label="Titulo"
-                    value={title}
-                    onChange={(e) => change({ ...data, title: e.currentTarget.value })}
+                    label="Autor Sitio Web"
+                    value={authorName}
+                    onChange={(e) => change({ ...data, authorName: e.currentTarget.value })}
                     characterCount
                     maxLength={50}
                 />
@@ -45,4 +43,4 @@ const HeaderEdit = ({
     )
 }
 
-export default HeaderEdit
+export default AuthorEdit

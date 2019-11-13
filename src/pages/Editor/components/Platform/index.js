@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import '../../../@style/sort.css'
 import uuidv1 from 'uuid/v1'
 import Sortable from 'react-sortablejs'
 import {
     PlatformContainer,
     PlatformPreview,
-    PlatformTools
+    PlatformTools,
+    PlatformActive,
 } from './style'
 import RenderOptions from './RenderOptions'
 import { OptionsRender } from '../../templates/Options'
@@ -30,15 +32,13 @@ const Platform = ({
     }
 
     const handleInfoEdit = (idElement, idParent) => {
-        console.log(idElement, idParent)
+        // console.log(idElement, idParent)
         if (idParent) {
             const component = items[idParent].props.items[idElement]
             setEditComponent(component)
             setIndex([idElement, idParent])
         } else {
-            console.log(idElement, items)
             const component = items[idElement]
-            console.log(component)
             setEditComponent(component)
             setIndex([idElement])
         }
@@ -46,7 +46,6 @@ const Platform = ({
 
     const changeInfo = (newInfo) => {
         const len = index.length
-        console.log(index, len)
         const element = {}
         if (len > 1) {
             const itemEntry = JSON.stringify(items)
@@ -57,7 +56,6 @@ const Platform = ({
         } else {
             element[index[0]] = items[index[0]]
             element[index[0]]['props'] = newInfo
-            console.log({ ...items, ...element })
             change({ ...items, ...element })
         }
     }
@@ -65,9 +63,13 @@ const Platform = ({
         <li key={i} data-id={i} onClick={(e) => { e.stopPropagation(); handleInfoEdit(i) }}>
             {
                 items[i].component === 'CarrouselDefault' ?
-                    OptionsRender[items[i].component](items[i].props, changeSelf, i, handleInfoEdit)
+                    OptionsRender[items[i].component](items[i].props, changeSelf, i, handleInfoEdit, `${index[1] === i ? index[0] : null}`)
                     :
-                    OptionsRender[items[i].component](items[i].props)
+                    <PlatformActive active={index[0] === i}>
+                        {
+                            OptionsRender[items[i].component](items[i].props)
+                        }
+                    </PlatformActive>
             }
         </li>
     ))
@@ -83,7 +85,7 @@ const Platform = ({
             <PlatformPreview>
                 <Sortable
                     options={{
-                        animation: 150,
+                        animation: 350,
                         group: {
                             name: 'clone1',
                             pull: false,
@@ -110,6 +112,7 @@ const Platform = ({
                             const newElement = {}
                             newElement[idElement] = Object.assign({}, options[nameNew].initialConfig)
                             newElement[idElement]['id'] = idElement
+                            newElement[idElement]['props']['id'] = idElement
                             const newItems = { ...JSON.parse(itemEntry), ...newElement }
                             change({ ...newItems })
                             changeOrder(newOrder)

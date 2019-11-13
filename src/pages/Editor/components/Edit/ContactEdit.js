@@ -5,18 +5,13 @@ import { TextField } from '@rmwc/textfield'
 /* Components */
 import { EditContainer, EditWrapper, EditLabel } from './style'
 
-const HeaderEdit = ({
+const ContactEdit = ({
     id,
-    title,
-    bgUrl,
-    imageUrl,
-    change
 }) => {
-    const data = { id, title, bgUrl, imageUrl }
     return (
         <EditContainer>
             <Typography use="overline" tag="h6">
-                Cabecera
+                Contacto
             </Typography>
             <EditLabel label="ID" />
             <EditWrapper>
@@ -29,20 +24,15 @@ const HeaderEdit = ({
                     value={id}
                 />
             </EditWrapper>
-            <EditLabel label="Redacción" />
+            <EditLabel label="Importante" icon="info" />
             <EditWrapper>
-                <TextField
-                    outlined
-                    type="text"
-                    label="Titulo"
-                    value={title}
-                    onChange={(e) => change({ ...data, title: e.currentTarget.value })}
-                    characterCount
-                    maxLength={50}
-                />
+                <Typography use="body2" tag="span">
+                    Los mensajes que se reciba
+                    pueden ser vistos solo por los administradores
+                </Typography>
             </EditWrapper>
         </EditContainer>
     )
 }
 
-export default HeaderEdit
+export default ContactEdit

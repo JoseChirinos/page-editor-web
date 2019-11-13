@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 
-export const CarrouselContainer = styled.div`
+export const CarrouselContainer = styled.section`
     width:100%;
     height: 370px;
     background-color: rgb(39, 49, 78);
@@ -13,5 +13,20 @@ export const CarrouselContainer = styled.div`
     cursor: grab;
     :active{
         cursor: grabbing;
+    }
+`
+
+export const CarrouselContainerInfo = styled.div`
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 2;
+    background-color: #2195f3;
+    margin: 10px;
+    text-align: center;
+    line-height: 5;
+    > i{
+        font-size: 50px;
     }
 `

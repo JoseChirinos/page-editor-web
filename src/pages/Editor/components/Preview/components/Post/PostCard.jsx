@@ -16,6 +16,7 @@ const PostCard = (props)=>{
         <CardItem>
             <CardPrimaryAction>
                 <CardMedia
+                    tag="div"
                     sixteenByNine
                     style={{
                         backgroundImage: `url(/assets/images/bg-fundamental.jpg)`
@@ -59,7 +60,9 @@ const PostCard = (props)=>{
                 </Typography>
                 </div>
             </CardPrimaryAction>
-            <CardActions>
+            <CardActions
+                tag="div"
+            >
                 <CardActionButtons>
                     <CardActionButton>
                         Leer
