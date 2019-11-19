@@ -14,7 +14,7 @@ const TestImage = (props) => {
     return (
         <div>
             Solo prueba de uso
-            <Crop ref={cropRef} setSrcImage={setSrcImage} />
+            <Crop ref={cropRef} size={{ width: 300, height: 300 }} />
             {
                 srcImage !== '' ?
                     <img src={srcImage} alt='' />

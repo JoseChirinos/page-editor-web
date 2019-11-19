@@ -66,7 +66,7 @@ export const PreviewTitle = styled.div`
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    height: 300px;
+    height: 400px;
     background: rgb(2,0,36);
     background: linear-gradient(180deg, rgba(2,0,36,0) 62%, rgba(0,0,0,0.39539565826330536) 82%, rgba(0,0,0,1) 100%);
     > aside {

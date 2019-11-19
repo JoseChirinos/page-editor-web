@@ -1,4 +1,5 @@
 import React, { forwardRef, useEffect, useState, useRef, useImperativeHandle } from 'react'
+import PropTypes from 'prop-types'
 import './styles.css';
 /* Components */
 import Croppie from 'croppie'
@@ -6,11 +7,17 @@ import Zone from './components/zone'
 
 const croppie = {
     cpp: null,
-    init: (el) => {
+    init: (el, width, height) => {
         if (!croppie.cpp) {
-            const element = el.current;
+            const element = el.current
+            let widthVp = 300, heightVp = 300
+            if (width > height) {
+                heightVp = (height * widthVp) / width
+            } else {
+                widthVp = (width * heightVp) / height
+            }
             croppie.cpp = new Croppie(element, {
-                viewport: { width: 300, height: 150 },
+                viewport: { width: widthVp, height: heightVp },
                 boundary: { width: 300, height: 300 },
                 showZoomer: true,
                 enableOrientation: false,
@@ -26,20 +33,30 @@ const croppie = {
             url: `data:image/jpeg;base64,${base64Image}`
         })
     },
+    formatPermission: (format) => {
+        return ['png', 'jpeg'].includes(format)
+    },
     destroy: () => {
         croppie.cpp.destroy();
         croppie.cpp = null;
     }
 }
 
-const Crop = forwardRef((props, ref) => {
+const Crop = forwardRef(({
+    size: {
+        width,
+        height
+    }
+}, ref) => {
     const domRef = useRef(null);
     const [showPreview, setShowPreview] = useState(false)
 
 
-    const getResult = (fn) => {
+    const getResult = (fn, format) => {
+        const formatImage = format || 'jpeg'
+        const formatCompact = croppie.formatPermission(formatImage) ? formatImage : 'jpeg'
         const crp = croppie.get()
-        crp.result({ type: 'base64', format: 'jpeg', size: { width: 900, height: 450 } })
+        crp.result({ type: 'base64', format: formatCompact, size: { width, height } })
             .then((base64) => {
                 fn(base64)
             });
@@ -64,7 +81,7 @@ const Crop = forwardRef((props, ref) => {
     }))
 
     useEffect(() => {
-        croppie.init(domRef)
+        croppie.init(domRef, width, height)
     }, [domRef])
 
     useEffect(() => {
@@ -84,5 +101,12 @@ const Crop = forwardRef((props, ref) => {
         </div>
     )
 })
+
+Crop.propTypes = {
+    size: PropTypes.shape({
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired
+    }).isRequired,
+}
 
 export default Crop

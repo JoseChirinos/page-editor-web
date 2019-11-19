@@ -47,6 +47,10 @@ const PostForm = ({
                         <aside className="app-post--control">
                             <Crop
                                 ref={cropRef}
+                                size={{
+                                    width: 900,
+                                    height: 450
+                                }}
                             />
                         </aside>
 
