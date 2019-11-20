@@ -47,7 +47,9 @@ export const Options = {
             props: {
                 title: 'Hello Header',
                 imageUrl: '',
-                bgUrl: ''
+                idImageUrl: 0,
+                bgUrl: '',
+                idBgUrl: 0,
             }
         }
     },

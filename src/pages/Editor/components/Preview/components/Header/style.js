@@ -32,8 +32,8 @@ export const HeaderWrapper = styled.header`
     }
 `
 export const HeaderImage = styled.img`
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: 100px;
 
 `
 export const IconPreview = styled(Icon)`

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Crop from '../../components/Crop'
+import Crop from '../../Crop'
 
 const TestImage = (props) => {
     const cropRef = React.createRef()

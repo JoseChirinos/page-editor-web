@@ -1,9 +1,8 @@
 import React from 'react'
-import { Typography } from '@rmwc/typography'
-import { TextField } from '@rmwc/textfield'
-
 /* Components */
 import { EditContainer, EditWrapper, EditLabel } from './style'
+import { Typography } from '@rmwc/typography'
+import { TextField } from '@rmwc/textfield'
 
 const ContactEdit = ({
     id,

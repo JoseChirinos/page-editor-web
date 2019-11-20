@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { HeaderWrapper, HeaderImage, IconPreview } from './style'
+/* Data */
+import { BASE_IMAGE } from '../../../../../@data/@server'
 
 const Header = ({
     title,
@@ -10,7 +12,7 @@ const Header = ({
     return (
         <HeaderWrapper
             heightSize = '350px'
-            background = { bgUrl }
+            background = { `${bgUrl !== '' && `${BASE_IMAGE}/${bgUrl}`}` }
         >
             <span>
                 { title }
@@ -18,7 +20,7 @@ const Header = ({
             {
                 imageUrl !== ''?
                 <HeaderImage
-                    src={ imageUrl }
+                    src={ `${imageUrl !== '' && `${BASE_IMAGE}/${imageUrl}`}` }
                 />
                 :
                 <IconPreview icon="image" />

@@ -82,7 +82,7 @@ const Crop = forwardRef(({
 
     useEffect(() => {
         croppie.init(domRef, width, height)
-    }, [domRef])
+    }, [domRef, width, height])
 
     useEffect(() => {
         return () => {
