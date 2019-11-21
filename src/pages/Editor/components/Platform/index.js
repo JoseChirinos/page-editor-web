@@ -67,7 +67,7 @@ const Platform = ({
                     :
                     <PlatformActive active={index[0] === i}>
                         {
-                            OptionsRender[items[i].component](items[i].props)
+                            OptionsRender[items[i].component](items[i].props, changeSelf, i) // props for all
                         }
                     </PlatformActive>
             }

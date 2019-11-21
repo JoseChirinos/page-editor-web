@@ -53,7 +53,6 @@ const Carousel = ({
                 style={{ height: 345, listStyle: 'none', padding: 0, margin: 0 }}
                 onChange={(order, sortable, evt) => {
                     let nameNew = ''
-                    console.log(order)
                     const newOrder = []
                     const idElement = uuidv1()
                     order.map(o => {

@@ -14,7 +14,7 @@ import {
     AuthorPreview,
 } from '../components/Preview'
 
-/* Preview omponents */
+/* Preview Components */
 import Header from '../components/Preview/components/Header'
 import DetailSimple from '../components/Preview/components/Detail/Simple'
 import DetailDefault from '../components/Preview/components/Detail'
@@ -24,6 +24,7 @@ import Contact from '../components/Preview/components/Contact'
 import Footer from '../components/Preview/components/Footer'
 import Author from '../components/Preview/components/Author'
 import CarrouselDefault from '../components/Preview/components/Carousel'
+import CarrouselImage from '../components/Preview/components/Carousel/Image'
 
 /* Info Edit Components */
 import HeaderEdit from '../components/Edit/HeaderEdit'
@@ -32,10 +33,10 @@ import DetailDefaultEdit from '../components/Edit/DetailDefaultEdit'
 import DetailVideoEdit from '../components/Edit/DetailVideoEdit'
 import PostListEdit from '../components/Edit/PostListEdit'
 import CarrouselDefaultEdit from '../components/Edit/CarrouselDefaultEdit'
+import CarrouselImageEdit from '../components/Edit/CarrouselImageEdit'
 import ContactEdit from '../components/Edit/ContactEdit'
 import FooterEdit from '../components/Edit/FooterEdit'
 import AuthorEdit from '../components/Edit/AuthorEdit'
-
 
 export const Options = {
     Header: {
@@ -125,6 +126,14 @@ export const Options = {
     CarrouselImage: {
         group: 'Carrousel',
         PreviewComponent: <CarrouselImagePreview />,
+        initialConfig: {
+            component: 'CarrouselImage',
+            editInfo: 'CarrouselImageEdit',
+            props: {
+                items: {},
+                orderItems: [],
+            }
+        }
     },
     Contact: {
         group: 'Other',
@@ -170,10 +179,11 @@ export const OptionsRender = {
     DetailDefault: (props) => <DetailDefault {...props} />,
     DetailVideo: (props) => <DetailVideo {...props} />,
     PostList: (props) => <PostList {...props} />,
+    CarrouselDefault: (props, change, id, handleInfoEdit, active) => <CarrouselDefault {...props} change={change} id={id} handleInfoEdit={handleInfoEdit} active={active} />,
+    CarrouselImage: (props, change, id) => <CarrouselImage {...props} change={change} id={id} />,
     Contact: (props) => <Contact {...props} />,
     Footer: (props) => <Footer {...props} />,
     Author: (props) => <Author {...props} />,
-    CarrouselDefault: (props, change, id, handleInfoEdit, active) => <CarrouselDefault {...props} change={change} id={id} handleInfoEdit={handleInfoEdit} active={active} />,
 }
 
 export const OptionsEdit = {
@@ -183,6 +193,7 @@ export const OptionsEdit = {
     DetailVideoEdit: (props, change) => <DetailVideoEdit {...props} change={change} />,
     PostListEdit: (props, change) => <PostListEdit {...props} change={change} />,
     CarrouselDefaultEdit: (props, change) => <CarrouselDefaultEdit {...props} change={change} />,
+    CarrouselImageEdit: (props, change) => <CarrouselImageEdit {...props} change={change} />,
     ContactEdit: (props, change) => <ContactEdit {...props} change={change} />,
     FooterEdit: (props, change) => <FooterEdit {...props} change={change} />,
     AuthorEdit: (props, change) => <AuthorEdit {...props} change={change} />,

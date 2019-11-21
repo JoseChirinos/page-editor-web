@@ -24,6 +24,10 @@ export const EditColor = styled.div`
         margin: 0 auto;
     }
 `
+export const EditImageWrapper = styled.div`
+    padding: 10px 0px;
+    border-bottom: 1px solid #e4e4e4;
+`
 export const EditImagePreview = styled.div`
     position: relative;
     width: 100%;
