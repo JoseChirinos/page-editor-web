@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro'
 
 export const CarrouselContainer = styled.section`
+    position: relative;
     width:100%;
     height: 370px;
     background-color: rgb(39, 49, 78);

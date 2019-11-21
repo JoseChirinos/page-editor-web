@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import '@rmwc/icon/icon.css'
 /* Components */
-import { EditContainer, EditWrapper, EditLabel, EditImagePreview, EditImage } from './style'
+import {
+    EditContainer,
+    EditWrapper, EditLabel,
+    EditImagePreview,
+    EditImage
+} from './style'
 import { Typography } from '@rmwc/typography'
 import { TextField } from '@rmwc/textfield'
 import { Icon } from '@rmwc/icon'

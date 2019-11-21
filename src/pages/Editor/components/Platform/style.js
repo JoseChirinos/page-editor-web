@@ -24,7 +24,8 @@ export const PlatformTools = styled.div`
     background-color: #d7d7d7;
     border: 1px solid #cdcdcd;
     border-radius: 3px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     height: calc(100vh - 70px);
     > ul {
         padding: 0px;

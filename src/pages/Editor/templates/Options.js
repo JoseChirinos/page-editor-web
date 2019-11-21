@@ -142,6 +142,7 @@ export const Options = {
             component: 'Footer',
             editInfo: 'FooterEdit',
             props: {
+                imageUrl: '',
                 address: 'tu dirección',
                 email: 'correo@mail.com',
                 cellphone: '+591 70000000',

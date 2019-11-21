@@ -39,8 +39,8 @@ export const DetailWrapper = styled.section`
     }
 `
 export const DetailImage = styled.img`
-    width: 75px;
-    height: 75px;
+    width: 150px;
+    height: 150px;
 `
 export const DetailAction = styled.div`
     width: 250px;

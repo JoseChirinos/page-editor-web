@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { DetailWrapper, DetailImage, DetailAction, IconPreview } from './style'
 import { Button } from '@rmwc/button';
+/* Data */
+import { BASE_IMAGE } from '../../../../../@data/@server'
 
 const Detail = ({
     title,
@@ -14,7 +16,7 @@ const Detail = ({
     return (
         <DetailWrapper
             imagePosition = { imagePosition }
-            background = { bgUrl }
+            background = { `${bgUrl !== '' && `${BASE_IMAGE}/${bgUrl}`}` }
             heightSize = '350px'
             bgColor = { bgColor }
         >
@@ -30,7 +32,7 @@ const Detail = ({
             {
                 imageUrl !== ''?
                 <DetailImage
-                    src = { imageUrl }
+                    src={ `${imageUrl !== '' && `${BASE_IMAGE}/${imageUrl}`}` }
                 />
                 :
                 <IconPreview icon="image" />

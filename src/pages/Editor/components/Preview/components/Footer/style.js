@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import { Icon } from '@rmwc/icon'
 
 export const FooterContainer = styled.footer`
     width: 100%;
@@ -45,4 +46,10 @@ export const FooterInfo = styled.div`
             list-style: none;
         }
     }
+`
+export const IconPreview = styled(Icon)`
+    font-size: 50px;
+    padding: 15px;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000;
 `

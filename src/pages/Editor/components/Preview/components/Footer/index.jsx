@@ -4,9 +4,13 @@ import {
     FooterWrapper,
     FooterLogo,
     FooterInfo,
+    IconPreview
 } from './style'
+/* Data */
+import { BASE_IMAGE } from '../../../../../@data/@server'
 
 const Footer = ({
+    imageUrl,
     address,
     email,
     cellphone,
@@ -16,7 +20,14 @@ const Footer = ({
         <FooterContainer>
             <FooterWrapper>
                 <FooterLogo>
-                    <img src='/assets/images/escudo_informatica.jpg'alt=''/>
+                    {
+                        imageUrl !== ''?
+                        <img
+                            src={ `${imageUrl !== '' && `${BASE_IMAGE}/${imageUrl}`}` }
+                        />
+                        :
+                        <IconPreview icon="image" />
+                    }
                 </FooterLogo>
                 <FooterInfo>
                     <h3>Dirección</h3>
