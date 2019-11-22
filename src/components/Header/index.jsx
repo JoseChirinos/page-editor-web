@@ -41,9 +41,12 @@ const Header = ({
                             { title }
                         </Typist>
                     </span>
-                    <HeaderImage
-                        src={ imageUrl }
-                    />
+                    {
+                        imageUrl !== "" &&
+                        <HeaderImage
+                            src={ imageUrl }
+                        />
+                    }
                 </HeaderWrapper>
             </div>
         </Parallax>

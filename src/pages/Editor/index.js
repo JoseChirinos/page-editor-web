@@ -69,7 +69,6 @@ const Editor = (props) => {
     }, [loading, initialData])
 
     useEffect(() => {
-        console.log(website)
         if (orderWeb.length > 0) {
             if (Object.entries(website).length === orderWeb.length) {
                 saveData()

@@ -1,29 +1,62 @@
-import React, { useContext} from 'react'
+import React, { useContext, useState, useEffect} from 'react'
 /* Components */
 import Navigator from '../../components/Navigator'
-/* Components Testing */
-import Header from '../../components/Header'
-import Detail from '../../components/Detail'
-import DetailSimple from '../../components/Detail/Simple'
-import DetailVideo from '../../components/Detail/Video'
-import Carousel from '../../components/Carousel'
-import CarouselImage from '../../components/Carousel/Image'
-import Post from '../../components/Post'
-import Contact from '../../components/Contact'
-import Footer from '../../components/Footer'
-import Author from '../../components/Author'
+import Loading from '../../common/loading'
+
+/* Data */
+import PageHttp from '../@data/page-http'
 /* Context */
 import { UserContext } from '../../context/user-context'
+/* Render */
+import { ComponentsRender } from './components'
 
 const Website = ()=> {
   const user = useContext(UserContext)
+  const [loading, setLoading] = useState(true)
+  const [website, setWebsite] = useState({})
+  const [orderWeb, setOrderWeb] = useState([])
+
+  useEffect( ()=>{
+    if(loading && Object.entries(website).length === 0){
+      PageHttp.getNow(
+        (data)=>{
+          console.log(data)
+          setWebsite(JSON.parse(data.result.context))
+          setOrderWeb(JSON.parse(data.result.context_order))
+          setLoading(false)
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+    }
+  },[loading, setLoading, website, setWebsite])
+  console.log(orderWeb,website)
   return (
     <div className="App">
       {
         Object.entries(user).length>0 &&
         <Navigator />
       }
-      <Header
+
+      {
+        loading ?
+        <Loading/>
+        :
+        <div>
+          {
+            orderWeb.map( (el)=>(
+              <div key={el}>
+                {
+                  ComponentsRender[website[el].component](website[el].props, el)
+                }
+              </div>
+            ))
+          }
+        </div>
+      }
+
+      {/* <Header
         title='Bienvenido a nuestra Página de Ingenieria Informática'
         bgUrl='/assets/images/bg-whois.jpg'
         imageUrl='/assets/images/img-header.png'
@@ -42,7 +75,7 @@ const Website = ()=> {
         content='La informática se convirtió en una herramienta indispensable para la persona ya que esta se encuentra en todo lo que nos rodea.'
         imagePosition='right'
         bgUrl='/assets/images/macnight.jpg'
-      // bgColor="#000"
+        // bgColor="#000"
       />
       <DetailVideo
         title='Perfil de un Ingeniero Informático'
@@ -56,12 +89,12 @@ const Website = ()=> {
           content='A continuación...'
           bgUrl='/assets/images/bg-fundamental.jpg'
         />
-        {/* <DetailVideo
+        <DetailVideo
             title='Perfil de un Ingeniero Informático'
             content='Online video and Youtube particularly is now more popular than cable television. Mobirise provides a support for YouTube and Vimeo that allow you to liven up your sites.'
             videoPosition='right'
             videoUrl='/assets/video/¿Qué hace un Ingeniero Informático.mp4'
-        /> */}
+        />
         <Detail
           title='¿Por qué es tan importante la Informática en la actualidad?'
           content='La informática se convirtió en una herramienta indispensable para la persona ya que esta se encuentra en todo lo que nos rodea.'
@@ -87,7 +120,7 @@ const Website = ()=> {
       />
       <Author
         authorName='Jaime Rojas'
-      />
+      /> */}
     </div>
   );
 }

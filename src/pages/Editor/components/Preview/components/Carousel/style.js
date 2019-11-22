@@ -26,7 +26,7 @@ export const CarrouselContainerInfo = styled.div`
     margin: 10px;
     text-align: center;
     line-height: 5;
-    z-index: 0;
+    z-index: 1;
     > i{
         font-size: 50px;
     }

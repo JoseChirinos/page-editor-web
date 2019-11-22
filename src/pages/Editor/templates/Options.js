@@ -151,6 +151,7 @@ export const Options = {
             component: 'Footer',
             editInfo: 'FooterEdit',
             props: {
+                idImageUrl: 0,
                 imageUrl: '',
                 address: 'tu dirección',
                 email: 'correo@mail.com',

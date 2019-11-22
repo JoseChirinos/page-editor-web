@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Flickity from 'react-flickity-component'
 import './styles.css'
+import { ComponentsRender } from '../../pages/Website/components'
 
 const flickityOptions = {
     initialIndex: 0,
@@ -9,7 +10,8 @@ const flickityOptions = {
 }
 
 const Carousel = ({
-    children
+    items,
+    orderItems
 }) => {
     return (
         <Flickity
@@ -19,7 +21,11 @@ const Carousel = ({
             reloadOnUpdate // default false
             static // default false
         >
-            {children}
+            {
+                orderItems.map( (el)=>(
+                    ComponentsRender[items[el].component](items[el].props, el)
+                ))
+            }
         </Flickity>
     )
 }
