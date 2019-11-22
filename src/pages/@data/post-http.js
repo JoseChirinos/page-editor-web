@@ -6,6 +6,15 @@ const source = CancelToken.source();
 
 const UserHttp = {
 
+    getFirst: (response, error) => {
+        axios.get(BASE + 'post/first',
+            { cancelToken: source.token }
+        ).then(function (r) {
+            response(r.data)
+        }).catch(function (e) {
+            error(e)
+        })
+    },
     getAll: (response, error) => {
         axios.get(BASE + 'post/all',
             { cancelToken: source.token }

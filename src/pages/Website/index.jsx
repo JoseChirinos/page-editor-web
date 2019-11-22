@@ -41,7 +41,7 @@ const Website = ()=> {
         title='Perfil de un Ingeniero Informático'
         content='Online video and Youtube particularly is now more popular than cable television. Mobirise provides a support for YouTube and Vimeo that allow you to liven up your sites.'
         videoPosition='left'
-        videoUrl='https://www.facebook.com/LosGonzalesLpz/videos/668079913687601/'
+        videoUrl='https://www.youtube.com/watch?v=szby7ZHLnkA'
       />
       <Carousel>
         <DetailSimple

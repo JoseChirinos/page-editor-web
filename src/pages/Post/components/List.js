@@ -37,8 +37,6 @@ const PostList = ({
         // )
     }, [context, setData, user])
 
-    console.log(data)
-
     return (
         <section>
             <Header

@@ -24,6 +24,7 @@ const Footer = ({
                         imageUrl !== ''?
                         <img
                             src={ `${imageUrl !== '' && `${BASE_IMAGE}/${imageUrl}`}` }
+                            alt=""
                         />
                         :
                         <IconPreview icon="image" />

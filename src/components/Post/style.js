@@ -6,14 +6,19 @@ export const PostContainer = styled.div`
     background: #f6f6f6;
 `
 export const PostWrapper = styled.section`
-    display: flex;
+    display: grid;
+    margin-top: 50px;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
     justify-content: center;
-    align-items: center;
-    
-    flex-direction: column;
-    padding: 60px 0px;
+    justify-items: center;
+
     @media (min-width:760px) {
-        flex-direction: row;
+        grid-template-columns: 280px 280px;
+    }
+    @media (min-width:960px) {
+        grid-template-columns: 280px 280px 280px;
     }
 `
 export const PostTitle = styled.div`
@@ -30,16 +35,16 @@ export const PostTitle = styled.div`
 `
 export const PostMore = styled.div`
     text-align: center;
+    padding: 50px 0px;
 `
 export const CardItem = styled(Card)`
     width: 80%;
-    @media (min-width:960px) {
-        width: 300px;
-        margin: 20px auto;
-    }
     @media (min-width:760px) {
         width: 280px;
         margin: 5px auto;
+    }
+    @media (min-width:960px) {
+        margin: 20px auto;
     }
 `
 
@@ -53,13 +58,13 @@ export const PreviewContainer = styled.div`
 export const PreviewWrapper = styled.div`
     width: 100%;
     margin: 30px auto;
-    @media (min-width:960px) {
-        width: 960px;
-        margin: 50px auto;
-    }
     @media (min-width:760px) {
         width: 760px;
         margin: 40px auto;
+    }
+    @media (min-width:960px) {
+        width: 960px;
+        margin: 50px auto;
     }
 `
 export const PreviewTitle = styled.div`
@@ -72,11 +77,11 @@ export const PreviewTitle = styled.div`
     > aside {
         padding: 20px 0px;
         width: 100%;
-        @media (min-width:960px) {
-            width: 960px;
-        }
         @media (min-width:760px) {
             width: 760px;
+        }
+        @media (min-width:960px) {
+            width: 960px;
         }
     }
 `
