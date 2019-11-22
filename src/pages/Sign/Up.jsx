@@ -16,8 +16,10 @@ import {
     NavLink
 } from 'react-router-dom'
 
-const SignIn = (props) => {
+const SignUp = (props) => {
     const [data, setData] = useState({
+        first_name:'',
+        last_name:'',
         email:'',
         password:''
     })
@@ -27,9 +29,9 @@ const SignIn = (props) => {
         theme: 'default'
     })
 
-    const signInNow = (e)=>{
+    const signUpNow = (e)=>{
         e.preventDefault()
-        props.signIn(data.email, data.password, (result)=>{
+        props.signUp(data.first_name,data.last_name,data.email, data.password, (result)=>{
             setAlert({
                 visible: true,
                 message: result.message,
@@ -43,13 +45,41 @@ const SignIn = (props) => {
     return (
         <SignContainer>
             <SignWrapper>
-                <SignForm onSubmit={signInNow}>
+                <SignForm onSubmit={signUpNow}>
                     <SignTitle>
                         <h1>
-                            Login
+                            Registro
                         </h1>
                     </SignTitle>
 
+                    <SignSeparate />
+                    <TextField
+                        required
+                        type="text"
+                        label="Nombre"
+                        value={data.first_name}
+                        onChange={(e) => setData({ ...data, first_name: e.currentTarget.value })}
+                        maxLength={150}
+                        trailingIcon={{
+                          icon: 'close',
+                          tabIndex: 1,
+                          onClick: () => setData({ ...data, first_name: '' })
+                        }}
+                    />
+                    <SignSeparate />
+                    <TextField
+                        required
+                        type="textl"
+                        label="Apellido"
+                        value={data.last_name}
+                        onChange={(e) => setData({ ...data, last_name: e.currentTarget.value })}
+                        maxLength={150}
+                        trailingIcon={{
+                          icon: 'close',
+                          tabIndex: 1,
+                          onClick: () => setData({ ...data, last_name: '' })
+                        }}
+                    />
                     <SignSeparate />
                     <TextField
                         required
@@ -80,15 +110,14 @@ const SignIn = (props) => {
                     />
                     <SignSeparate />
                     <SignSend>
-                        <Button raised>Ingresar</Button>
+                        <Button raised>Registrar</Button>
                     </SignSend>
                     <SignSend>
                         <Typography use="overline">
-                            ¿No tienes una cuenta?
+                            ¿Tienes una cuenta?
                         </Typography>
-                        <SignSeparate />
-                        <NavLink to="/registrar">
-                            <Button type="button" raised style={{backgroundColor:'rgba(33, 150, 243, 0.39)'}}>Registrate</Button>
+                        <NavLink to='/login'>
+                            <Button type="button" raised style={{backgroundColor:'rgba(33, 150, 243, 0.39)'}}>Iniciar Sesión</Button>
                         </NavLink>
                     </SignSend>
                 </SignForm>
@@ -108,4 +137,4 @@ const SignIn = (props) => {
     )
 }
 
-export default SignIn
+export default SignUp

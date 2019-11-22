@@ -9,8 +9,8 @@ export const Nav = styled.nav`
     position: fixed;
     width: 100%;
     padding: 0px 0px;
-    z-index:1;
     transition: all 0.5s;
+    z-index:5;
 `
 export const NavWrapper = styled.div`
     display: flex;
@@ -63,10 +63,14 @@ export const NavMenu = styled.div`
         text-align: center;
         height: 100vh;
         padding: 0;
-        > li{
+        margin: 0;
+        > li {
             display: block;
             padding: 15px;
             font-size: 25px;
+            > a {
+                color: #fff;
+            }
         }
     }
     @media (min-width:960px) {

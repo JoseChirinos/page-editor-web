@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import { Parallax } from 'react-parallax'
 import PostCard from './PostCard'
-import { PostContainer, PostWrapper, PostTitle, PostMore } from './style'
-import { Button } from '@rmwc/button';
+import { PostListWrapper, PostWrapper, PreviewTitle } from './style'
+import { Typography } from '@rmwc/typography'
 import Loading from '../../common/loading'
-import {
-    NavLink
-} from 'react-router-dom'
+
 /* Data */
 import PostHttp from '../../pages/@data/post-http'
 
-const Post = (props)=>{
+const PostList = (props)=>{
     const [data, setData] = useState([])
 
     useEffect(()=>{
-        PostHttp.getFirst((data)=>{
+        PostHttp.getAll((data)=>{
             setData(data.result)
         },
         (error)=>{
@@ -26,15 +25,31 @@ const Post = (props)=>{
         }
       }, [])
     return (
-        <PostContainer>
-            <PostTitle>
-                <h1>
-                    Areas Dónde se destaca la informática
-                    <small>
-                        Ultimos Post publicados
-                    </small>
-                </h1>
-            </PostTitle>
+        <PostListWrapper>
+            <Parallax
+                bgImage="/assets/images/bg-login-oficial.jpg"
+                strength={-300}
+                style={{
+                    width: '100%',
+                    height: 400
+                }}
+            >
+                <PreviewTitle>
+                    <aside>
+                        <Typography 
+                            use="headline4"
+                            style={{
+                                fontFamily: `'Sarala', sans-serif`,
+                                color: `#fff`,
+                                textShadow: `1px 2px 1px #000`,
+                            }}
+                        >
+                            Lista de Posts
+                        </Typography>
+                        <div/>
+                    </aside>
+                </PreviewTitle>
+            </Parallax>
             {
                 data.length > 0 ?
                 <PostWrapper>
@@ -48,7 +63,7 @@ const Post = (props)=>{
                                 contentMin={post.summary}
                                 imageUrl={post.urlImage}
                                 posted={post.data_start}
-                                urlPath={`posts/${post.idPost}`}
+                                urlPath={`/posts`}
                             />
                         ))
                     }
@@ -56,13 +71,8 @@ const Post = (props)=>{
                 :
                 <Loading/>
             }
-            <PostMore>
-                <NavLink to="/posts">
-                    <Button raised>Ver más post</Button>
-                </NavLink>
-            </PostMore>
-        </PostContainer>
+        </PostListWrapper>
     )
 }
 
-export default Post
+export default PostList

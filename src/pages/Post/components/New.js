@@ -40,7 +40,6 @@ class PostNew extends Component {
         const sendData = this.state.data
         this.cropRef.current.getResult((data64) => {
             sendData.cover_image = data64
-            console.log(data64)
             this.serverConexion(sendData)
         })
     }

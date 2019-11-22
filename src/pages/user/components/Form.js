@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import '../../@style/container.css'
 import '../../@style/form.css'
@@ -15,6 +15,8 @@ import {
 } from 'react-router-dom'
 /* Data */
 import PASS from '../../@data/@pass'
+/* Context */
+import { UserContext } from '../../../context/user-context'
 
 const UserForm = ({
   data,
@@ -25,6 +27,8 @@ const UserForm = ({
   recoveryCount,
   hiddenRecovery,
 }) => {
+  const { type_user } = useContext(UserContext)
+
   return (
     <div className="app-container">
       <div className="app-form-wrapper">
@@ -140,27 +144,32 @@ const UserForm = ({
           </aside>
         </fieldset>
 
-        <fieldset className="app-form--fieldset">
-          <legend>
-            Privilegios
-          </legend>
 
-          <aside className="app-form--control">
-            <Select
-              required
-              helpText="Elija un permiso"
-              label="Elija uno"
-              value={data.type_user}
-              onChange={(e) => changeState({ ...data, type_user: e.currentTarget.value })}
-              options={
-                Object.values(PASS).map(({ id, label }) => ({ label, value: id }))
-              }
-            />
-          </aside>
-        </fieldset>
+        {
+          type_user === 'R' &&
+          <fieldset className="app-form--fieldset">
+            <legend>
+              Privilegios
+            </legend>
+
+            <aside className="app-form--control">
+              <Select
+                required
+                helpText="Elija un permiso"
+                label="Elija uno"
+                value={data.type_user}
+                onChange={(e) => changeState({ ...data, type_user: e.currentTarget.value })}
+                options={
+                  Object.values(PASS).map(({ id, label }) => ({ label, value: id }))
+                }
+              />
+            </aside>
+          </fieldset>
+
+        }
 
 
-        {editForm && <fieldset className="app-form--fieldset">
+        {type_user === 'R' && editForm && <fieldset className="app-form--fieldset">
           <legend>
             Recuperar Cuenta
           </legend>

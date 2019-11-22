@@ -13,7 +13,9 @@ const handleScroll = (scroller, setScroller)=>{
         }
     }
 }
-const Navigator = (props)=>{
+const Navigator = ({
+    signOut
+})=>{
     const [scroller, setScroller] = useState(false)
     useEffect( ()=>{
         window.onscroll = () => handleScroll(scroller, setScroller)
@@ -23,6 +25,7 @@ const Navigator = (props)=>{
         <NavContainer>
             <Nav
                 scroller={ scroller }
+                signOut={ signOut }
             />
         </NavContainer>
     )

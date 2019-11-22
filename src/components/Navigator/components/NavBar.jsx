@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './NavBar-style.css'
 import { Nav, NavWrapper, NavBrand, NavMenu, NavMobile } from '../style'
 import { HamburgerElastic } from 'react-animated-burgers'
+import {
+    NavLink
+} from 'react-router-dom'
+/* Context */
+import { UserContext } from '../../../context/user-context'
 
 const mediaQuery = (event, setOpen) =>{
     if (event.matches) {
@@ -13,9 +18,11 @@ const mediaQuery = (event, setOpen) =>{
       }
 }
 const NavBar = ({
-    scroller
+    scroller,
+    signOut
 })=>{
     const  match = window.matchMedia('(max-width: 960px)')
+    const user = useContext(UserContext)
     const [open, setOpen] = useState(!match.matches)
     const toggleMenu = ()=>{
         setOpen(!open)
@@ -47,16 +54,31 @@ const NavBar = ({
                     <NavMenu>
                         <ul>
                             <li>
-                                Inicio
+                                <NavLink to="/">
+                                    Inicio
+                                </NavLink>
                             </li>
                             <li>
-                                Acerca de
+                                <NavLink to="/about">
+                                    Acerca de
+                                </NavLink>
                             </li>
                             <li>
-                                Contactanos
+                                <NavLink to="/posts">
+                                    Posts
+                                </NavLink>
                             </li>
                             <li>
-                                Registrate
+                                {
+                                    Object.entries(user).length > 0 ?
+                                        <NavLink to="/admin">
+                                            { user.first_name }
+                                        </NavLink>   
+                                        :
+                                        <NavLink to="/login">
+                                            Iniciar Sesion
+                                        </NavLink>
+                                }
                             </li>
                         </ul>
                     </NavMenu>

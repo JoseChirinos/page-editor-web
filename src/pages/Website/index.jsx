@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext} from 'react'
+/* Components */
+import Navigator from '../../components/Navigator'
 /* Components Testing */
 import Header from '../../components/Header'
-import Navigator from '../../components/Navigator'
 import Detail from '../../components/Detail'
 import DetailSimple from '../../components/Detail/Simple'
 import DetailVideo from '../../components/Detail/Video'
@@ -11,11 +12,17 @@ import Post from '../../components/Post'
 import Contact from '../../components/Contact'
 import Footer from '../../components/Footer'
 import Author from '../../components/Author'
+/* Context */
+import { UserContext } from '../../context/user-context'
 
 const Website = ()=> {
+  const user = useContext(UserContext)
   return (
     <div className="App">
-      {/* <Navigator /> */}
+      {
+        Object.entries(user).length>0 &&
+        <Navigator />
+      }
       <Header
         title='Bienvenido a nuestra Página de Ingenieria Informática'
         bgUrl='/assets/images/bg-whois.jpg'

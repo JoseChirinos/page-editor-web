@@ -5,6 +5,11 @@ export const PostContainer = styled.div`
     padding: 50px 0px;
     background: #f6f6f6;
 `
+export const PostListWrapper = styled.div`
+    padding: 0px;
+    background: #f6f6f6;
+    min-height: 100vh;
+`
 export const PostWrapper = styled.section`
     display: grid;
     margin-top: 50px;

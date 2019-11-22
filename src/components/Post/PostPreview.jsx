@@ -67,7 +67,6 @@ const PostPreview = ({
             {
                 data.urlImage !== '' ?
                 <Parallax
-                    disabled={edit}
                     bgImage={`${BASE_IMAGE}/${data.urlImage}`}
                     strength={-300}
                     style={{

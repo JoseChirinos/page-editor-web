@@ -1,14 +1,15 @@
-import React from 'react';
+import React,{ useContext } from 'react';
 import {
   Route,
   Switch,
   Redirect
 } from 'react-router-dom';
 import Loadable from 'react-loadable';
+/* Context */
+import { UserContext } from '../../context/user-context'
 
 /*loading*/
 import Loading from '../../common/loading';
-// import NoMatch from '../../common/notmatch';
 import Main from '../../pages/Main'
 
 const Website = Loadable({
@@ -36,16 +37,23 @@ const Posts = Loadable({
 const Panel = ({
   match,
   signOut
-})=>(
+})=>{
+  const { type_user } = useContext(UserContext)
+  return (
     <Main signOut={ signOut }>
       <Switch>
         <Route exact path={`${match.url}`} component={Home}/>
-        <Route path={`${match.url}/editor`} component={Editor}/>
-        <Route path={`${match.url}/usuarios`} component={User}/>
+        {
+          type_user !== 'P' && <Route path={`${match.url}/editor`} component={Editor}/>
+        }
+        {
+          type_user !== 'P' && <Route path={`${match.url}/usuarios`} component={User}/>
+        }
         <Route path={`${match.url}/posts`} component={Posts}/>
       </Switch>
     </Main>
-)
+  )
+}
 
 const Admin = ({
   signOut

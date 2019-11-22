@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useCallback } from 'react'
 /* Components */
+import { TabsContainer } from './style'
 import Header from '../../../common/header'
 import PostCard from '../../../components/Post/PostCard'
 import { GridList } from './atoms/GridList'
+import { TabBar, Tab } from '@rmwc/tabs'
 /* Data */
 import PostHttp from '../../@data/post-http'
 /* Context */
@@ -13,12 +15,22 @@ const PostList = ({
     history,
     context
 }) => {
-    const user = useContext(UserContext)
+    const { idUser, type_user } = useContext(UserContext)
     const [data, setData] = useState([])
     const urlPath = String(match.url).replace(/[/]$/g, '')
 
-    useEffect(() => {
-        const idUser = user.idUser
+    const getAll = useCallback(() => {
+        PostHttp.getAll(
+            (data) => {
+                setData(data.result)
+            },
+            (error) => {
+                console.log(error)
+            }
+        )
+    }, [])
+
+    const getUser = useCallback(() => {
         PostHttp.getAllUser(idUser,
             (data) => {
                 setData(data.result)
@@ -27,15 +39,16 @@ const PostList = ({
                 console.log(error)
             }
         )
-        // PostHttp.getAll(
-        //     (data) => {
-        //         setData(data.result)
-        //     },
-        //     (error) => {
-        //         console.log(error)
-        //     }
-        // )
-    }, [context, setData, user])
+    }, [idUser])
+
+    useEffect(() => {
+        if (type_user === 'P') {
+            getUser()
+        } else {
+            getAll()
+        }
+
+    }, [getUser, getAll, type_user])
 
     return (
         <section>
@@ -54,6 +67,15 @@ const PostList = ({
                     color: "#fff"
                 }}
             />
+            {
+                type_user !== 'P' &&
+                <TabsContainer>
+                    <TabBar>
+                        <Tab onClick={() => { getAll() }}>Todos</Tab>
+                        <Tab onClick={() => { getUser() }}>Mis Post</Tab>
+                    </TabBar>
+                </TabsContainer>
+            }
             <GridList>
                 {
                     data.map((p, index) => (

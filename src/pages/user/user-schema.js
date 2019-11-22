@@ -4,7 +4,7 @@ export const UserSchema = {
   last_name: '',
   email: '',
   password: '',
-  type_user: '',
+  type_user: 'P',
 }
 export const UserRecoverySchema = {
   name: '',

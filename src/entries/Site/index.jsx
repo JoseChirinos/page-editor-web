@@ -5,6 +5,7 @@ import {
   Redirect
 } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import MainSite from '../../pages/Main/site'
 
 /*loading*/
 import Loading from '../../common/loading';
@@ -14,23 +15,42 @@ const SignIn = Loadable({
   loading: Loading
 });
 
+const SignUp = Loadable({
+  loader: () => import('../../pages/Sign/Up'),
+  loading: Loading
+});
+
 const Website = Loadable({
   loader: () => import('../../pages/Website'),
   loading: Loading
 });
 
-const SignUp = () => <div>SignUp</div>
+const PostList = Loadable({
+  loader: () => import('../../components/Post/PostList'),
+  loading: Loading
+});
+
+const PostPreview = Loadable({
+  loader: () => import('../../components/Post/PostPreview'),
+  loading: Loading
+});
 
 const Site = ({
-  signIn
+  signOut,
+  signIn,
+  signUp
 }) => {
   return (
-    <Switch>
-      <Route exact path="/" component={Website} />
-      <Route path="/login" component={(props)=> <SignIn {...props} signIn={ signIn } />} />
-      <Route path="/registrar" component={SignUp} />
-      <Route component={()=><Redirect to='/' />} />
-    </Switch>
+    <MainSite signOut={signOut}>
+      <Switch>
+        <Route exact path="/" component={Website} />
+        <Route path="/login" component={(props)=> <SignIn {...props} signIn={ signIn } />} />
+        <Route path="/registrar" component={(props)=> <SignUp {...props} signUp={signUp}/>} />
+        <Route exact path="/posts" component={PostList} />
+        <Route path="/posts/:id" component={PostPreview} />
+        <Route component={()=><Redirect to='/' />} />
+      </Switch>
+    </MainSite>
   )
 }
 

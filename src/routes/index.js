@@ -69,6 +69,39 @@ class RouterApp extends Component {
       )
     }
   }
+  signUp = (first_name, last_name, email, password, response) => {
+    const type_user = 'P'
+    UserHttp.add({ first_name, last_name, email, password, type_user },
+      (data) => {
+        if (data.status) {
+          const userInfo = {
+            idUser: data.result.idInsert,
+            first_name,
+            last_name,
+            email,
+            type_user
+          }
+          UserHttp.createSession(userInfo)
+          this.setState({
+            userInfo,
+            auth: true
+          })
+        } else {
+          response({
+            message: data.message,
+            error: true,
+          })
+        }
+      },
+      (error) => {
+        response({
+          message: error.message,
+          error: true,
+        })
+      }
+    )
+  }
+
   signOut = (e) => {
     e.preventDefault()
     this.setState({
@@ -89,7 +122,9 @@ class RouterApp extends Component {
                 this.state.auth ?
                   <Admin signOut={this.signOut} />
                   : <Site
+                    signOut={this.signOut}
                     signIn={this.signIn}
+                    signUp={this.signUp}
                   />
               }
             </UserContext.Provider>
