@@ -12,6 +12,10 @@
     height: 50px;
 }
 
+.active-navbar{
+    border-bottom: 3px solid #ffcf10;
+    padding: 8px 0px;
+}
 @media (min-width: 960px){
     .navbar-top{
         padding: 10px 0px;

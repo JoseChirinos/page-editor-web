@@ -105,6 +105,7 @@ class RouterApp extends Component {
   signOut = (e) => {
     e.preventDefault()
     this.setState({
+      userInfo: {},
       auth: false
     })
     UserHttp.destroySession()

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { DetailWrapper, DetailImage, DetailAction } from './style'
 import { Parallax } from 'react-parallax'
-import { Button } from '@rmwc/button';
+import { Button } from '@rmwc/button'
+import { NavLink } from 'react-router-dom'
 
 const mediaQuery = (setSize) =>{
     checkSizeHeight(setSize)
@@ -19,6 +20,9 @@ const Detail = ({
     imagePosition,
     bgUrl,
     bgColor,
+    linkAction,
+    linkLabel,
+    linkExternal
 }) => {
     const  match = window.matchMedia('(max-width: 960px)')
     const [size, setSize] = useState('100vh')
@@ -49,7 +53,16 @@ const Detail = ({
                             { content }
                         </p>
                         <DetailAction>
-                            <Button raised>Accion</Button>
+                            {
+                                linkExternal ?
+                                <a rel="noopener noreferrer" href={linkAction} target="_blank">
+                                    <Button raised>{linkLabel}</Button>
+                                </a>
+                                :
+                                <NavLink to={linkAction}>
+                                    <Button raised>{linkLabel}</Button>
+                                </NavLink>
+                            }
                         </DetailAction>
                     </span>
                     {
@@ -72,12 +85,19 @@ Detail.propTypes = {
     content: PropTypes.string.isRequired,
     imageUrl: PropTypes.string,
     imagePosition: PropTypes.oneOf(['left','right']),
-    bgUrl: PropTypes.string.isRequired,
+    bgUrl: PropTypes.string,
     bgColor: PropTypes.string,
+    linkAction: PropTypes.string,
+    linkLabel: PropTypes.string,
+    linkExternal: PropTypes.bool,
 }
 Detail.defaultProps = {
     imagePosition: 'left',
     imageUrl: '',
+    bgUrl: '',
     bgColor: 'transparent',
+    linkAction:"/",
+    linkLabel: "ACCION",
+    linkExternal: false
 }
 export default Detail

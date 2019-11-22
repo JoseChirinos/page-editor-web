@@ -5,7 +5,9 @@ const MainSite = ({ signOut, children }) => {
     return (
         <div>
             <Navigator signOut={signOut} />
-            {children}
+            <div>
+                {children}
+            </div>
         </div>
     )
 }

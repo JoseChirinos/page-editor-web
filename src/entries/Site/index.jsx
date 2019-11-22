@@ -8,31 +8,36 @@ import Loadable from 'react-loadable';
 import MainSite from '../../pages/Main/site'
 
 /*loading*/
-import Loading from '../../common/loading';
+import LoadPage from '../../common/loadpage'
 
 const SignIn = Loadable({
   loader: () => import('../../pages/Sign'),
-  loading: Loading
+  loading: LoadPage
 });
 
 const SignUp = Loadable({
   loader: () => import('../../pages/Sign/Up'),
-  loading: Loading
+  loading: LoadPage
 });
 
 const Website = Loadable({
   loader: () => import('../../pages/Website'),
-  loading: Loading
+  loading: LoadPage
+});
+
+const About = Loadable({
+  loader: () => import('../../pages/About'),
+  loading: LoadPage
 });
 
 const PostList = Loadable({
   loader: () => import('../../components/Post/PostList'),
-  loading: Loading
+  loading: LoadPage
 });
 
 const PostPreview = Loadable({
   loader: () => import('../../components/Post/PostPreview'),
-  loading: Loading
+  loading: LoadPage
 });
 
 const Site = ({
@@ -46,6 +51,7 @@ const Site = ({
         <Route exact path="/" component={Website} />
         <Route path="/login" component={(props)=> <SignIn {...props} signIn={ signIn } />} />
         <Route path="/registrar" component={(props)=> <SignUp {...props} signUp={signUp}/>} />
+        <Route path="/about" component={About} />
         <Route exact path="/posts" component={PostList} />
         <Route path="/posts/:id" component={PostPreview} />
         <Route component={()=><Redirect to='/' />} />

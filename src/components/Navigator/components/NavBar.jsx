@@ -54,17 +54,17 @@ const NavBar = ({
                     <NavMenu>
                         <ul>
                             <li>
-                                <NavLink to="/">
+                                <NavLink exact to="/" activeClassName="active-navbar">
                                     Inicio
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/about">
+                                <NavLink exact to="/about" activeClassName="active-navbar">
                                     Acerca de
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/posts">
+                                <NavLink exact to="/posts" activeClassName="active-navbar">
                                     Posts
                                 </NavLink>
                             </li>

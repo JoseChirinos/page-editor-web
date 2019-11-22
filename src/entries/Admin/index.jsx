@@ -9,12 +9,13 @@ import Loadable from 'react-loadable';
 import { UserContext } from '../../context/user-context'
 
 /*loading*/
-import Loading from '../../common/loading';
+import Loading from '../../common/loading'
+import LoadPage from '../../common/loadpage'
 import Main from '../../pages/Main'
 
 const Website = Loadable({
   loader: () => import('../../pages/Website'),
-  loading: Loading
+  loading: LoadPage
 })
 
 const Home = Loadable({
