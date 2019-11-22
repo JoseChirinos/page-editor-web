@@ -18,6 +18,21 @@ const Website = Loadable({
   loading: LoadPage
 })
 
+const About = Loadable({
+  loader: () => import('../../pages/About'),
+  loading: LoadPage
+})
+
+const PostList = Loadable({
+  loader: () => import('../../components/Post/PostList'),
+  loading: LoadPage
+})
+
+const PostPreview = Loadable({
+  loader: () => import('../../components/Post/PostPreview'),
+  loading: LoadPage
+})
+
 const Home = Loadable({
   loader: () => import('../../pages/home'),
   loading: Loading
@@ -63,6 +78,9 @@ const Admin = ({
       <div>
         <Switch>
           <Route exact path="/" component={(props)=> <Website {...props} signOut={signOut}/>} />
+          <Route path="/about" component={About} />
+          <Route exact path="/posts" component={PostList} />
+          <Route path="/posts/:id" component={PostPreview} />
           <Route path="/admin" component={(props)=> <Panel {...props} signOut={signOut} />}/>
           <Route component={()=><Redirect to='/admin'/>} />
         </Switch>

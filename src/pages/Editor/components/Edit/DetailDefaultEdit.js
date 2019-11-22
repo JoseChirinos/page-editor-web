@@ -4,6 +4,7 @@ import '@rmwc/icon/icon.css'
 import {
     EditContainer,
     EditWrapper,
+    EditGroup,
     EditLabel,
     EditColor,
     EditImagePreview,
@@ -12,6 +13,7 @@ import {
 import { Typography } from '@rmwc/typography'
 import { TextField } from '@rmwc/textfield'
 import { Radio } from '@rmwc/radio'
+import { Select } from '@rmwc/select'
 import { ChromePicker } from 'react-color'
 import { Icon } from '@rmwc/icon'
 import CropModal from '../../../../components/Crop/CropModal'
@@ -29,9 +31,12 @@ const DetailDefaultEdit = ({
     idImageUrl,
     imagePosition,
     bgColor,
+    linkAction,
+    linkLabel,
+    linkExternal,
     change
 }) => {
-    const data = { id, title, content, bgUrl, idBgUrl, imageUrl, idImageUrl, imagePosition, bgColor }
+    const data = { id, title, content, bgUrl, idBgUrl, imageUrl, idImageUrl, imagePosition, bgColor, linkAction, linkLabel, linkExternal }
     const [imageModal, imageToggleModal] = useState(false)
     const [bgModal, bgToggleModal] = useState(false)
     const imageFormat = {
@@ -125,6 +130,91 @@ const DetailDefaultEdit = ({
                 >
                     Derecha
                 </Radio>
+            </EditWrapper>
+
+            <EditLabel label="Botón" />
+            <EditWrapper>
+                <EditGroup>
+                    <Typography
+                        use="caption"
+                        style={{
+                            display: 'inline-block',
+                            margin: '16px 0px',
+                        }}
+                    >
+                        Elija el tipo de acción:
+                    </Typography>
+
+                    <Radio
+                        value={"false"}
+                        checked={linkExternal === "false"}
+                        onChange={evt => change({ ...data, linkExternal: evt.currentTarget.value, linkAction: '/' })}
+                    >
+                        Interno
+                    </Radio>
+
+                    <Radio
+                        value={"true"}
+                        checked={linkExternal === "true"}
+                        onChange={evt => change({ ...data, linkExternal: evt.currentTarget.value, linkAction: 'https://google.com' })}
+                    >
+                        Externo
+                    </Radio>
+
+                    <Typography
+                        use="caption"
+                        style={{
+                            display: 'inline-block',
+                            margin: '16px 0px',
+                        }}
+                    >
+                        Ingrese donde ir:
+                    </Typography>
+                    {
+                        linkExternal === "true" ?
+                            <TextField
+                                outlined
+                                type="url"
+                                label="Url del sitio"
+                                value={linkAction}
+                                onChange={(e) => change({ ...data, linkAction: e.currentTarget.value })}
+                            />
+                            :
+                            <Select
+                                helpText="Elija donde ir"
+                                label="Elija uno"
+                                value={linkAction}
+                                onChange={(e) => change({ ...data, linkAction: e.currentTarget.value })}
+                                options={
+                                    [
+                                        { label: 'Inicio', value: '/' },
+                                        { label: 'Posts', value: '/posts' },
+                                        { label: 'Login', value: '/login' },
+                                        { label: 'Registar', value: '/registrar' },
+                                        { label: 'About', value: '/about' },
+                                    ]
+                                }
+                            />
+                    }
+                    <Typography
+                        use="caption"
+                        style={{
+                            display: 'inline-block',
+                            margin: '16px 0px',
+                        }}
+                    >
+                        Ingrese label:
+                    </Typography>
+                    <TextField
+                        outlined
+                        type="text"
+                        label="Label"
+                        value={linkLabel}
+                        onChange={(e) => change({ ...data, linkLabel: e.currentTarget.value })}
+                    />
+
+                </EditGroup>
+
             </EditWrapper>
 
             <EditLabel label="Color de Fondo" />

@@ -13,32 +13,32 @@ import LoadPage from '../../common/loadpage'
 const SignIn = Loadable({
   loader: () => import('../../pages/Sign'),
   loading: LoadPage
-});
+})
 
 const SignUp = Loadable({
   loader: () => import('../../pages/Sign/Up'),
   loading: LoadPage
-});
+})
 
 const Website = Loadable({
   loader: () => import('../../pages/Website'),
   loading: LoadPage
-});
+})
 
 const About = Loadable({
   loader: () => import('../../pages/About'),
   loading: LoadPage
-});
+})
 
 const PostList = Loadable({
   loader: () => import('../../components/Post/PostList'),
   loading: LoadPage
-});
+})
 
 const PostPreview = Loadable({
   loader: () => import('../../components/Post/PostPreview'),
   loading: LoadPage
-});
+})
 
 const Site = ({
   signOut,

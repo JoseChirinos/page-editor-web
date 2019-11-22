@@ -9,6 +9,7 @@ const Simple = ({
     content,
     bgUrl,
     bgColor,
+    linkLabel,
 }) => {
     return (
         <DetailWrapper
@@ -31,7 +32,7 @@ const Simple = ({
                         margin: '0 auto'
                     }}
                 >   
-                    <Button raised>Accion</Button>
+                    <Button raised>{ linkLabel === ""? "ACCION": linkLabel }</Button>
                 </DetailAction>
             </span>
         </DetailWrapper>
@@ -44,8 +45,10 @@ Simple.propTypes = {
     content: PropTypes.string.isRequired,
     bgUrl: PropTypes.string.isRequired,
     bgColor: PropTypes.string,
+    linkLabel: PropTypes.string,
 }
 Simple.defaultProps = {
     bgColor: 'transparent',
+    linkLabel: "ACCION",
 }
 export default Simple

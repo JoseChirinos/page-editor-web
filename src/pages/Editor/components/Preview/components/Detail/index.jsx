@@ -12,6 +12,7 @@ const Detail = ({
     imagePosition,
     bgUrl,
     bgColor,
+    linkLabel,
 }) => {
     return (
         <DetailWrapper
@@ -26,7 +27,7 @@ const Detail = ({
                     { content }
                 </p>
                 <DetailAction>
-                    <Button raised>Accion</Button>
+                    <Button raised>{ linkLabel === ""? "ACCION": linkLabel }</Button>
                 </DetailAction>
             </span>
             {
@@ -48,10 +49,12 @@ Detail.propTypes = {
     imagePosition: PropTypes.oneOf(['left','right']),
     bgUrl: PropTypes.string.isRequired,
     bgColor: PropTypes.string,
+    linkLabel: PropTypes.string,
 }
 Detail.defaultProps = {
     imagePosition: 'left',
     imageUrl: '',
     bgColor: 'transparent',
+    linkLabel: "ACCION",
 }
 export default Detail

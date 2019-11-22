@@ -11,6 +11,7 @@ const DetailVideo = ({
     videoUrl,
     videoPosition,
     bgColor,
+    linkLabel,
 }) => {
 
     return (
@@ -25,7 +26,7 @@ const DetailVideo = ({
                     { content }
                 </p>
                 <DetailAction>
-                    <Button raised>Accion</Button>
+                    <Button raised>{ linkLabel === ""? "ACCION": linkLabel }</Button>
                 </DetailAction>
             </span>
             {
@@ -48,10 +49,12 @@ DetailVideo.propTypes = {
     videoUrl: PropTypes.string,
     videoPosition: PropTypes.oneOf(['left','right']),
     bgColor: PropTypes.string,
+    linkLabel: PropTypes.string,
 }
 DetailVideo.defaultProps = {
     videoPosition: 'left',
     videoUrl: '',
     bgColor: '#000',
+    linkLabel: "ACCION",
 }
 export default DetailVideo

@@ -16,7 +16,6 @@ const PageHttp = {
         })
     },
     save: (data, response, error) => {
-        console.log(data)
         axios.post(BASE + 'page/save', data,
             { cancelToken: source.token }
         ).then(function (r) {

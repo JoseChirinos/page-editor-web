@@ -65,6 +65,9 @@ export const Options = {
                 content: 'Contenido',
                 bgUrl: '',
                 bgColor: '#2b2b2b',
+                linkAction: '/',
+                linkLabel: '',
+                linkExternal: "false",
             }
         }
     },
@@ -81,6 +84,9 @@ export const Options = {
                 imagePosition: 'right',
                 bgUrl: '',
                 bgColor: '#2b2b2b',
+                linkAction: '/',
+                linkLabel: '',
+                linkExternal: "false",
             }
         }
     },
@@ -96,6 +102,9 @@ export const Options = {
                 videoUrl: '',
                 videoPosition: 'left',
                 bgColor: '#000000',
+                linkAction: '/',
+                linkLabel: '',
+                linkExternal: "false",
             }
         }
     },

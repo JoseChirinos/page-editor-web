@@ -14,7 +14,6 @@ const firstLoad = {
             firstLoad.status = false
             PageHttp.getNow(
                 (data) => {
-                    console.log(data)
                     if (data.status > 0) {
                         // hacemos algo
                         setIdPage(data.result.idPage)

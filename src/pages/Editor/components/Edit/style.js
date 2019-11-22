@@ -12,6 +12,10 @@ export const EditContainer = styled.div`
 export const EditWrapper = styled.div`
     padding: 10px 0px;
 `
+export const EditGroup = styled.div`
+    padding: 10px;
+    border: 1px solid #ccc;
+`
 export const EditLabel = styled(Chip)`
     outline: none!important;
     margin: 9px 0px;
