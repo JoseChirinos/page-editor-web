@@ -22,7 +22,7 @@ const Footer = ({
                         imageUrl !== "" ?
                         <img src={`${BASE_IMAGE}/${imageUrl}`} alt=''/>
                         :
-                        <img src='/assets/images/escudo_informatica.jpg' alt=''/>
+                        <img src='/website/assets/images/escudo_informatica.jpg' alt=''/>
                     }
                 </FooterLogo>
                 <FooterInfo>

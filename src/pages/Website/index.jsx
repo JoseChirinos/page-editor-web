@@ -63,7 +63,7 @@ const Website = ()=> {
         <Detail
           title='Hello World'
           content='Ingresa y edita tu página web.'
-          imageUrl='/assets/images/computer-science.png'
+          imageUrl='/website/assets/images/computer-science.png'
           imagePosition='left'
           bgColor="#000"
           linkAction="/login"

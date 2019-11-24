@@ -19,7 +19,7 @@ const PostCard = (props)=>{
                     tag="div"
                     sixteenByNine
                     style={{
-                        backgroundImage: `url(/assets/images/bg-fundamental.jpg)`
+                        backgroundImage: `url(/website/assets/images/bg-fundamental.jpg)`
                     }}
                 />
                 <div style={{ padding: '0 1rem 1rem 1rem' }}>

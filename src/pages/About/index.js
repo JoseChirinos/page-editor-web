@@ -16,7 +16,7 @@ const About = (props) => {
             <Detail
                 title='Sobre el sitio web'
                 content='Desarrollado por Jaime Rojas, con las tecnologias de ReactJS y PHP 7, como resultado este sitio web dinamico.'
-                imageUrl='/assets/images/whois.png'
+                imageUrl='/website/assets/images/whois.png'
                 imagePosition='right'
                 imageSource="local"
                 bgColor="#000"

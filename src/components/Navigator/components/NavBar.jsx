@@ -36,7 +36,7 @@ const NavBar = ({
         >
             <NavWrapper>
                 <NavBrand>
-                    <img src="/assets/images/escudo_informatica.jpg" alt=""/>
+                    <img src="/website/assets/images/escudo_informatica.jpg" alt=""/>
                     <span>
                         Ingeniería Informatica
                     </span>
