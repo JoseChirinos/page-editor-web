@@ -23,8 +23,8 @@ const PostList = (props)=>{
             PostHttp.getAll((data)=>{
                 if(data.status){
                     setData(data.result)
-                    setLoading(false)
                 }
+                setLoading(false)
             },
             (error)=>{
                 console.log(error)
