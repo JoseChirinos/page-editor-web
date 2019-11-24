@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PostCard from './PostCard'
 import { PostContainer, PostWrapper, PostTitle, PostMore } from './style'
 import { Button } from '@rmwc/button';
+import { Typography } from '@rmwc/typography'
 import Loading from '../../common/loading'
 import {
     NavLink
@@ -9,17 +10,26 @@ import {
 /* Data */
 import PostHttp from '../../pages/@data/post-http'
 
-const Post = (props)=>{
+const Post = ({
+    title,
+    subtitle
+})=>{
+    const [loading, setLoading] = useState(true)
     const [data, setData] = useState([])
 
     useEffect(()=>{
-        PostHttp.getFirst((data)=>{
-            setData(data.result)
-        },
-        (error)=>{
-            console.log(error)
-        })
-    },[setData])
+        if(loading){
+            PostHttp.getFirst((data)=>{
+                if(data.status){
+                    setData(data.result)
+                }
+                setLoading(false)
+            },
+            (error)=>{
+                console.log(error)
+            })
+        }
+    },[loading, setData, setLoading])
     useEffect(() => {
         return () => {
           PostHttp.cancel()
@@ -29,14 +39,16 @@ const Post = (props)=>{
         <PostContainer>
             <PostTitle>
                 <h1>
-                    Areas Dónde se destaca la informática
+                    { title }
                     <small>
-                        Ultimos Post publicados
+                        { subtitle }
                     </small>
                 </h1>
             </PostTitle>
             {
-                data.length > 0 ?
+                loading ?
+                <Loading/>
+                :
                 <PostWrapper>
                     {
                         data.map( post=>(
@@ -53,9 +65,20 @@ const Post = (props)=>{
                         ))
                     }
                 </PostWrapper>
-                :
-                <Loading/>
             }
+            
+            {
+                    data.length === 0 && !loading &&
+                    <Typography 
+                        use="headline6"
+                        style={{
+                            color: `#000`,
+                            textAlign: 'center',
+                        }}
+                    >
+                        Aún no hay Posts
+                    </Typography>
+                }
             <PostMore>
                 <NavLink to="/posts">
                     <Button raised>Ver más post</Button>

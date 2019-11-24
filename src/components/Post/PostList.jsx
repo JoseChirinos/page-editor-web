@@ -91,11 +91,10 @@ const PostList = (props)=>{
                 {
                     data.length === 0 && !loading &&
                     <Typography 
-                        use="headline4"
+                        use="headline6"
                         style={{
-                            fontFamily: `'Sarala', sans-serif`,
-                            color: `#fff`,
-                            textShadow: `1px 2px 1px #000`,
+                            color: `#000`,
+                            textAlign: 'center',
                         }}
                     >
                         Aún no hay Posts
