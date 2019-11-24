@@ -4,6 +4,8 @@ import { DetailWrapper, DetailImage, DetailAction } from './style'
 import { Parallax } from 'react-parallax'
 import { Button } from '@rmwc/button'
 import { NavLink } from 'react-router-dom'
+/* Data */
+import { BASE_IMAGE } from '../../pages/@data/@server'
 
 const mediaQuery = (setSize) =>{
     checkSizeHeight(setSize)
@@ -18,11 +20,12 @@ const Detail = ({
     content,
     imageUrl,
     imagePosition,
+    imageSource,
     bgUrl,
     bgColor,
     linkAction,
     linkLabel,
-    linkExternal
+    linkExternal,
 }) => {
     const  match = window.matchMedia('(max-width: 960px)')
     const [size, setSize] = useState('100vh')
@@ -34,18 +37,17 @@ const Detail = ({
 
     return (
         <Parallax
-            bgImage={bgUrl}
+            bgImage={bgUrl!==""? `${BASE_IMAGE}/${bgUrl}`:``}
             strength={500}
-            // disabled={ true }
             style={{
-                width: '100%'
+                width: '100%',
+                backgroundColor: bgColor
             }}
         >
             <div>
                 <DetailWrapper
                     imagePosition = { imagePosition }
                     heightSize = { size }
-                    bgColor = { bgColor }
                 >
                     <span>
                         { title }
@@ -54,13 +56,13 @@ const Detail = ({
                         </p>
                         <DetailAction>
                             {
-                                linkExternal ?
+                                linkExternal==="true" ?
                                 <a rel="noopener noreferrer" href={linkAction} target="_blank">
-                                    <Button raised>{linkLabel}</Button>
+                                    <Button raised>{linkLabel===""? "ACCION":linkLabel}</Button>
                                 </a>
                                 :
                                 <NavLink to={linkAction}>
-                                    <Button raised>{linkLabel}</Button>
+                                    <Button raised>{linkLabel===""? "ACCION":linkLabel}</Button>
                                 </NavLink>
                             }
                         </DetailAction>
@@ -68,7 +70,7 @@ const Detail = ({
                     {
                         imageUrl !== ''?
                         <DetailImage
-                            src = { imageUrl }
+                            src = { imageSource === "server"? `${BASE_IMAGE}/${imageUrl}`: imageUrl }
                         />
                         :
                         <span />
@@ -85,19 +87,21 @@ Detail.propTypes = {
     content: PropTypes.string.isRequired,
     imageUrl: PropTypes.string,
     imagePosition: PropTypes.oneOf(['left','right']),
+    imageSource: PropTypes.oneOf(['server','local']),
     bgUrl: PropTypes.string,
     bgColor: PropTypes.string,
     linkAction: PropTypes.string,
     linkLabel: PropTypes.string,
-    linkExternal: PropTypes.bool,
+    linkExternal: PropTypes.string,
 }
 Detail.defaultProps = {
     imagePosition: 'left',
+    imageSource: 'server',
     imageUrl: '',
     bgUrl: '',
     bgColor: 'transparent',
     linkAction:"/",
     linkLabel: "ACCION",
-    linkExternal: false
+    linkExternal: "false",
 }
 export default Detail

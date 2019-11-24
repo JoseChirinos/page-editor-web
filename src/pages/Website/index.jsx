@@ -22,9 +22,10 @@ const Website = ()=> {
     if(loading && Object.entries(website).length === 0){
       PageHttp.getNow(
         (data)=>{
-          console.log(data)
-          setWebsite(JSON.parse(data.result.context))
-          setOrderWeb(JSON.parse(data.result.context_order))
+          if(data.status){
+            setWebsite(JSON.parse(data.result.context))
+            setOrderWeb(JSON.parse(data.result.context_order))
+          }
           setLoading(false)
         },
         (error)=>{

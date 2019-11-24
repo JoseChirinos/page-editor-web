@@ -11,7 +11,6 @@ export const HeaderWrapper = styled.header`
     justify-content: center;
     flex-direction: column;
     background-size: cover;
-    background-color: #000;
     color: ${theme.white};
     > span{
         width: 100%;

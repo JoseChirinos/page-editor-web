@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { DetailWrapper, DetailAction } from './style'
 import { Button } from '@rmwc/button';
-
+/* Data */
+import { BASE_IMAGE } from '../../../../../@data/@server'
 
 const Simple = ({
     title,
@@ -15,7 +16,7 @@ const Simple = ({
         <DetailWrapper
             heightSize = '350px'
             imagePosition = 'right'
-            background = { bgUrl }
+            background = { `${bgUrl !== '' && `${BASE_IMAGE}/${bgUrl}`}` }
             bgColor = { bgColor }
         >
             <span

@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Typography } from '@rmwc/typography'
+import { Icon } from '@rmwc/icon'
 import { TextField } from '@rmwc/textfield'
 import { ChromePicker } from 'react-color'
 import { Radio } from '@rmwc/radio'
 import { Select } from '@rmwc/select'
+import CropModal from '../../../../components/Crop/CropModal'
 
 /* Components */
-import { EditContainer, EditWrapper, EditGroup, EditLabel, EditColor } from './style'
+import {
+    EditContainer,
+    EditWrapper,
+    EditGroup,
+    EditLabel,
+    EditColor,
+    EditImagePreview,
+    EditImage,
+} from './style'
+
+/* Data */
+import GaleryHttp from '../../../@data/galery-http'
 
 const DetailSimpleEdit = ({
     id,
     title,
     content,
+    idBgUrl,
     bgUrl,
     bgColor,
     linkAction,
@@ -19,7 +33,28 @@ const DetailSimpleEdit = ({
     linkExternal,
     change
 }) => {
-    const data = { id, title, content, bgUrl, bgColor, linkAction, linkLabel, linkExternal }
+    const data = { id, title, content, idBgUrl, bgUrl, bgColor, linkAction, linkLabel, linkExternal }
+    const [bgModal, bgToggleModal] = useState(false)
+    const bgFormat = {
+        thumb: false,
+        format: 'jpeg',
+        size: {
+            width: 950,
+            height: 450
+        }
+    }
+
+    const deleteImage = (id, type) => { //type true=image, false=bg
+        GaleryHttp.delete({ idGalery: id },
+            (response) => {
+                if (response.status) {
+                    change({ ...data, idBgUrl: 0, bgUrl: '' })
+                }
+            },
+            (error) => {
+                alert('No fue posible eliminar', error.message);
+            })
+    }
     return (
         <EditContainer>
             <Typography use="overline" tag="h6">
@@ -155,6 +190,31 @@ const DetailSimpleEdit = ({
                     onChange={(color) => change({ ...data, bgColor: color.hex })}
                 />
             </EditColor>
+
+            <EditLabel label="Imagen de Fondo" />
+            <EditWrapper>
+                {
+                    bgUrl !== '' ?
+                        <EditImagePreview
+                            image={bgUrl}
+                            onClick={() => { deleteImage(idBgUrl, false) }}
+                        >
+                            <div />
+                        </EditImagePreview>
+                        :
+                        <EditImage
+                            onClick={() => { bgToggleModal(true) }}
+                        >
+                            <Icon icon={{ icon: 'add_photo_alternate', size: 'xlarge' }} />
+                        </EditImage>
+                }
+            </EditWrapper>
+            <CropModal
+                setImage={({ idGalery, urlImage }) => { change({ ...data, idBgUrl: idGalery, bgUrl: urlImage }) }}
+                image={bgFormat}
+                modal={bgModal}
+                toggleModal={bgToggleModal}
+            />
 
         </EditContainer>
     )

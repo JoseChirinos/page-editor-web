@@ -3,7 +3,8 @@ import './styles.css'
 import PropTypes from 'prop-types'
 import { DetailWrapper, DetailAction } from './style'
 import ReactPlayer from 'react-player'
-import { Button } from '@rmwc/button';
+import { Button } from '@rmwc/button'
+import { NavLink } from 'react-router-dom'
 
 const mediaQuery = (setSize) =>{
     checkSizeHeight(setSize)
@@ -19,6 +20,9 @@ const DetailVideo = ({
     videoUrl,
     videoPosition,
     bgColor,
+    linkAction,
+    linkLabel,
+    linkExternal,
 }) => {
     const  match = window.matchMedia('(max-width: 960px)')
     const [size, setSize] = useState('100vh')
@@ -40,7 +44,16 @@ const DetailVideo = ({
                     { content }
                 </p>
                 <DetailAction>
-                    <Button raised>Accion</Button>
+                    {
+                        linkExternal==="true" ?
+                        <a rel="noopener noreferrer" href={linkAction} target="_blank">
+                            <Button raised>{linkLabel===""? "ACCION":linkLabel}</Button>
+                        </a>
+                        :
+                        <NavLink to={linkAction}>
+                            <Button raised>{linkLabel===""? "ACCION":linkLabel}</Button>
+                        </NavLink>
+                    }
                 </DetailAction>
             </span>
             {
@@ -63,10 +76,16 @@ DetailVideo.propTypes = {
     videoUrl: PropTypes.string,
     videoPosition: PropTypes.oneOf(['left','right']),
     bgColor: PropTypes.string,
+    linkAction: PropTypes.string,
+    linkLabel: PropTypes.string,
+    linkExternal: PropTypes.string,
 }
 DetailVideo.defaultProps = {
     videoPosition: 'left',
     videoUrl: '',
     bgColor: '#000',
+    linkAction:"/",
+    linkLabel: "ACCION",
+    linkExternal: "false",
 }
 export default DetailVideo

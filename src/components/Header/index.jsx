@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { HeaderWrapper, HeaderImage } from './style'
 import Typist from 'react-typist'
 import { Parallax } from 'react-parallax'
+/* Data */
+import { BASE_IMAGE } from '../../pages/@data/@server'
 
 const mediaQuery = (setSize) =>{
     checkSizeHeight(setSize)
@@ -27,8 +29,11 @@ const Header = ({
 
     return (
         <Parallax
-            bgImage={bgUrl}
+            bgImage={`${BASE_IMAGE}/${bgUrl}`}
             strength={400}
+            style={{
+                backgroundColor: '#000'
+            }}
         >
             <div>
                 <HeaderWrapper
@@ -44,7 +49,7 @@ const Header = ({
                     {
                         imageUrl !== "" &&
                         <HeaderImage
-                            src={ imageUrl }
+                            src={ `${BASE_IMAGE}/${imageUrl}` }
                         />
                     }
                 </HeaderWrapper>

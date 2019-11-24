@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { DetailWrapper, DetailAction } from './style'
 import { Parallax } from 'react-parallax'
 import { Button } from '@rmwc/button';
+import { NavLink } from 'react-router-dom'
+/* Data */
+import { BASE_IMAGE } from '../../pages/@data/@server'
 
 const mediaQuery = (setSize) =>{
     checkSizeHeight(setSize)
@@ -17,7 +20,11 @@ const Simple = ({
     content,
     bgUrl,
     bgColor,
+    linkAction,
+    linkLabel,
+    linkExternal,
 }) => {
+    console.log(bgUrl)
     const  match = window.matchMedia('(max-width: 960px)')
     const [size, setSize] = useState('100vh')
 
@@ -28,17 +35,17 @@ const Simple = ({
 
     return (
         <Parallax
-            bgImage={bgUrl}
+            bgImage={bgUrl!==""? `${BASE_IMAGE}/${bgUrl}`:``}
             strength={500}
             style={{
-                width: '100%'
+                width: '100%',
+                backgroundColor: bgColor
             }}
         >
             <div>
                 <DetailWrapper
                     heightSize = { size }
                     imagePosition = 'right'
-                    bgColor = { bgColor }
                 >
                     <span
                         style={{
@@ -54,7 +61,16 @@ const Simple = ({
                                 margin: '0 auto'
                             }}
                         >   
-                            <Button raised>Accion</Button>
+                            {
+                                linkExternal==="true" ?
+                                <a rel="noopener noreferrer" href={linkAction} target="_blank">
+                                    <Button raised>{linkLabel===""? "ACCION":linkLabel}</Button>
+                                </a>
+                                :
+                                <NavLink to={linkAction}>
+                                    <Button raised>{linkLabel===""? "ACCION":linkLabel}</Button>
+                                </NavLink>
+                            }
                         </DetailAction>
                     </span>
                 </DetailWrapper>
@@ -69,9 +85,15 @@ Simple.propTypes = {
     content: PropTypes.string.isRequired,
     bgUrl: PropTypes.string.isRequired,
     bgColor: PropTypes.string,
+    linkAction: PropTypes.string,
+    linkLabel: PropTypes.string,
+    linkExternal: PropTypes.string,
 }
 Simple.defaultProps = {
     imageUrl: '',
     bgColor: 'transparent',
+    linkAction:"/",
+    linkLabel: "ACCION",
+    linkExternal: "false",
 }
 export default Simple

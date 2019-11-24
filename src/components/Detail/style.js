@@ -10,7 +10,7 @@ export const DetailWrapper = styled.section`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: ${ ({ bgColor }) => bgColor};
+    background-color: ${ ({ bgColor }) => bgColor || 'transparent'};
     background-size: cover;
     color: ${theme.white};
     > span{
