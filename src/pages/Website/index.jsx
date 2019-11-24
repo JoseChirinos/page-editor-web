@@ -65,6 +65,7 @@ const Website = ()=> {
           content='Ingresa y edita tu página web.'
           imageUrl='/website/assets/images/computer-science.png'
           imagePosition='left'
+          imageSource="local"
           bgColor="#000"
           linkAction="/login"
           linkLabel="Empezar"
