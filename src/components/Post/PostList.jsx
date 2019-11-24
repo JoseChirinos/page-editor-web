@@ -14,17 +14,23 @@ import PostHttp from '../../pages/@data/post-http'
 import { UserContext } from '../../context/user-context'
 
 const PostList = (props)=>{
+    const [loading, setLoading] = useState(true)
     const [data, setData] = useState([])
     const user = useContext(UserContext)
 
     useEffect(()=>{
-        PostHttp.getAll((data)=>{
-            setData(data.result)
-        },
-        (error)=>{
-            console.log(error)
-        })
-    },[setData])
+        if(loading){
+            PostHttp.getAll((data)=>{
+                if(data.status){
+                    setData(data.result)
+                    setLoading(false)
+                }
+            },
+            (error)=>{
+                console.log(error)
+            })
+        }
+    },[setData,loading])
     useEffect(() => {
         return () => {
           PostHttp.cancel()
@@ -62,7 +68,9 @@ const PostList = (props)=>{
                     </PreviewTitle>
                 </Parallax>
                 {
-                    data.length > 0 ?
+                    loading ?
+                    <Loading/>
+                    :
                     <PostWrapper>
                         {
                             data.map( post=>(
@@ -79,8 +87,19 @@ const PostList = (props)=>{
                             ))
                         }
                     </PostWrapper>
-                    :
-                    <Loading/>
+                }
+                {
+                    data.length === 0 && !loading &&
+                    <Typography 
+                        use="headline4"
+                        style={{
+                            fontFamily: `'Sarala', sans-serif`,
+                            color: `#fff`,
+                            textShadow: `1px 2px 1px #000`,
+                        }}
+                    >
+                        Aún no hay Posts
+                    </Typography>
                 }
             </PostListWrapper>
         </div>
