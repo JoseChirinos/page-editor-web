@@ -30,7 +30,7 @@ const PostList = (props)=>{
                 console.log(error)
             })
         }
-    },[setData,loading])
+    },[setData, setLoading, loading])
     useEffect(() => {
         return () => {
           PostHttp.cancel()
