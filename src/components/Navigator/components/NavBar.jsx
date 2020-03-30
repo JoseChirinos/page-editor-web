@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+import PropTypes from 'prop-types'
 import './NavBar-style.css'
 import { Nav, NavWrapper, NavBrand, NavMenu, NavMobile } from '../style'
 import { HamburgerElastic } from 'react-animated-burgers'
@@ -19,7 +20,8 @@ const mediaQuery = (event, setOpen) =>{
 }
 const NavBar = ({
     scroller,
-    signOut
+    signOut,
+    color
 })=>{
     const  match = window.matchMedia('(max-width: 960px)')
     const user = useContext(UserContext)
@@ -33,6 +35,7 @@ const NavBar = ({
     return (
         <Nav
             className={`${scroller? 'navbar-down':'navbar-top'}`}
+            style={{backgroundColor: color}}
         >
             <NavWrapper>
                 <NavBrand>
@@ -69,6 +72,11 @@ const NavBar = ({
                                 </NavLink>
                             </li>
                             <li>
+                                <NavLink exact to="/info" activeClassName="active-navbar">
+                                    Info
+                                </NavLink>
+                            </li>
+                            <li>
                                 {
                                     Object.entries(user).length > 0 ?
                                         <NavLink to="/admin">
@@ -88,6 +96,12 @@ const NavBar = ({
             </NavWrapper>
         </Nav>
     )
+}
+
+NavBar.propTypes = {
+    scroller: PropTypes.bool.isRequired,
+    signOut: PropTypes.func.isRequired,
+    color: PropTypes.string.isRequired
 }
 
 export default NavBar

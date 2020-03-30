@@ -36,7 +36,7 @@
     "remark-toc": "^6.0.0",
     "rmwc": "^5.7.1",
     "sortablejs": "^1.10.1",
-    "styled-components": "^4.4.0",
+    "styled-components": "^4.4.1",
     "uuid": "^3.3.3"
   },
   "scripts": {

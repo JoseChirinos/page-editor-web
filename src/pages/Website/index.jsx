@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect} from 'react'
 /* Components */
 import Navigator from '../../components/Navigator'
-import Loading from '../../common/loading'
 import LoadPage from '../../common/loadpage'
 import Detail from '../../components/Detail'
 
@@ -63,7 +62,7 @@ const Website = ()=> {
         <Detail
           title='Hello World'
           content='Ingresa y edita tu página web.'
-          imageUrl='/website/assets/images/computer-science.png'
+          imageUrl='/assets/images/computer-science.png'
           imagePosition='left'
           imageSource="local"
           bgColor="#000"

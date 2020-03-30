@@ -1,0 +1,40 @@
+
+
+
+#tituloPrincipal{
+	font-family: trajanus;
+}
+#parrafoPrincipal{
+	font-family: ahoras;
+}
+.team-player h4{
+font-size: 23px;
+font-family: june;
+
+}
+.team-player p{
+font-family: ahoras;
+color: black;
+
+}
+
+@font-face{
+	font-family: imprima;
+	src:url("../fuentes/DK Woolwich.otf");
+}
+@font-face{
+	font-family: ahoras;
+	src:url("../fuentes/Imprima-Regular.ttf");
+}
+@font-face{
+	font-family: trajanus;
+	src:url("../fuentes/TRAJANUS.TTF");
+}
+@font-face{
+	font-family: bodoni;
+	src:url("../fuentes/BodoniFLF-Bold.ttf");
+}
+@font-face{
+	font-family: june;
+	src:url("../fuentes/junegull.ttf");
+}

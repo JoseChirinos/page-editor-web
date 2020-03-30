@@ -44,7 +44,7 @@ const PostList = (props)=>{
             }
             <PostListWrapper>
                 <Parallax
-                    bgImage="/website/assets/images/bg-login-oficial.jpg"
+                    bgImage="/assets/images/bg-login-oficial.jpg"
                     strength={-300}
                     style={{
                         width: '100%',

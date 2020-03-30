@@ -29,7 +29,7 @@ const Header = ({
 
     return (
         <Parallax
-            bgImage={`${BASE_IMAGE}/${bgUrl}`}
+            bgImage={ bgUrl!=='' ? `${BASE_IMAGE}/${bgUrl}`: ``}
             strength={400}
             style={{
                 backgroundColor: '#000'

@@ -40,6 +40,11 @@ const PostPreview = Loadable({
   loading: LoadPage
 })
 
+const Info = Loadable({
+  loader: () => import('../../pages/Website/Info'),
+  loading: LoadPage
+})
+
 const Site = ({
   signOut,
   signIn,
@@ -49,6 +54,7 @@ const Site = ({
     <MainSite signOut={signOut}>
       <Switch>
         <Route exact path="/" component={Website} />
+        <Route path="/info" component={Info} />
         <Route path="/login" component={(props)=> <SignIn {...props} signIn={ signIn } />} />
         <Route path="/registrar" component={(props)=> <SignUp {...props} signUp={signUp}/>} />
         <Route path="/about" component={About} />

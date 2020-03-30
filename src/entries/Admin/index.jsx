@@ -50,6 +50,11 @@ const Posts = Loadable({
   loading: Loading
 })
 
+const Info = Loadable({
+  loader: () => import('../../pages/Website/Info'),
+  loading: Loading
+})
+
 const Panel = ({
   match,
   signOut
@@ -78,6 +83,7 @@ const Admin = ({
       <div>
         <Switch>
           <Route exact path="/" component={(props)=> <Website {...props} signOut={signOut}/>} />
+          <Route path="/info" component={Info} />
           <Route path="/about" component={About} />
           <Route exact path="/posts" component={PostList} />
           <Route path="/posts/:id" component={PostPreview} />
